@@ -11,11 +11,14 @@ using System.Drawing.Drawing2D;
 
 namespace UMLDiagram
 {
-  public partial class Form1 : Form
-  {
+    public partial class Form1 : Form
+    {
         Bitmap bitmap;
         Graphics graphics;
-        //Pen pen;
+        Pen MinePen = new Pen(Color.Black, 9);
+        Pen dashed_pen = new Pen(Color.Red, 9);
+        Pen tmpPen;
+        float width;
 
         private List<LineList> MyLines = new List<LineList>();
         //public Point MouseDownLocation;
@@ -30,10 +33,10 @@ namespace UMLDiagram
         Point StartDownLocation = new Point();
 
 
-    public Form1()
-    {
-      InitializeComponent();
-    }
+        public Form1()
+        {
+            InitializeComponent();
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -46,13 +49,16 @@ namespace UMLDiagram
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            MinePen.DashStyle = DashStyle.Solid;
             IsMouseDown = true;
-            m_StartX=e.X;
-            m_StartY=e.Y;
-            m_CurX=e.X;
-            m_CurY=e.Y;
+            m_StartX = e.X;
+            m_StartY = e.Y;
+            m_CurX = e.X;
+            m_CurY = e.Y;
             StartDownLocation = e.Location;
-    }
+            tmpPen = MinePen;
+
+        }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -73,11 +79,8 @@ namespace UMLDiagram
             IsMouseDown = false;
             if (e.Button == MouseButtons.Left)
             {
-                LineList DrawLine = new LineList();
-                DrawLine.X1 = m_StartX;
-                DrawLine.Y1 = m_StartY;                
-                DrawLine.X2 = m_CurX;
-                DrawLine.Y2 = m_CurY;
+                LineList DrawLine = new LineList(m_StartX, m_StartY, m_CurX, m_CurY, tmpPen.Color, width, tmpPen.DashStyle);
+               
                 MyLines.Add(DrawLine);
             }
             pictureBox1.Invalidate();
@@ -86,23 +89,59 @@ namespace UMLDiagram
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             int x1, y1, x2, y2;
-            for (int i=0; i<= MyLines.Count-1; i++)
+            for (int i = 0; i <= MyLines.Count - 1; i++)
             {
-                Pen LinePen = new Pen(Color.Black, 3);
+                
+                tmpPen= new Pen(MyLines[i].PenColor, MyLines[i].PenWidth);
+                tmpPen.DashStyle = MyLines[i].PenDashStyle;
                 x1 = MyLines[i].X1;
                 x2 = MyLines[i].X2;
                 y1 = MyLines[i].Y1;
                 y2 = MyLines[i].Y2;
-                e.Graphics.DrawLine(LinePen, x1, y1, x2, y2);
+                tmpPen.EndCap = LineCap.ArrowAnchor;
+                e.Graphics.DrawLine(tmpPen, x1, y1, x2, y2);
             }
 
             if (IsMouseDown == true)
             {
-                //Pen dashed_pen = new Pen(Color.Blue, 1);
-                Pen dashed_pen = new Pen(Color.Red, 3);
-                dashed_pen.DashStyle = DashStyle.Solid;
+                dashed_pen.DashStyle = DashStyle.Dash;
                 e.Graphics.DrawLine(dashed_pen, m_StartX, m_StartY, m_CurX, m_CurY);
             }
+        }
+
+        private void SwitchColorPaintig(Color color, Pen pen)
+        {
+            pen.Color = color;
+        }
+
+        private void SwitchWeightPaintig(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem)
+            {
+                ToolStripMenuItem toolStripMenuItem = (ToolStripMenuItem)sender;
+                MinePen.Width = Convert.ToInt32(toolStripMenuItem.Text);
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem)
+            {
+                ToolStripMenuItem toolStripMenuItem = (ToolStripMenuItem)sender;
+                width = Convert.ToInt32(toolStripMenuItem.Name);
+            }
+
+
         }
     }
 }
