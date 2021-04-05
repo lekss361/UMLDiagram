@@ -83,34 +83,52 @@ namespace UMLDiagram
                 //MinePen.Width = 9f;
                 //PaintingTriangle(MinePen, m_Cur,e);
                 //inheritanceButton_Click(MinePen, start, end);
-                
+
                 MinePen.DashStyle = DashStyle.Solid;
                 MinePen.Width = 3;
-
-                double angle, arrow_lenght = 15, arrow_degrees = 0.5, x1, y1, x2, y2;
-                int hightTriangle;
-
-                hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2);
-
-                angle = Math.Atan2(m_Cur.Y - m_Start.Y, m_Cur.X - m_Start.X) + Math.PI;
-
-                x1 = m_Cur.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
-                y1 = m_Cur.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
-                x2 = m_Cur.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
-                y2 = m_Cur.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
-
-                Point x1y1 = new Point(Convert.ToInt32(x1), Convert.ToInt32(y1));
-                Point x2y2 = new Point(Convert.ToInt32(x2), Convert.ToInt32(y2));
-           
-                e.Graphics.DrawLine(MinePen, m_Cur, x1y1);
-                e.Graphics.DrawLine(MinePen, m_Cur, x2y2);
+                DrawLineTriangleCap(e,m_Cur,m_Start);
 
                 // полая стрелка
-                //e.Graphics.DrawLine(MinePen, x1y1, x2y2); 
+                //
 
                 // ромб
 
             }
+        }
+
+        private void DrawLineTriangleCap(PaintEventArgs e , Point mCur, Point mStart)
+        {
+            double angle;
+            double arrow_lenght = 30;
+            double arrow_degrees = 0.5; // размах крыльев или острота угла 
+            double x1, y1, x2, y2, x3, y3;
+
+
+            int hightTriangle;
+
+            hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2) ;
+
+            angle = Math.Atan2(mCur.Y - mStart.Y, mCur.X - mStart.X) + Math.PI; // угол поворота линии
+
+            
+            x1 = mCur.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
+            y1 = mCur.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
+            x2 = mCur.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
+            y2 = mCur.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
+            
+
+            Point x1y1 = new Point(Convert.ToInt32(x1), Convert.ToInt32(y1));
+            Point x2y2 = new Point(Convert.ToInt32(x2), Convert.ToInt32(y2));
+            //x1y1.X += 30;
+            //x1y1.Y += 30;
+            //x2y2.Y += 30;
+            //x2y2.X += 30;
+            //mCur.X += 30;
+            //mCur.Y += 30;
+
+            e.Graphics.DrawLine(MinePen, mCur, x1y1);
+            e.Graphics.DrawLine(MinePen, mCur, x2y2);
+            e.Graphics.DrawLine(MinePen, x1y1, x2y2);
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
