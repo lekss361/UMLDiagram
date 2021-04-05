@@ -16,7 +16,7 @@ namespace UMLDiagram
         Bitmap bitmap;
         Graphics graphics;
         Pen MinePen = new Pen(Color.Black, 9);
-        Pen dashed_pen = new Pen(Color.Red, 9);
+        Pen dashed_pen = new Pen(Color.Red, 7);
         Pen tmpPen;
         float width;
 
@@ -56,7 +56,8 @@ namespace UMLDiagram
             m_CurX = e.X;
             m_CurY = e.Y;
             StartDownLocation = e.Location;
-            tmpPen = MinePen;
+            width = MinePen.Width;
+            tmpPen = new Pen (MinePen.Color,MinePen.Width);
 
         }
 
@@ -105,7 +106,7 @@ namespace UMLDiagram
             if (IsMouseDown == true)
             {
                 dashed_pen.DashStyle = DashStyle.Dash;
-                e.Graphics.DrawLine(dashed_pen, m_StartX, m_StartY, m_CurX, m_CurY);
+                e.Graphics.DrawLine(MinePen, m_StartX, m_StartY, m_CurX, m_CurY);
             }
         }
 

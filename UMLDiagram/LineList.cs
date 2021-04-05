@@ -14,6 +14,7 @@ namespace UMLDiagram
         private Color _color;
         private float _width;
         private DashStyle _dashStyle;
+        
 
 
         public int X1
@@ -75,7 +76,7 @@ namespace UMLDiagram
             X2 = 0;
             Y2 = 0;
             _color = Color.Black;
-            _width = 3;
+            _width = 9;
             _dashStyle = DashStyle.Dash;
             TotalCount += 1;
         }
