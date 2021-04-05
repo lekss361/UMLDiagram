@@ -27,7 +27,7 @@ namespace UMLDiagram
         //private string DrawCase = "Line";
         //Point Point1 = new Point();
         //Point Point2 = new Point();
-        Point StartDownLocation = new Point();
+        //Point StartDownLocation = new Point();
 
 
         public Form1()
@@ -65,15 +65,11 @@ namespace UMLDiagram
 
             IsMouseDown = false;
             graphics.DrawLine(MinePen, m_Start, e.Location);
-            MinePen.Width = 100f;
-            MinePen.EndCap = LineCap.Triangle;
-            MinePen.Width = 9f;
+            //MinePen.Width = 100f;
+            //MinePen.EndCap = LineCap.Triangle;
+            //MinePen.Width = 9f;
             //PaintingTriangle(MinePen, m_Cur);
-            MyLines.Add(new LineList(m_Start,m_Cur,MinePen.Color,MinePen.Width, MinePen.DashStyle));
-
-            
-
-
+            MyLines.Add(new LineList(m_Start,m_Cur,MinePen.Color,MinePen.Width, MinePen.DashStyle));        
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -82,17 +78,46 @@ namespace UMLDiagram
             if (IsMouseDown == true)
             {
                 e.Graphics.DrawLine(MinePen, m_Start, m_Cur);
-                MinePen.Width = 100f;
-                MinePen.EndCap = LineCap.Triangle;
-                MinePen.Width = 9f;
-                PaintingTriangle(MinePen, m_Cur,e);
+                //MinePen.Width = 100f;
+                //MinePen.EndCap = LineCap.Triangle;
+                //MinePen.Width = 9f;
+                //PaintingTriangle(MinePen, m_Cur,e);
+                //inheritanceButton_Click(MinePen, start, end);
+                
+                MinePen.DashStyle = DashStyle.Solid;
+                MinePen.Width = 3;
+
+                double angle, arrow_lenght = 15, arrow_degrees = 0.5, x1, y1, x2, y2;
+                int hightTriangle;
+
+                hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2);
+
+                angle = Math.Atan2(m_Cur.Y - m_Start.Y, m_Cur.X - m_Start.X) + Math.PI;
+
+                x1 = m_Cur.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
+                y1 = m_Cur.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
+                x2 = m_Cur.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
+                y2 = m_Cur.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
+
+                Point x1y1 = new Point(Convert.ToInt32(x1), Convert.ToInt32(y1));
+                Point x2y2 = new Point(Convert.ToInt32(x2), Convert.ToInt32(y2));
+           
+                e.Graphics.DrawLine(MinePen, m_Cur, x1y1);
+                e.Graphics.DrawLine(MinePen, m_Cur, x2y2);
+
+                // полая стрелка
+                //e.Graphics.DrawLine(MinePen, x1y1, x2y2); 
+
+                // ромб
 
             }
         }
 
-        private void SwitchColorPaintig(Color color, Pen pen)
+        private void SwitchColorPaintig(object sender, EventArgs e)
         {
-            pen.Color = color;
+            colorDialog1.ShowDialog();
+            MinePen.Color = colorDialog1.Color;
+            colorLineButton.BackColor = colorDialog1.Color;
         }
 
         private void SwitchWeightPaintig(object sender, EventArgs e)
@@ -121,39 +146,6 @@ namespace UMLDiagram
                 }
                 // MinePen.DashStyle = toolStripMenuItem.Text;
             }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PaintingTriangle(Pen pen, Point point, PaintEventArgs e)
-        {
-            Pen tmpPen = new Pen(pen.Color,pen.Width);
-            tmpPen.Color = Color.Red;
-            Point point1 = new Point(point.X, point.Y - 50);
-            Point point2 = new Point(point.X, point.Y + 50);
-            Point point3 = new Point(point.X+50, point.Y);
-            Point[] trianglePoints =
-            {
-                point1,point2,point3,point1
-            };
-           //e.Graphics.DrawLine(tmpPen, point.X, point.Y,point.X,point.Y+30);
-           //e.Graphics.DrawLine(tmpPen, point.X, point.Y+30,point.X+40,point.Y);
-           //e.Graphics.DrawLine(tmpPen, point.X+40, point.Y,point.X,point.Y-30);
-           //e.Graphics.DrawLine(tmpPen, point.X, point.Y-30,point.X,point.Y);
-           
-            
-             
-
-            // Draw polygon to screen.
-            e.Graphics.DrawPolygon(tmpPen, trianglePoints);
         }
 
     }
