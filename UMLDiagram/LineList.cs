@@ -57,12 +57,12 @@ namespace UMLDiagram
             set { _dashStyle = value; }
         }
 
-        public LineList(int _X1, int _Y1, int _X2, int _Y2,Color color, float width, DashStyle dashStyle)
+        public LineList(Point _startPoint, Point _curPoint, Color color, float width, DashStyle dashStyle)
         {
-            X1 = _X1;
-            Y1 = _Y1;
-            X2 = _X2;
-            Y2 = _Y2;
+            X1 = _startPoint.X;
+            Y1 = _startPoint.Y;
+            X2 = _curPoint.X;
+            Y2 = _curPoint.Y;
             PenColor = color;
             PenWidth = width;
             PenDashStyle = dashStyle;

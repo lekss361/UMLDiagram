@@ -34,6 +34,9 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.linesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.пунктирToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сплошToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +58,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.linesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1000, 24);
@@ -94,6 +98,29 @@
             this.toolStripMenuItem5.Text = "10";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.SwitchWeightPaintig);
             // 
+            // linesToolStripMenuItem
+            // 
+            this.linesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.пунктирToolStripMenuItem,
+            this.сплошToolStripMenuItem});
+            this.linesToolStripMenuItem.Name = "linesToolStripMenuItem";
+            this.linesToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.linesToolStripMenuItem.Text = "Lines";
+            // 
+            // пунктирToolStripMenuItem
+            // 
+            this.пунктирToolStripMenuItem.Name = "пунктирToolStripMenuItem";
+            this.пунктирToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.пунктирToolStripMenuItem.Text = "Solid";
+            this.пунктирToolStripMenuItem.Click += new System.EventHandler(this.SwitchtTypesLinePaintig);
+            // 
+            // сплошToolStripMenuItem
+            // 
+            this.сплошToolStripMenuItem.Name = "сплошToolStripMenuItem";
+            this.сплошToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сплошToolStripMenuItem.Text = "Dash";
+            this.сплошToolStripMenuItem.Click += new System.EventHandler(this.SwitchtTypesLinePaintig);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,6 +148,9 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem linesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem пунктирToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сплошToolStripMenuItem;
     }
 }
 
