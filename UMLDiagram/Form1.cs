@@ -148,5 +148,38 @@ namespace UMLDiagram
             }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PaintingTriangle(Pen pen, Point point, PaintEventArgs e)
+        {
+            Pen tmpPen = new Pen(pen.Color,pen.Width);
+            tmpPen.Color = Color.Red;
+            Point point1 = new Point(point.X, point.Y - 50);
+            Point point2 = new Point(point.X, point.Y + 50);
+            Point point3 = new Point(point.X+50, point.Y);
+            Point[] trianglePoints =
+            {
+                point1,point2,point3,point1
+            };
+           //e.Graphics.DrawLine(tmpPen, point.X, point.Y,point.X,point.Y+30);
+           //e.Graphics.DrawLine(tmpPen, point.X, point.Y+30,point.X+40,point.Y);
+           //e.Graphics.DrawLine(tmpPen, point.X+40, point.Y,point.X,point.Y-30);
+           //e.Graphics.DrawLine(tmpPen, point.X, point.Y-30,point.X,point.Y);
+           
+            
+             
+
+            // Draw polygon to screen.
+           // e.Graphics.DrawPolygon(tmpPen, trianglePoints);
+        }
+
     }
 }
