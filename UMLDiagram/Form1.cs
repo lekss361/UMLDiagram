@@ -27,7 +27,7 @@ namespace UMLDiagram
         //private string DrawCase = "Line";
         //Point Point1 = new Point();
         //Point Point2 = new Point();
-        Point StartDownLocation = new Point();
+        //Point StartDownLocation = new Point();
 
 
         public Form1()
@@ -123,10 +123,6 @@ namespace UMLDiagram
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -156,5 +152,10 @@ namespace UMLDiagram
             e.Graphics.DrawPolygon(tmpPen, trianglePoints);
         }
 
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            MinePen.Color = colorDialog1.Color;
+        }
     }
 }
