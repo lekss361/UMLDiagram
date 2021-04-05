@@ -99,8 +99,8 @@ namespace UMLDiagram
         private void DrawLineTriangleCap(PaintEventArgs e , Point mCur, Point mStart)
         {
             double angle;
-            double arrow_lenght = 30;
-            double arrow_degrees = 0.5; // размах крыльев или острота угла 
+            double arrow_lenght =15;
+            double arrow_degrees = 300; // размах крыльев или острота угла 
             double x1, y1, x2, y2, x3, y3;
 
 
@@ -115,10 +115,13 @@ namespace UMLDiagram
             y1 = mCur.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
             x2 = mCur.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
             y2 = mCur.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
+            x3 = mCur.X - 30 * Math.Cos(angle);
+            y3 = mCur.Y - 30 * Math.Sin(angle);
             
 
             Point x1y1 = new Point(Convert.ToInt32(x1), Convert.ToInt32(y1));
             Point x2y2 = new Point(Convert.ToInt32(x2), Convert.ToInt32(y2));
+            Point x3y3 = new Point(Convert.ToInt32(x3), Convert.ToInt32(y3));
             //x1y1.X += 30;
             //x1y1.Y += 30;
             //x2y2.Y += 30;
@@ -126,8 +129,8 @@ namespace UMLDiagram
             //mCur.X += 30;
             //mCur.Y += 30;
 
-            e.Graphics.DrawLine(MinePen, mCur, x1y1);
-            e.Graphics.DrawLine(MinePen, mCur, x2y2);
+            e.Graphics.DrawLine(MinePen, x3y3, x1y1);
+            e.Graphics.DrawLine(MinePen, x3y3, x2y2);
             e.Graphics.DrawLine(MinePen, x1y1, x2y2);
         }
 
