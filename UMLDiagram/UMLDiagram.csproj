@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arrows\AbstractArrow.cs" />
+    <Compile Include="Arrows\AggregationArrow.cs" />
+    <Compile Include="Arrows\AssociationArrow.cs" />
+    <Compile Include="Arrows\CompositionArrow.cs" />
+    <Compile Include="Arrows\ImplementationArrow.cs" />
+    <Compile Include="Arrows\InheritanceArrow.cs" />
     <Compile Include="LineList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
