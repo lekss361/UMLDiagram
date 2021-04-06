@@ -13,22 +13,17 @@ namespace UMLDiagram
 {
     public partial class Form1 : Form
     {
-        Bitmap bitmap;
-        Bitmap tmpBitmap;
-        Graphics graphics;
+        Bitmap _mainBitmap;
+        Bitmap _tmpBitmap;
+        Graphics _graphics;
         Pen MinePen = new Pen(Color.Black, 9);
-        Pen tmpPen = new Pen(Color.Black, 100);
+        
         private bool IsMouseDown = false;
         private Point m_Start;
         private Point m_Cur;
 
         private List<LineList> MyLines = new List<LineList>();
-        //public Point MouseDownLocation;
-        //private string DrawCase = "Line";
-        //Point Point1 = new Point();
-        //Point Point2 = new Point();
-        //Point StartDownLocation = new Point();
-
+      
 
         public Form1()
         {
@@ -37,11 +32,11 @@ namespace UMLDiagram
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            tmpBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            graphics = Graphics.FromImage(bitmap);
-            graphics.Clear(Color.White);
-            pictureBox1.Image = bitmap;
+            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            
+            _graphics = Graphics.FromImage(_mainBitmap);
+            _graphics.Clear(Color.White);
+            pictureBox1.Image = _mainBitmap;
 
         }
 
@@ -55,8 +50,13 @@ namespace UMLDiagram
         {
             if (IsMouseDown == true)
             {
-                m_Cur = e.Location;
-                pictureBox1.Invalidate();
+                _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                _graphics = Graphics.FromImage(_tmpBitmap);
+
+               m_Cur = e.Location;
+              
+               DrawLineTriangleCap(m_Cur, m_Start,IsMouseDown);
+                pictureBox1.Image = _tmpBitmap;
             }
         }
 
@@ -64,74 +64,51 @@ namespace UMLDiagram
         {
 
             IsMouseDown = false;
-            graphics.DrawLine(MinePen, m_Start, e.Location);
-            //MinePen.Width = 100f;
-            //MinePen.EndCap = LineCap.Triangle;
-            //MinePen.Width = 9f;
-            //PaintingTriangle(MinePen, m_Cur);
+            
+            _mainBitmap = _tmpBitmap;
             MyLines.Add(new LineList(m_Start,m_Cur,MinePen.Color,MinePen.Width, MinePen.DashStyle));        
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-
-            if (IsMouseDown == true)
-            {
-                e.Graphics.DrawLine(MinePen, m_Start, m_Cur);
-                //MinePen.Width = 100f;
-                //MinePen.EndCap = LineCap.Triangle;
-                //MinePen.Width = 9f;
-                //PaintingTriangle(MinePen, m_Cur,e);
-                //inheritanceButton_Click(MinePen, start, end);
-
-                MinePen.DashStyle = DashStyle.Solid;
-                MinePen.Width = 3;
-                DrawLineTriangleCap(e,m_Cur,m_Start);
-
-                // полая стрелка
-                //
-
-                // ромб
-
-            }
-        }
-
-        private void DrawLineTriangleCap(PaintEventArgs e , Point mCur, Point mStart)
+        private void DrawLineTriangleCap(Point mCur, Point mStart, bool mouseDown)
         {
             double angle;
-            double arrow_lenght =15;
+            double arrow_lenght = 15;
             double arrow_degrees = 300; // размах крыльев или острота угла 
             double x1, y1, x2, y2, x3, y3;
 
 
             int hightTriangle;
 
-            hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2) ;
+            hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2);
 
             angle = Math.Atan2(mCur.Y - mStart.Y, mCur.X - mStart.X) + Math.PI; // угол поворота линии
 
-            
+
             x1 = mCur.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
             y1 = mCur.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
             x2 = mCur.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
             y2 = mCur.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
             x3 = mCur.X - 30 * Math.Cos(angle);
             y3 = mCur.Y - 30 * Math.Sin(angle);
-            
+
 
             Point x1y1 = new Point(Convert.ToInt32(x1), Convert.ToInt32(y1));
             Point x2y2 = new Point(Convert.ToInt32(x2), Convert.ToInt32(y2));
             Point x3y3 = new Point(Convert.ToInt32(x3), Convert.ToInt32(y3));
-            //x1y1.X += 30;
-            //x1y1.Y += 30;
-            //x2y2.Y += 30;
-            //x2y2.X += 30;
-            //mCur.X += 30;
-            //mCur.Y += 30;
+            
+            SolidBrush solidBrush = new SolidBrush(Color.FromArgb(255, 255, 0, 0)); // кисть для закрашивания треуголника
 
-            e.Graphics.DrawLine(MinePen, x3y3, x1y1);
-            e.Graphics.DrawLine(MinePen, x3y3, x2y2);
-            e.Graphics.DrawLine(MinePen, x1y1, x2y2);
+            if (mouseDown == true)
+            {
+                _graphics.DrawLine(MinePen, mCur, mStart); // тут рисуем линию 
+                _graphics.DrawLine(MinePen, x3y3, x1y1);
+                _graphics.DrawLine(MinePen, x3y3, x2y2);
+                _graphics.DrawLine(MinePen, x1y1, x2y2);
+                Point[] pointF = new Point[] { x3y3, x2y2, x1y1 }; // массив точек для закрашивания треугольника 
+                _graphics.FillPolygon(solidBrush, pointF); // закрашиваем треуголник 
+
+            }
+
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
@@ -165,7 +142,7 @@ namespace UMLDiagram
                     default:
                         break;
                 }
-                // MinePen.DashStyle = toolStripMenuItem.Text;
+                
             }
         }
 
