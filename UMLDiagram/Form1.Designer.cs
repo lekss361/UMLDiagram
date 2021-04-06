@@ -116,16 +116,14 @@
             // пунктирToolStripMenuItem
             // 
             this.пунктирToolStripMenuItem.Name = "пунктирToolStripMenuItem";
-            this.пунктирToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.пунктирToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.пунктирToolStripMenuItem.Text = "Solid";
-            this.пунктирToolStripMenuItem.Click += new System.EventHandler(this.SwitchtTypesLinePaintig);
             // 
             // сплошToolStripMenuItem
             // 
             this.сплошToolStripMenuItem.Name = "сплошToolStripMenuItem";
-            this.сплошToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.сплошToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.сплошToolStripMenuItem.Text = "Dash";
-            this.сплошToolStripMenuItem.Click += new System.EventHandler(this.SwitchtTypesLinePaintig);
             // 
             // groupBox1
             // 
@@ -161,6 +159,7 @@
             this.associationButton.TabIndex = 4;
             this.associationButton.Text = "Ассоциация";
             this.associationButton.UseVisualStyleBackColor = true;
+            this.associationButton.Click += new System.EventHandler(this.associationButton_Click);
             // 
             // compositionButton
             // 
@@ -191,7 +190,7 @@
             // 
             // colorLineButton
             // 
-            this.colorLineButton.Location = new System.Drawing.Point(12, 253);
+            this.colorLineButton.Location = new System.Drawing.Point(12, 229);
             this.colorLineButton.Name = "colorLineButton";
             this.colorLineButton.Size = new System.Drawing.Size(158, 23);
             this.colorLineButton.TabIndex = 0;
