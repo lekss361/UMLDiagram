@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using UMLDiagram.Arrows;
 
 namespace UMLDiagram
 {
@@ -54,8 +50,12 @@ namespace UMLDiagram
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
                m_Cur = e.Location;
-              
-               DrawLineTriangleCap(m_Cur, m_Start,IsMouseDown);
+
+                InheritanceArrow inheritanceArrow = new InheritanceArrow();
+                inheritanceArrow.StartPoint = m_Start;
+                inheritanceArrow.EndPoint = m_Cur;
+                inheritanceArrow.Draw(_graphics);
+                //DrawLineTriangleCap(m_Cur, m_Start,IsMouseDown);
                 pictureBox1.Image = _tmpBitmap;
             }
         }
@@ -76,7 +76,7 @@ namespace UMLDiagram
             double arrow_degrees = 300; // размах крыльев или острота угла 
             double x1, y1, x2, y2, x3, y3;
 
-
+           
             int hightTriangle;
 
             hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2);
@@ -104,8 +104,9 @@ namespace UMLDiagram
                 _graphics.DrawLine(MinePen, x3y3, x1y1);
                 _graphics.DrawLine(MinePen, x3y3, x2y2);
                 _graphics.DrawLine(MinePen, x1y1, x2y2);
-                Point[] pointF = new Point[] { x3y3, x2y2, x1y1 }; // массив точек для закрашивания треугольника 
-                _graphics.FillPolygon(solidBrush, pointF); // закрашиваем треуголник 
+                //Point[] pointF = new Point[] { x3y3, x2y2, x1y1 }; // массив точек для закрашивания треугольника 
+
+                //_graphics.FillPolygon(solidBrush, pointF); // закрашиваем треуголник 
 
             }
 
@@ -178,6 +179,5 @@ namespace UMLDiagram
             // Draw polygon to screen.
            // e.Graphics.DrawPolygon(tmpPen, trianglePoints);
         }
-
     }
 }
