@@ -9,12 +9,9 @@ namespace UMLDiagram.Arrows
 {
     public abstract class AbstractArrow
     {
-        Point StartPoint { get; set; }
-        Point EndPoint { get; set; }
+        public Point StartPoint { get; set; }
+        public Point EndtPoint { get; set; }
+
         public abstract void Draw(Graphics graphics);
-
-
-        
-        
     }
 }

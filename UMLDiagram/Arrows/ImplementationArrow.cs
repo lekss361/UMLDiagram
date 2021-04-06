@@ -11,7 +11,7 @@ namespace UMLDiagram.Arrows
     {
         public override void Draw(Graphics graphics)
         {
-            
+           
         }
     }
 }
