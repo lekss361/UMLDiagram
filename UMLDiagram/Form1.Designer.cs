@@ -179,6 +179,7 @@
             this.implementationButton.TabIndex = 2;
             this.implementationButton.Text = "Имплементация";
             this.implementationButton.UseVisualStyleBackColor = true;
+            this.implementationButton.Click += new System.EventHandler(this.implementationButton_Click);
             // 
             // inheritanceButton
             // 

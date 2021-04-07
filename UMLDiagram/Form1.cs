@@ -17,6 +17,7 @@ namespace UMLDiagram
         Bitmap _tmpBitmap;
         Graphics _graphics;
         Pen MinePen = new Pen(Color.Black, 9);
+        Pen _penForArrow;
         
         private bool IsMouseDown = false;
         private Point m_Start;
@@ -54,7 +55,7 @@ namespace UMLDiagram
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
                m_Cur = e.Location;
-              
+             
                DrawLineTriangleCap(m_Cur, m_Start,IsMouseDown);
                 pictureBox1.Image = _tmpBitmap;
             }
@@ -106,6 +107,43 @@ namespace UMLDiagram
                 _graphics.DrawLine(MinePen, x1y1, x2y2);
                 Point[] pointF = new Point[] { x3y3, x2y2, x1y1 }; // массив точек для закрашивания треугольника 
                 _graphics.FillPolygon(solidBrush, pointF); // закрашиваем треуголник 
+
+            }
+
+        }
+        private void DrawImplementationLine(Point mCur, Point mStart, bool mouseDown)
+        {
+            double angle;
+            double arrow_lenght = 15;
+            double arrow_degrees = 300; // размах крыльев или острота угла 
+            double x1, y1, x2, y2, x3, y3;
+            int hightTriangle;
+
+            hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2);
+            angle = Math.Atan2(mCur.Y - mStart.Y, mCur.X - mStart.X) + Math.PI; // угол поворота линии
+
+
+            x1 = mCur.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
+            y1 = mCur.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
+            x2 = mCur.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
+            y2 = mCur.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
+            x3 = mCur.X - 30 * Math.Cos(angle);
+            y3 = mCur.Y - 30 * Math.Sin(angle);
+
+
+            Point x1y1 = new Point(Convert.ToInt32(x1), Convert.ToInt32(y1));
+            Point x2y2 = new Point(Convert.ToInt32(x2), Convert.ToInt32(y2));
+            Point x3y3 = new Point(Convert.ToInt32(x3), Convert.ToInt32(y3));
+
+            if (mouseDown == true)
+            {
+                _penForArrow= new Pen (Color.Black,MinePen.Width);
+                _penForArrow.DashStyle = DashStyle.Dash;
+                _graphics.DrawLine(_penForArrow, mCur, mStart); // тут рисуем линию . От другого метода тут меняется только кисть для рисования линии
+                _graphics.DrawLine(MinePen, x3y3, x1y1);
+               _graphics.DrawLine(MinePen, x3y3, x2y2);
+                _graphics.DrawLine(MinePen, x1y1, x2y2);
+               
 
             }
 
@@ -179,5 +217,9 @@ namespace UMLDiagram
            // e.Graphics.DrawPolygon(tmpPen, trianglePoints);
         }
 
+        private void implementationButton_Click(object sender, EventArgs e)
+        {
+            DrawImplementationLine(m_Cur, m_Start, IsMouseDown);
+        }
     }
 }
