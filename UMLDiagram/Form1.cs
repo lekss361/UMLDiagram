@@ -91,12 +91,7 @@ namespace UMLDiagram
 
         private void SwitchWeightPaintig(object sender, EventArgs e)
         {
-            if (sender is ToolStripMenuItem)
-            {
-                ToolStripMenuItem toolStripMenuItem = (ToolStripMenuItem)sender;
-                //MinePen.Width = Convert.ToInt32(toolStripMenuItem.Text);
-                _associationArrow.WidthLine= Convert.ToInt32(toolStripMenuItem.Text);
-            }
+            _associationArrow.WidthLine= trackBarWidth.Value;
         }
 
 
@@ -104,7 +99,6 @@ namespace UMLDiagram
         {
             _associationArrow = new AssociationArrow();
         }
-
 
     }
 }
