@@ -8,18 +8,28 @@ using System.Drawing;
 namespace UMLDiagram.Arrows
 {
     public abstract class AbstractArrow
-    {
-        protected Pen _pen;        
+    {    
 
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
 
-        public Color ColorLine { get; set; }
-        public int WidthLine { get; set; }
+        public abstract void Draw(Graphics graphics, Pen pen);
 
-        public bool Flag { get; set; }
+        protected List<Point> GetPoints()
+        {
+            List<Point> points = new List<Point>();
 
-        public abstract void Draw(Graphics graphics);
+            points.Add(StartPoint);
+
+            int middleX = (EndPoint.X + StartPoint.Y) / 2;
+
+            points.Add(new Point(middleX, StartPoint.Y));
+            points.Add(new Point(middleX, EndPoint.Y));
+
+            points.Add(EndPoint);
+
+            return points;
+        }
 
     }
 }

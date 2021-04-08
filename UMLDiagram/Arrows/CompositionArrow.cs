@@ -9,7 +9,7 @@ namespace UMLDiagram.Arrows
 {
     public class CompositionArrow : AbstractArrow
     {
-        public override void Draw(Graphics graphics)
+        public override void Draw(Graphics graphics, Pen en)
         {
             
         }

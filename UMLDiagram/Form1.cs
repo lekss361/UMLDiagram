@@ -17,7 +17,7 @@ namespace UMLDiagram
         Bitmap _mainBitmap;
         Bitmap _tmpBitmap;
         Graphics _graphics;
-        Pen MinePen = new Pen(Color.Black, 9);
+        Pen MinePen = new Pen(Color.Black, 3);
         
         private bool IsMouseDown = false;
         private Point m_Start;
@@ -62,7 +62,7 @@ namespace UMLDiagram
                 m_Cur = e.Location;  
                 _associationArrow.EndPoint = e.Location;
 
-                _associationArrow.Draw(_graphics);
+                _associationArrow.Draw(_graphics, MinePen);
 
                 pictureBox1.Image = _tmpBitmap;
 
@@ -83,22 +83,22 @@ namespace UMLDiagram
         {
             colorDialog1.ShowDialog();          
 
-            //MinePen.Color = colorDialog1.Color;
-            _associationArrow.ColorLine = colorDialog1.Color;
-            _associationArrow.Flag = true;
-            //colorLineButton.BackColor = colorDialog1.Color;
+            MinePen.Color = colorDialog1.Color;
         }
 
         private void SwitchWeightPaintig(object sender, EventArgs e)
         {
-            _associationArrow.WidthLine= trackBarWidth.Value;
+            MinePen.Width = trackBarWidth.Value;
         }
-
 
         private void associationButton_Click(object sender, EventArgs e)
         {
             _associationArrow = new AssociationArrow();
         }
 
+        private void aggregationButton_Click(object sender, EventArgs e)
+        {
+            _associationArrow = new AggregationArrow();
+        }
     }
 }

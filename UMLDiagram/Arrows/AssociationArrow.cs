@@ -9,21 +9,10 @@ namespace UMLDiagram.Arrows
 {
     public class AssociationArrow : AbstractArrow
     {
-        public AssociationArrow()
+        public override void Draw(Graphics graphics, Pen pen)
         {
-            _pen = new Pen(Color.Black, 2);
-        }
-
-        public override void Draw(Graphics graphics)
-        {
-            if (Flag == true)
-            {
-                _pen.Color = ColorLine;
-            }
-            _pen.Width = WidthLine;
-
             double angle;
-            double arrow_lenght = 30;
+            double arrow_lenght = 25;
             double arrow_degrees = 0.5; // размах крыльев или острота угла 
             double x1, y1, x2, y2;
 
@@ -36,12 +25,15 @@ namespace UMLDiagram.Arrows
 
 
             Point x1y1 = new Point(Convert.ToInt32(x1), Convert.ToInt32(y1));
-            Point x2y2 = new Point(Convert.ToInt32(x2), Convert.ToInt32(y2));                
+            Point x2y2 = new Point(Convert.ToInt32(x2), Convert.ToInt32(y2));
 
-            graphics.DrawLine(_pen, EndPoint, StartPoint); // тут рисуем линию 
+            // тут рисуем линию 
+            //graphics.DrawLine(pen, StartPoint, EndPoint); 
+            graphics.DrawLines(pen, GetPoints().ToArray()); 
 
-            graphics.DrawLine(_pen, EndPoint, x1y1);    //рисуем наконечник
-            graphics.DrawLine(_pen, EndPoint, x2y2);                
+            //рисуем наконечник
+            graphics.DrawLine(pen, EndPoint, x1y1);    
+            graphics.DrawLine(pen, EndPoint, x2y2);                
 
         }
     }

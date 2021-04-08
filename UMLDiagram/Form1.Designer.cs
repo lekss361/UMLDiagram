@@ -50,6 +50,7 @@
             this.implementationButton = new System.Windows.Forms.Button();
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.colorLineButton = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -123,6 +124,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.buttonClear);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.trackBarWidth);
             this.groupBox1.Controls.Add(this.buttonStack);
@@ -146,7 +148,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 392);
+            this.label1.Location = new System.Drawing.Point(12, 373);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 11;
@@ -155,7 +157,7 @@
             // trackBarWidth
             // 
             this.trackBarWidth.LargeChange = 1;
-            this.trackBarWidth.Location = new System.Drawing.Point(12, 408);
+            this.trackBarWidth.Location = new System.Drawing.Point(12, 389);
             this.trackBarWidth.Name = "trackBarWidth";
             this.trackBarWidth.Size = new System.Drawing.Size(112, 45);
             this.trackBarWidth.TabIndex = 10;
@@ -199,16 +201,17 @@
             // 
             // aggregationButton
             // 
-            this.aggregationButton.Location = new System.Drawing.Point(12, 302);
+            this.aggregationButton.Location = new System.Drawing.Point(12, 283);
             this.aggregationButton.Name = "aggregationButton";
             this.aggregationButton.Size = new System.Drawing.Size(112, 23);
             this.aggregationButton.TabIndex = 5;
             this.aggregationButton.Text = "Агрегация";
             this.aggregationButton.UseVisualStyleBackColor = true;
+            this.aggregationButton.Click += new System.EventHandler(this.aggregationButton_Click);
             // 
             // associationButton
             // 
-            this.associationButton.Location = new System.Drawing.Point(12, 242);
+            this.associationButton.Location = new System.Drawing.Point(12, 223);
             this.associationButton.Name = "associationButton";
             this.associationButton.Size = new System.Drawing.Size(112, 23);
             this.associationButton.TabIndex = 4;
@@ -218,7 +221,7 @@
             // 
             // compositionButton
             // 
-            this.compositionButton.Location = new System.Drawing.Point(12, 273);
+            this.compositionButton.Location = new System.Drawing.Point(12, 254);
             this.compositionButton.Name = "compositionButton";
             this.compositionButton.Size = new System.Drawing.Size(112, 23);
             this.compositionButton.TabIndex = 3;
@@ -227,7 +230,7 @@
             // 
             // implementationButton
             // 
-            this.implementationButton.Location = new System.Drawing.Point(12, 213);
+            this.implementationButton.Location = new System.Drawing.Point(12, 194);
             this.implementationButton.Name = "implementationButton";
             this.implementationButton.Size = new System.Drawing.Size(112, 23);
             this.implementationButton.TabIndex = 2;
@@ -236,7 +239,7 @@
             // 
             // inheritanceButton
             // 
-            this.inheritanceButton.Location = new System.Drawing.Point(12, 184);
+            this.inheritanceButton.Location = new System.Drawing.Point(12, 165);
             this.inheritanceButton.Name = "inheritanceButton";
             this.inheritanceButton.Size = new System.Drawing.Size(112, 23);
             this.inheritanceButton.TabIndex = 1;
@@ -245,7 +248,7 @@
             // 
             // colorLineButton
             // 
-            this.colorLineButton.Location = new System.Drawing.Point(12, 358);
+            this.colorLineButton.Location = new System.Drawing.Point(12, 339);
             this.colorLineButton.Name = "colorLineButton";
             this.colorLineButton.Size = new System.Drawing.Size(112, 23);
             this.colorLineButton.TabIndex = 0;
@@ -253,6 +256,15 @@
             this.colorLineButton.UseMnemonic = false;
             this.colorLineButton.UseVisualStyleBackColor = true;
             this.colorLineButton.Click += new System.EventHandler(this.SwitchColorPaintig);
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(15, 431);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(109, 23);
+            this.buttonClear.TabIndex = 3;
+            this.buttonClear.Text = "Очистить";
+            this.buttonClear.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -313,6 +325,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar trackBarWidth;
+        private System.Windows.Forms.Button buttonClear;
     }
 }
 
