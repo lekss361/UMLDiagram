@@ -38,6 +38,7 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.trackBarWidth = new System.Windows.Forms.TrackBar();
             this.buttonStack = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@
             this.implementationButton = new System.Windows.Forms.Button();
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.colorLineButton = new System.Windows.Forms.Button();
-            this.buttonClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -145,6 +145,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
             // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(15, 431);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(109, 23);
+            this.buttonClear.TabIndex = 3;
+            this.buttonClear.Text = "Очистить";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -227,6 +236,7 @@
             this.compositionButton.TabIndex = 3;
             this.compositionButton.Text = "Композиция";
             this.compositionButton.UseVisualStyleBackColor = true;
+            this.compositionButton.Click += new System.EventHandler(this.compositionButton_Click);
             // 
             // implementationButton
             // 
@@ -236,6 +246,7 @@
             this.implementationButton.TabIndex = 2;
             this.implementationButton.Text = "Имплементация";
             this.implementationButton.UseVisualStyleBackColor = true;
+            this.implementationButton.Click += new System.EventHandler(this.button5_Click);
             // 
             // inheritanceButton
             // 
@@ -245,6 +256,7 @@
             this.inheritanceButton.TabIndex = 1;
             this.inheritanceButton.Text = "Наследование";
             this.inheritanceButton.UseVisualStyleBackColor = true;
+            this.inheritanceButton.Click += new System.EventHandler(this.InheritanceArrow_Click);
             // 
             // colorLineButton
             // 
@@ -256,15 +268,6 @@
             this.colorLineButton.UseMnemonic = false;
             this.colorLineButton.UseVisualStyleBackColor = true;
             this.colorLineButton.Click += new System.EventHandler(this.SwitchColorPaintig);
-            // 
-            // buttonClear
-            // 
-            this.buttonClear.Location = new System.Drawing.Point(15, 431);
-            this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(109, 23);
-            this.buttonClear.TabIndex = 3;
-            this.buttonClear.Text = "Очистить";
-            this.buttonClear.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

@@ -1,35 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace UMLDiagram.Arrows
 {
     public abstract class AbstractArrow
-    {    
+    {
+        public Pen _penForLine { get; set; }
+        public Pen _penForArrow { get; set; }
 
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
+        public double angle { get; set; }
+        public double arrow_lenght { get; set; }
 
-        public abstract void Draw(Graphics graphics, Pen pen);
+        public double arrow_degrees { get; set; }// размах крыльев или острота угла 
 
-        protected List<Point> GetPoints()
+        public double x1 { get; set; }
+        public double y1 { get; set; }
+        public double x2 { get; set; }
+        public double y2 { get; set; }
+        public double x3 { get; set; }
+        public double y3 { get; set; }
+        public double x4 { get; set; }
+        public double y4 { get; set; }
+
+        int hightTriangle;
+
+        protected bool isClicked { get; set; }
+
+        public void MouseDown(object sender, MouseEventArgs e)
         {
-            List<Point> points = new List<Point>();
-
-            points.Add(StartPoint);
-
-            int middleX = (EndPoint.X + StartPoint.Y) / 2;
-
-            points.Add(new Point(middleX, StartPoint.Y));
-            points.Add(new Point(middleX, EndPoint.Y));
-
-            points.Add(EndPoint);
-
-            return points;
+            isClicked = true;
+            StartPoint = new Point(e.X, e.Y);
         }
+        public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics);
+        public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen);
+        public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen penForLine, Pen penForF);
+
+        public abstract void DrawCurvedLine(Graphics graphics);
+
 
     }
 }

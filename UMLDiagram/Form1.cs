@@ -1,14 +1,8 @@
 ﻿using UMLDiagram.Arrows;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
 
 namespace UMLDiagram
 {
@@ -18,14 +12,20 @@ namespace UMLDiagram
         Bitmap _tmpBitmap;
         Graphics _graphics;
         Pen MinePen = new Pen(Color.Black, 3);
-        
+        string action = "";
+
         private bool IsMouseDown = false;
         private Point m_Start;
         private Point m_Cur;
 
+
         private List<LineList> MyLines = new List<LineList>();
 
-        AbstractArrow _associationArrow;
+        AssociationArrow _associationArrow;
+        AddictionArrow addictionArrow;
+        InheritanceArrow inheritanceArrow;
+        AggregationArrow aggregationArrow;
+        ImplementationArrow implementationArrow;
 
         public Form1()
         {
@@ -49,20 +49,42 @@ namespace UMLDiagram
             IsMouseDown = true;
 
             m_Start = e.Location;
-            _associationArrow.StartPoint = e.Location;
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (IsMouseDown == true)
             {
+                m_Cur = new Point(e.X, e.Y);
+
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                m_Cur = e.Location;  
-                _associationArrow.EndPoint = e.Location;
 
-                _associationArrow.Draw(_graphics, MinePen);
+
+                //_graphics.DrawLine(pen, start, cur);
+                //pen1.DashStyle = DashStyle.Dash;
+                switch (action)
+                {
+                    case "inheritanceArrow":
+                        inheritanceArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                        break;
+                    case "associationArrow":
+                        _associationArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                        break;
+                    case "addictionArrow":
+                        addictionArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                        break;
+                    case "aggregationArrow":
+                        aggregationArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                        break;
+                    default:
+                        break;
+                }
+                //Ag.Draw(cur, start, isClicked, _graphics, pen);
+
+
+
 
                 pictureBox1.Image = _tmpBitmap;
 
@@ -74,9 +96,7 @@ namespace UMLDiagram
         {
 
             IsMouseDown = false;
-            
             _mainBitmap = _tmpBitmap;
-            MyLines.Add(new LineList(m_Start,m_Cur,MinePen.Color,MinePen.Width, MinePen.DashStyle));        
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
@@ -98,7 +118,44 @@ namespace UMLDiagram
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            _associationArrow = new AggregationArrow();
+            aggregationArrow = new AggregationArrow();
+        }
+        private void InheritanceArrow_Click(object sender, EventArgs e)
+        {
+            inheritanceArrow = new InheritanceArrow();
+
+
+            action = "inheritanceArrow";
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //associationArrow = new AssociationArrow();
+            action = "associationArrow";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            addictionArrow = new AddictionArrow();
+            action = "addictionArrow";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           // implementationArrow realizationArrow = new implementationArrow();
+            action = "realizationArrow";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            aggregationArrow = new AggregationArrow();
+            action = "aggregationArrow";
+        }
+
+        private void compositionButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
