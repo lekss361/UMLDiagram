@@ -9,10 +9,6 @@ namespace UMLDiagram.Arrows
         {
             _penForLine = new Pen(Color.Black);
         }
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics)
-        {
-            DrawAssociationLine(mCur, mStart, mouseDown, graphics);
-        }
         public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
         {
             DrawAssociationLine(mCur, mStart, mouseDown, graphics, pen);

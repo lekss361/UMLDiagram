@@ -13,12 +13,6 @@ namespace UMLDiagram.Arrows
         {
 
         }
-
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
         {
             throw new NotImplementedException();

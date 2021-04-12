@@ -24,7 +24,7 @@ namespace UMLDiagram.Arrows
         public double x4 { get; set; }
         public double y4 { get; set; }
 
-        int hightTriangle;
+        //int hightTriangle;
 
         protected bool isClicked { get; set; }
 
@@ -33,7 +33,7 @@ namespace UMLDiagram.Arrows
             isClicked = true;
             StartPoint = new Point(e.X, e.Y);
         }
-        public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics);
+        //public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics);
         public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen);
         public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen penForLine, Pen penForF);
 

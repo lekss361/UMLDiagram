@@ -6,10 +6,6 @@ namespace UMLDiagram.Arrows
 {
     public class AggregationArrow : AbstractArrow
     {
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics)
-        {
-
-        }
         public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
         {
             DrawAggregationArrow(mCur, mStart, mouseDown, graphics, pen);

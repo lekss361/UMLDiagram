@@ -65,10 +65,6 @@ namespace UMLDiagram.Arrows
                 graphics.DrawLine(_penForLine, x1y1, x2y2);
             }
         }
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics)
-        {
-            DrawInheritanceArrow(mCur, mStart, mouseDown, graphics);
-        }
         public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
         {
             DrawInheritanceArrow(mCur, mStart, mouseDown, graphics, pen);
