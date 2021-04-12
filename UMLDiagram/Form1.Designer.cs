@@ -38,6 +38,7 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.trackBarWidth = new System.Windows.Forms.TrackBar();
             this.buttonStack = new System.Windows.Forms.Button();
@@ -50,7 +51,7 @@
             this.implementationButton = new System.Windows.Forms.Button();
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.colorLineButton = new System.Windows.Forms.Button();
-            this.buttonClear = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -124,6 +125,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.buttonClear);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.trackBarWidth);
@@ -144,6 +146,15 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(15, 431);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(109, 23);
+            this.buttonClear.TabIndex = 3;
+            this.buttonClear.Text = "Очистить";
+            this.buttonClear.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -227,6 +238,7 @@
             this.compositionButton.TabIndex = 3;
             this.compositionButton.Text = "Композиция";
             this.compositionButton.UseVisualStyleBackColor = true;
+            this.compositionButton.Click += new System.EventHandler(this.compositionButton_Click);
             // 
             // implementationButton
             // 
@@ -246,6 +258,7 @@
             this.inheritanceButton.TabIndex = 1;
             this.inheritanceButton.Text = "Наследование";
             this.inheritanceButton.UseVisualStyleBackColor = true;
+            this.inheritanceButton.Click += new System.EventHandler(this.InheritanceArrow_Click);
             // 
             // colorLineButton
             // 
@@ -258,14 +271,15 @@
             this.colorLineButton.UseVisualStyleBackColor = true;
             this.colorLineButton.Click += new System.EventHandler(this.SwitchColorPaintig);
             // 
-            // buttonClear
+            // button1
             // 
-            this.buttonClear.Location = new System.Drawing.Point(15, 431);
-            this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(109, 23);
-            this.buttonClear.TabIndex = 3;
-            this.buttonClear.Text = "Очистить";
-            this.buttonClear.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(12, 312);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Зависимость";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.addictionButton_Click);
             // 
             // Form1
             // 
@@ -327,6 +341,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar trackBarWidth;
         private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button button1;
     }
 }
 
