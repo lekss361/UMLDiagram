@@ -50,10 +50,15 @@
     <Compile Include="Arrows\AddictionArrow.cs" />
     <Compile Include="Arrows\AggregationArrow.cs" />
     <Compile Include="Arrows\AssociationArrow.cs" />
+    <Compile Include="Arrows\CapType\AbstractCup.cs" />
+    <Compile Include="Arrows\CapType\AssociationCup.cs" />
+    <Compile Include="Arrows\CapType\RombCup.cs" />
+    <Compile Include="Arrows\CapType\TriangleCap.cs" />
     <Compile Include="Arrows\CompositionArrow.cs" />
     <Compile Include="Arrows\ImplementationArrow.cs" />
     <Compile Include="Arrows\InheritanceArrow.cs" />
     <Compile Include="ArrowType.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="LineList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -87,6 +92,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Arrows\LineType\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
