@@ -23,9 +23,10 @@ namespace UMLDiagram
 
         AssociationArrow _associationArrow;
         AddictionArrow _addictionArrow;
-        InheritanceArrow inheritanceArrow;
+        InheritanceArrow _inheritanceArrow;
         AggregationArrow _aggregationArrow;
         ImplementationArrow _implementationArrow;
+        CompositionArrow _compositionArrow;
 
         public Form1()
         {
@@ -40,30 +41,40 @@ namespace UMLDiagram
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
 
+            _associationArrow = new AssociationArrow();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             IsMouseDown = true;
 
-            m_Start = e.Location;
+            m_Start = e.Location;                       
 
             switch (arrowType)
             {
                 case ArrowLineType.inheritanceArrow:
-                    inheritanceArrow = new InheritanceArrow();
+                    _inheritanceArrow = new InheritanceArrow();
+                    _inheritanceArrow.StartPoint = e.Location;
                     break;
                 case ArrowLineType.associationArrow:
                     _associationArrow = new AssociationArrow();
+                    _associationArrow.StartPoint = e.Location;
                     break;
                 case ArrowLineType.addictionArrow:
                     _addictionArrow = new AddictionArrow();
+                    _addictionArrow.StartPoint = e.Location;
                     break;
                 case ArrowLineType.aggregationArrow:
                     _aggregationArrow = new AggregationArrow();
+                    _aggregationArrow.StartPoint = e.Location;
                     break;
                 case ArrowLineType.implementationArrow:
                     _implementationArrow = new ImplementationArrow();
+                    _implementationArrow.StartPoint = e.Location;
+                    break;
+                case ArrowLineType.composition:
+                    _compositionArrow = new CompositionArrow();
+                    _compositionArrow.StartPoint = e.Location;
                     break;
                 default:
                     break;
@@ -74,7 +85,7 @@ namespace UMLDiagram
         {
             if (IsMouseDown == true)
             {
-                m_Cur = new Point(e.X, e.Y);
+                m_Cur = e.Location;                
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
@@ -82,19 +93,28 @@ namespace UMLDiagram
                 switch (arrowType)
                 {
                     case ArrowLineType.inheritanceArrow:
-                        inheritanceArrow.Draw(m_Cur, m_Start, _graphics, MinePen);
+                        _inheritanceArrow.Draw(_graphics, MinePen);
+                        _inheritanceArrow.EndPoint = e.Location;
                         break;
                     case ArrowLineType.associationArrow:
-                        _associationArrow.Draw(m_Cur, m_Start, _graphics, MinePen);
+                        _associationArrow.Draw( _graphics, MinePen);
+                        _associationArrow.EndPoint = e.Location;
                         break;
                     case ArrowLineType.addictionArrow:
-                        _addictionArrow.Draw(m_Cur, m_Start, _graphics, MinePen);
+                        _addictionArrow.Draw( _graphics, MinePen);
+                        _addictionArrow.EndPoint = e.Location;
                         break;
                     case ArrowLineType.aggregationArrow:
-                        _aggregationArrow.Draw(m_Cur, m_Start,  _graphics, MinePen);
+                        _aggregationArrow.Draw(_graphics, MinePen);
+                        _aggregationArrow.EndPoint = e.Location;
                         break;
                     case ArrowLineType.implementationArrow:
-                        _implementationArrow.Draw(m_Cur, m_Start, _graphics, MinePen);
+                        _implementationArrow.Draw(_graphics, MinePen);
+                        _implementationArrow.EndPoint = e.Location;
+                        break;
+                    case ArrowLineType.composition:
+                        _compositionArrow.Draw(_graphics, MinePen);
+                        _compositionArrow.EndPoint = e.Location;
                         break;
                     default:
                         break;

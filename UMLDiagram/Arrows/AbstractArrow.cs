@@ -5,8 +5,6 @@ namespace UMLDiagram.Arrows
 {
     public abstract class AbstractArrow
     {
-        public Pen _penForLine { get; set; }
-        public Pen _penForArrow { get; set; }
 
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
@@ -25,14 +23,8 @@ namespace UMLDiagram.Arrows
         public double x4 { get; set; }
         public double y4 { get; set; }
 
-        //int hightTriangle;
 
-
-        public abstract void Draw(Point mCur, Point mStart, Graphics graphics, Pen pen);
-        public abstract void Draw(Point mCur, Point mStart, Graphics graphics, Pen penForLine, Pen penForF);
-
-        public abstract void DrawCurvedLine(Graphics graphics);
-
+        public abstract void Draw( Graphics graphics, Pen pen);
 
     }
 }

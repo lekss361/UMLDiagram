@@ -6,22 +6,17 @@ namespace UMLDiagram.Arrows
 {
     public class AggregationArrow : AbstractArrow
     {
-        public override void Draw(Point mCur, Point mStart, Graphics graphics, Pen pen)
+        public override void Draw(Graphics graphics, Pen pen)
         {
-            DrawAggregationArrow(mCur, mStart, graphics, pen);
+            DrawAggregationArrow(graphics, pen);
         }
 
-        public override void Draw(Point mCur, Point mStart,  Graphics graphics, Pen penForLine, Pen penForF)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DrawAggregationArrow(Point mCur, Point mStart, Graphics graphics, Pen pen)
+        public void DrawAggregationArrow(Graphics graphics, Pen pen)
         {
             Point x1y1, x2y2, x3y3, x4y4;
-            СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3, out x4y4);
+            СalculationOfAngles(EndPoint, StartPoint, out x1y1, out x2y2, out x3y3, out x4y4);
 
-                graphics.DrawLine(pen, mCur, mStart); // тут рисуем линию 
+                graphics.DrawLine(pen, EndPoint, StartPoint); // тут рисуем линию 
                 graphics.DrawLine(pen, x3y3, x1y1);
                 graphics.DrawLine(pen, x3y3, x2y2);
 
@@ -30,11 +25,8 @@ namespace UMLDiagram.Arrows
 
         }
 
-        public override void DrawCurvedLine(Graphics graphics)
-        {
-            throw new NotImplementedException();
-        }
-        protected void СalculationOfAngles(ref Point mCur, ref Point mStart, out Point x1y1, out Point x2y2, out Point x3y3, out Point x4y4)
+
+        protected void СalculationOfAngles( Point mCur,  Point mStart, out Point x1y1, out Point x2y2, out Point x3y3, out Point x4y4)
         {
             arrow_lenght = 15;
             arrow_degrees = 300;

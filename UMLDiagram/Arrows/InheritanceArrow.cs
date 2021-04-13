@@ -1,75 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UMLDiagram.Arrows;
+
 
 namespace UMLDiagram.Arrows
 {
-    public class InheritanceArrow : AssociationArrow
+    public class InheritanceArrow : AbstractArrow
     {
-        public InheritanceArrow()// пустой конструктор
-        {
 
-        }
-        public InheritanceArrow(Pen pen) // конструтор с 1 карандашом 
+        public override void Draw(Graphics graphics, Pen pen)
         {
-            _penForLine = pen;
-        }
-        public InheritanceArrow(Pen pen1, Pen pen2) // c2 
-        {
-            _penForLine = pen1;
-            _penForArrow = pen2;
-
+            DrawAssociationLine(graphics, pen);
         }
 
 
-        private void DrawInheritanceArrow(Point mCur, Point mStart, Graphics graphics)
+        private void DrawAssociationLine(Graphics graphics, Pen pen)
         {
             Point x1y1, x2y2, x3y3;
-            СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
 
-                graphics.DrawLine(_penForArrow, mCur, mStart); // тут рисуем линию 
-                graphics.DrawLine(_penForLine, x3y3, x1y1);
-                graphics.DrawLine(_penForLine, x3y3, x2y2);
-                graphics.DrawLine(_penForLine, x1y1, x2y2);
-        }
-        private void DrawInheritanceArrow(Point mCur, Point mStart, Graphics graphics, Pen pen)
-        {
-            Point x1y1, x2y2, x3y3;
-            СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
+            СalculationOfAngles(EndPoint, StartPoint, out x1y1, out x2y2, out x3y3);
 
-                graphics.DrawLine(pen, mCur, mStart); // тут рисуем линию 
-                graphics.DrawLine(pen, x3y3, x1y1);
-                graphics.DrawLine(pen, x3y3, x2y2);
-                graphics.DrawLine(pen, x1y1, x2y2);
+            graphics.DrawLine(pen, EndPoint, StartPoint); // тут рисуем линию 
+            graphics.DrawLine(pen, x3y3, x1y1);
+            graphics.DrawLine(pen, x3y3, x2y2);
+            graphics.DrawLine(pen, x1y1, x2y2);
+
         }
 
-        private void DrawInheritanceArrow(Point mCur, Point mStart, Graphics graphics, Pen penForLine, Pen penForF)
+        protected void СalculationOfAngles(Point mCur, Point mStart, out Point x1y1, out Point x2y2, out Point x3y3)
         {
-            Point x1y1, x2y2, x3y3;
-            СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
+            arrow_lenght = 15;
+            arrow_degrees = 300;
+            int hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2);
 
-                graphics.DrawLine(penForF, mCur, mStart); // тут рисуем линию 
-                graphics.DrawLine(_penForLine, x3y3, x1y1);
-                graphics.DrawLine(_penForLine, x3y3, x2y2);
-                graphics.DrawLine(_penForLine, x1y1, x2y2);
-        }
+            angle = Math.Atan2(mCur.Y - mStart.Y, mCur.X - mStart.X) + Math.PI; // угол поворота линии
 
-        public override void Draw(Point mCur, Point mStart, Graphics graphics, Pen pen)
-        {
-            DrawInheritanceArrow(mCur, mStart,  graphics, pen);
-        }
-        public override void Draw(Point mCur, Point mStart,  Graphics graphics, Pen penForLine, Pen penForF)
-        {
-            DrawInheritanceArrow(mCur, mStart, graphics, penForLine, penForF);
-        }
+            x1 = mCur.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
+            y1 = mCur.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
+            x2 = mCur.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
+            y2 = mCur.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
+            x3 = mCur.X - 30 * Math.Cos(angle);
+            y3 = mCur.Y - 30 * Math.Sin(angle);
 
-        public override void DrawCurvedLine(Graphics graphics)
-        {
-            throw new NotImplementedException();
+            x1y1 = new Point(Convert.ToInt32(x1), Convert.ToInt32(y1));
+            x2y2 = new Point(Convert.ToInt32(x2), Convert.ToInt32(y2));
+            x3y3 = new Point(Convert.ToInt32(x3), Convert.ToInt32(y3));
         }
     }
 }

@@ -5,48 +5,25 @@ namespace UMLDiagram.Arrows
 {
     public class AssociationArrow : AbstractArrow
     {
-        public AssociationArrow()
+
+        public override void Draw( Graphics graphics, Pen pen)
         {
-            _penForLine = new Pen(Color.Black);
+            DrawAssociationLine(graphics, pen);
         }
 
-        public override void Draw(Point mCur, Point mStart, Graphics graphics, Pen pen)
-        {
-            DrawAssociationLine(mCur, mStart, graphics, pen);
-        }
-
-        public override void Draw(Point mCur, Point mStart,  Graphics graphics, Pen penForLine, Pen penForF)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void DrawAssociationLine(Point mCur, Point mStart, Graphics graphics)
+        private void DrawAssociationLine(Graphics graphics, Pen pen)
         {
             Point x1y1, x2y2, x3y3;
-            СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
             
-            graphics.DrawLine(_penForLine, mCur, mStart); // тут рисуем линию 
-            graphics.DrawLine(_penForLine, x3y3, x1y1);
-            graphics.DrawLine(_penForLine, x3y3, x2y2);
+            СalculationOfAngles(EndPoint, StartPoint, out x1y1, out x2y2, out x3y3);
 
-        }
-        private void DrawAssociationLine(Point mCur, Point mStart, Graphics graphics, Pen pen)
-        {
-            Point x1y1, x2y2, x3y3;
-            СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
-
-            graphics.DrawLine(pen, mCur, mStart); // тут рисуем линию 
+            graphics.DrawLine(pen, EndPoint, StartPoint); // тут рисуем линию 
             graphics.DrawLine(pen, x3y3, x1y1);
             graphics.DrawLine(pen, x3y3, x2y2);
         }
 
-        public override void DrawCurvedLine(Graphics graphics)
-        {
-            throw new NotImplementedException();
-        }
 
-
-        protected void СalculationOfAngles(ref Point mCur, ref Point mStart, out Point x1y1, out Point x2y2, out Point x3y3)
+        protected void СalculationOfAngles( Point mCur,  Point mStart, out Point x1y1, out Point x2y2, out Point x3y3)
         {
             arrow_lenght = 15;
             arrow_degrees = 300;
