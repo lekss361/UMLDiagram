@@ -9,40 +9,35 @@ namespace UMLDiagram.Arrows
         {
             _penForLine = new Pen(Color.Black);
         }
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
+
+        public override void Draw(Point mCur, Point mStart, Graphics graphics, Pen pen)
         {
-            DrawAssociationLine(mCur, mStart, mouseDown, graphics, pen);
+            DrawAssociationLine(mCur, mStart, graphics, pen);
         }
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen penForLine, Pen penForF)
+
+        public override void Draw(Point mCur, Point mStart,  Graphics graphics, Pen penForLine, Pen penForF)
         {
             throw new NotImplementedException();
         }
 
-        private void DrawAssociationLine(Point mCur, Point mStart, bool mouseDown, Graphics graphics)
+        private void DrawAssociationLine(Point mCur, Point mStart, Graphics graphics)
         {
             Point x1y1, x2y2, x3y3;
             СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
+            
+            graphics.DrawLine(_penForLine, mCur, mStart); // тут рисуем линию 
+            graphics.DrawLine(_penForLine, x3y3, x1y1);
+            graphics.DrawLine(_penForLine, x3y3, x2y2);
 
-            if (mouseDown == true)
-            {
-                graphics.DrawLine(_penForLine, mCur, mStart); // тут рисуем линию 
-                graphics.DrawLine(_penForLine, x3y3, x1y1);
-                graphics.DrawLine(_penForLine, x3y3, x2y2);
-
-            }
         }
-        private void DrawAssociationLine(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
+        private void DrawAssociationLine(Point mCur, Point mStart, Graphics graphics, Pen pen)
         {
             Point x1y1, x2y2, x3y3;
             СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
 
-            if (mouseDown == true)
-            {
-                graphics.DrawLine(pen, mCur, mStart); // тут рисуем линию 
-                graphics.DrawLine(pen, x3y3, x1y1);
-                graphics.DrawLine(pen, x3y3, x2y2);
-
-            }
+            graphics.DrawLine(pen, mCur, mStart); // тут рисуем линию 
+            graphics.DrawLine(pen, x3y3, x1y1);
+            graphics.DrawLine(pen, x3y3, x2y2);
         }
 
         public override void DrawCurvedLine(Graphics graphics)

@@ -10,6 +10,7 @@ namespace UMLDiagram.Arrows
 
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
+
         public double angle { get; set; }
         public double arrow_lenght { get; set; }
 
@@ -26,16 +27,9 @@ namespace UMLDiagram.Arrows
 
         //int hightTriangle;
 
-        protected bool isClicked { get; set; }
 
-        public void MouseDown(object sender, MouseEventArgs e)
-        {
-            isClicked = true;
-            StartPoint = new Point(e.X, e.Y);
-        }
-        //public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics);
-        public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen);
-        public abstract void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen penForLine, Pen penForF);
+        public abstract void Draw(Point mCur, Point mStart, Graphics graphics, Pen pen);
+        public abstract void Draw(Point mCur, Point mStart, Graphics graphics, Pen penForLine, Pen penForF);
 
         public abstract void DrawCurvedLine(Graphics graphics);
 

@@ -10,12 +10,12 @@ namespace UMLDiagram.Arrows
     public class CompositionArrow : AbstractArrow
     {
 
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
+        public override void Draw(Point mCur, Point mStart, Graphics graphics, Pen pen)
         {
             throw new NotImplementedException();
         }
 
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen penForLine, Pen penForF)
+        public override void Draw(Point mCur, Point mStart, Graphics graphics, Pen penForLine, Pen penForF)
         {
             throw new NotImplementedException();
         }

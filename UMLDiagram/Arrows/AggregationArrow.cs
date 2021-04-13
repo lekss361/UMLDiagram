@@ -6,22 +6,21 @@ namespace UMLDiagram.Arrows
 {
     public class AggregationArrow : AbstractArrow
     {
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
+        public override void Draw(Point mCur, Point mStart, Graphics graphics, Pen pen)
         {
-            DrawAggregationArrow(mCur, mStart, mouseDown, graphics, pen);
+            DrawAggregationArrow(mCur, mStart, graphics, pen);
         }
 
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen penForLine, Pen penForF)
+        public override void Draw(Point mCur, Point mStart,  Graphics graphics, Pen penForLine, Pen penForF)
         {
             throw new NotImplementedException();
         }
 
-        public void DrawAggregationArrow(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
+        public void DrawAggregationArrow(Point mCur, Point mStart, Graphics graphics, Pen pen)
         {
             Point x1y1, x2y2, x3y3, x4y4;
             СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3, out x4y4);
-            if (mouseDown == true)
-            {
+
                 graphics.DrawLine(pen, mCur, mStart); // тут рисуем линию 
                 graphics.DrawLine(pen, x3y3, x1y1);
                 graphics.DrawLine(pen, x3y3, x2y2);
@@ -29,7 +28,6 @@ namespace UMLDiagram.Arrows
                 graphics.DrawLine(pen, x1y1, x4y4);
                 graphics.DrawLine(pen, x2y2, x4y4);
 
-            }
         }
 
         public override void DrawCurvedLine(Graphics graphics)

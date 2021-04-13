@@ -82,19 +82,19 @@ namespace UMLDiagram
                 switch (arrowType)
                 {
                     case ArrowLineType.inheritanceArrow:
-                        inheritanceArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                        inheritanceArrow.Draw(m_Cur, m_Start, _graphics, MinePen);
                         break;
                     case ArrowLineType.associationArrow:
-                        _associationArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                        _associationArrow.Draw(m_Cur, m_Start, _graphics, MinePen);
                         break;
                     case ArrowLineType.addictionArrow:
-                        _addictionArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                        _addictionArrow.Draw(m_Cur, m_Start, _graphics, MinePen);
                         break;
                     case ArrowLineType.aggregationArrow:
-                        _aggregationArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                        _aggregationArrow.Draw(m_Cur, m_Start,  _graphics, MinePen);
                         break;
                     case ArrowLineType.implementationArrow:
-                        _implementationArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                        _implementationArrow.Draw(m_Cur, m_Start, _graphics, MinePen);
                         break;
                     default:
                         break;

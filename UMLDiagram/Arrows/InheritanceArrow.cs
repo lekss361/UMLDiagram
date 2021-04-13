@@ -26,52 +26,45 @@ namespace UMLDiagram.Arrows
         }
 
 
-        private void DrawInheritanceArrow(Point mCur, Point mStart, bool mouseDown, Graphics graphics)
+        private void DrawInheritanceArrow(Point mCur, Point mStart, Graphics graphics)
         {
             Point x1y1, x2y2, x3y3;
             СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
 
-            if (mouseDown == true)
-            {
                 graphics.DrawLine(_penForArrow, mCur, mStart); // тут рисуем линию 
                 graphics.DrawLine(_penForLine, x3y3, x1y1);
                 graphics.DrawLine(_penForLine, x3y3, x2y2);
                 graphics.DrawLine(_penForLine, x1y1, x2y2);
-            }
         }
-        private void DrawInheritanceArrow(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
+        private void DrawInheritanceArrow(Point mCur, Point mStart, Graphics graphics, Pen pen)
         {
             Point x1y1, x2y2, x3y3;
             СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
 
-            if (mouseDown == true)
-            {
                 graphics.DrawLine(pen, mCur, mStart); // тут рисуем линию 
                 graphics.DrawLine(pen, x3y3, x1y1);
                 graphics.DrawLine(pen, x3y3, x2y2);
                 graphics.DrawLine(pen, x1y1, x2y2);
-            }
         }
-        private void DrawInheritanceArrow(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen penForLine, Pen penForF)
+
+        private void DrawInheritanceArrow(Point mCur, Point mStart, Graphics graphics, Pen penForLine, Pen penForF)
         {
             Point x1y1, x2y2, x3y3;
             СalculationOfAngles(ref mCur, ref mStart, out x1y1, out x2y2, out x3y3);
 
-            if (mouseDown == true)
-            {
                 graphics.DrawLine(penForF, mCur, mStart); // тут рисуем линию 
                 graphics.DrawLine(_penForLine, x3y3, x1y1);
                 graphics.DrawLine(_penForLine, x3y3, x2y2);
                 graphics.DrawLine(_penForLine, x1y1, x2y2);
-            }
         }
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen pen)
+
+        public override void Draw(Point mCur, Point mStart, Graphics graphics, Pen pen)
         {
-            DrawInheritanceArrow(mCur, mStart, mouseDown, graphics, pen);
+            DrawInheritanceArrow(mCur, mStart,  graphics, pen);
         }
-        public override void Draw(Point mCur, Point mStart, bool mouseDown, Graphics graphics, Pen penForLine, Pen penForF)
+        public override void Draw(Point mCur, Point mStart,  Graphics graphics, Pen penForLine, Pen penForF)
         {
-            DrawInheritanceArrow(mCur, mStart, mouseDown, graphics, penForLine, penForF);
+            DrawInheritanceArrow(mCur, mStart, graphics, penForLine, penForF);
         }
 
         public override void DrawCurvedLine(Graphics graphics)
