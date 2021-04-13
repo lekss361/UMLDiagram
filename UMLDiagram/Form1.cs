@@ -12,20 +12,21 @@ namespace UMLDiagram
         Bitmap _tmpBitmap;
         Graphics _graphics;
         Pen MinePen = new Pen(Color.Black, 3);
-        string action = "";
 
         private bool IsMouseDown = false;
         private Point m_Start;
         private Point m_Cur;
 
+        ArrowLineType arrowType;
 
         private List<LineList> MyLines = new List<LineList>();
 
         AssociationArrow _associationArrow;
         AddictionArrow _addictionArrow;
-        InheritanceArrow inheritanceArrow;
+        InheritanceArrow _inheritanceArrow;
         AggregationArrow _aggregationArrow;
         ImplementationArrow _implementationArrow;
+        CompositionArrow _compositionArrow;
 
         public Form1()
         {
@@ -41,53 +42,83 @@ namespace UMLDiagram
             pictureBox1.Image = _mainBitmap;
 
             _associationArrow = new AssociationArrow();
-
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             IsMouseDown = true;
 
-            m_Start = e.Location;
+            m_Start = e.Location;                       
+
+            switch (arrowType)
+            {
+                case ArrowLineType.inheritanceArrow:
+                    _inheritanceArrow = new InheritanceArrow();
+                    _inheritanceArrow.StartPoint = e.Location;
+                    break;
+                case ArrowLineType.associationArrow:
+                    _associationArrow = new AssociationArrow();
+                    _associationArrow.StartPoint = e.Location;
+                    break;
+                case ArrowLineType.addictionArrow:
+                    _addictionArrow = new AddictionArrow();
+                    _addictionArrow.StartPoint = e.Location;
+                    break;
+                case ArrowLineType.aggregationArrow:
+                    _aggregationArrow = new AggregationArrow();
+                    _aggregationArrow.StartPoint = e.Location;
+                    break;
+                case ArrowLineType.implementationArrow:
+                    _implementationArrow = new ImplementationArrow();
+                    _implementationArrow.StartPoint = e.Location;
+                    break;
+                case ArrowLineType.composition:
+                    _compositionArrow = new CompositionArrow();
+                    _compositionArrow.StartPoint = e.Location;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (IsMouseDown == true)
             {
-                m_Cur = new Point(e.X, e.Y);
+                m_Cur = e.Location;                
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-
-
-                //_graphics.DrawLine(pen, start, cur);
-                //pen1.DashStyle = DashStyle.Dash;
-                switch (action)
+                switch (arrowType)
                 {
-                    case "inheritanceArrow":
-                        inheritanceArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                    case ArrowLineType.inheritanceArrow:
+                        _inheritanceArrow.Draw(_graphics, MinePen);
+                        _inheritanceArrow.EndPoint = e.Location;
                         break;
-                    case "associationArrow":
-                        _associationArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                    case ArrowLineType.associationArrow:
+                        _associationArrow.Draw( _graphics, MinePen);
+                        _associationArrow.EndPoint = e.Location;
                         break;
-                    case "addictionArrow":
-                        _addictionArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                    case ArrowLineType.addictionArrow:
+                        _addictionArrow.Draw( _graphics, MinePen);
+                        _addictionArrow.EndPoint = e.Location;
                         break;
-                    case "aggregationArrow":
-                        _aggregationArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                    case ArrowLineType.aggregationArrow:
+                        _aggregationArrow.Draw(_graphics, MinePen);
+                        _aggregationArrow.EndPoint = e.Location;
                         break;
-                    case "implementationArrow":
-                        _implementationArrow.Draw(m_Cur, m_Start, IsMouseDown, _graphics, MinePen);
+                    case ArrowLineType.implementationArrow:
+                        _implementationArrow.Draw(_graphics, MinePen);
+                        _implementationArrow.EndPoint = e.Location;
+                        break;
+                    case ArrowLineType.composition:
+                        _compositionArrow.Draw(_graphics, MinePen);
+                        _compositionArrow.EndPoint = e.Location;
                         break;
                     default:
                         break;
                 }
-                //Ag.Draw(cur, start, isClicked, _graphics, pen);
-
-
-
 
                 pictureBox1.Image = _tmpBitmap;
 
@@ -98,7 +129,6 @@ namespace UMLDiagram
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-
             IsMouseDown = false;
             _mainBitmap = _tmpBitmap;
         }
@@ -115,42 +145,45 @@ namespace UMLDiagram
             MinePen.Width = trackBarWidth.Value;
         }
 
+
+
+
         private void associationButton_Click(object sender, EventArgs e)
         {
-            _associationArrow = new AssociationArrow();
-            action = "associationArrow";
+            arrowType = ArrowLineType.associationArrow;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            _aggregationArrow = new AggregationArrow();
-            action = "aggregationArrow";
+            arrowType = ArrowLineType.aggregationArrow;
         }
+
         private void InheritanceArrow_Click(object sender, EventArgs e)
         {
-            inheritanceArrow = new InheritanceArrow();
-
-
-            action = "inheritanceArrow";
-
-        }
-       
+            arrowType = ArrowLineType.inheritanceArrow;
+        }       
 
         private void implementationButton_Click(object sender, EventArgs e)
         {
-            _implementationArrow = new ImplementationArrow();
-            action = "implementationArrow";
+            arrowType = ArrowLineType.implementationArrow;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
-
+            arrowType = ArrowLineType.composition;
         }
 
         private void addictionButton_Click(object sender, EventArgs e)
         {
-            _addictionArrow = new AddictionArrow();
-            action = "addictionArrow";
+            arrowType = ArrowLineType.addictionArrow;
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _graphics = Graphics.FromImage(_mainBitmap);
+            _graphics.Clear(Color.White);
+            pictureBox1.Image = _mainBitmap;
         }
     }
 }

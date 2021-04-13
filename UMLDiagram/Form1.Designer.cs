@@ -38,6 +38,7 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.trackBarWidth = new System.Windows.Forms.TrackBar();
@@ -51,7 +52,6 @@
             this.implementationButton = new System.Windows.Forms.Button();
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.colorLineButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -147,6 +147,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 280);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Зависимость";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.addictionButton_Click);
+            // 
             // buttonClear
             // 
             this.buttonClear.Location = new System.Drawing.Point(15, 431);
@@ -155,6 +165,7 @@
             this.buttonClear.TabIndex = 3;
             this.buttonClear.Text = "Очистить";
             this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // label1
             // 
@@ -176,43 +187,47 @@
             // 
             // buttonStack
             // 
+            this.buttonStack.BackColor = System.Drawing.SystemColors.Control;
             this.buttonStack.Location = new System.Drawing.Point(12, 106);
             this.buttonStack.Name = "buttonStack";
             this.buttonStack.Size = new System.Drawing.Size(112, 23);
             this.buttonStack.TabIndex = 9;
             this.buttonStack.Text = "Стек";
-            this.buttonStack.UseVisualStyleBackColor = true;
+            this.buttonStack.UseVisualStyleBackColor = false;
             // 
             // buttonInterface
             // 
+            this.buttonInterface.BackColor = System.Drawing.SystemColors.Control;
             this.buttonInterface.Location = new System.Drawing.Point(12, 77);
             this.buttonInterface.Name = "buttonInterface";
             this.buttonInterface.Size = new System.Drawing.Size(112, 23);
             this.buttonInterface.TabIndex = 8;
             this.buttonInterface.Text = "Интерфейс";
-            this.buttonInterface.UseVisualStyleBackColor = true;
+            this.buttonInterface.UseVisualStyleBackColor = false;
             // 
             // buttonClass
             // 
+            this.buttonClass.BackColor = System.Drawing.SystemColors.Control;
             this.buttonClass.Location = new System.Drawing.Point(12, 48);
             this.buttonClass.Name = "buttonClass";
             this.buttonClass.Size = new System.Drawing.Size(112, 23);
             this.buttonClass.TabIndex = 7;
             this.buttonClass.Text = "Класс";
-            this.buttonClass.UseVisualStyleBackColor = true;
+            this.buttonClass.UseVisualStyleBackColor = false;
             // 
             // buttonSelect
             // 
+            this.buttonSelect.BackColor = System.Drawing.SystemColors.Control;
             this.buttonSelect.Location = new System.Drawing.Point(12, 19);
             this.buttonSelect.Name = "buttonSelect";
             this.buttonSelect.Size = new System.Drawing.Size(112, 23);
             this.buttonSelect.TabIndex = 6;
             this.buttonSelect.Text = "Выбрать";
-            this.buttonSelect.UseVisualStyleBackColor = true;
+            this.buttonSelect.UseVisualStyleBackColor = false;
             // 
             // aggregationButton
             // 
-            this.aggregationButton.Location = new System.Drawing.Point(12, 283);
+            this.aggregationButton.Location = new System.Drawing.Point(12, 251);
             this.aggregationButton.Name = "aggregationButton";
             this.aggregationButton.Size = new System.Drawing.Size(112, 23);
             this.aggregationButton.TabIndex = 5;
@@ -222,7 +237,7 @@
             // 
             // associationButton
             // 
-            this.associationButton.Location = new System.Drawing.Point(12, 223);
+            this.associationButton.Location = new System.Drawing.Point(12, 193);
             this.associationButton.Name = "associationButton";
             this.associationButton.Size = new System.Drawing.Size(112, 23);
             this.associationButton.TabIndex = 4;
@@ -232,7 +247,7 @@
             // 
             // compositionButton
             // 
-            this.compositionButton.Location = new System.Drawing.Point(12, 254);
+            this.compositionButton.Location = new System.Drawing.Point(12, 222);
             this.compositionButton.Name = "compositionButton";
             this.compositionButton.Size = new System.Drawing.Size(112, 23);
             this.compositionButton.TabIndex = 3;
@@ -242,7 +257,7 @@
             // 
             // implementationButton
             // 
-            this.implementationButton.Location = new System.Drawing.Point(12, 194);
+            this.implementationButton.Location = new System.Drawing.Point(12, 164);
             this.implementationButton.Name = "implementationButton";
             this.implementationButton.Size = new System.Drawing.Size(112, 23);
             this.implementationButton.TabIndex = 2;
@@ -252,7 +267,7 @@
             // 
             // inheritanceButton
             // 
-            this.inheritanceButton.Location = new System.Drawing.Point(12, 165);
+            this.inheritanceButton.Location = new System.Drawing.Point(12, 135);
             this.inheritanceButton.Name = "inheritanceButton";
             this.inheritanceButton.Size = new System.Drawing.Size(112, 23);
             this.inheritanceButton.TabIndex = 1;
@@ -270,16 +285,6 @@
             this.colorLineButton.UseMnemonic = false;
             this.colorLineButton.UseVisualStyleBackColor = true;
             this.colorLineButton.Click += new System.EventHandler(this.SwitchColorPaintig);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 312);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Зависимость";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.addictionButton_Click);
             // 
             // Form1
             // 
