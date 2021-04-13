@@ -11,18 +11,17 @@ namespace UMLDiagram.Arrows.CapTypes
     {
         List<Point> points = new List<Point>();
 
-        public override Point StartPoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public override void Draw(Graphics graphics, Pen pen, List<Point> points)
+        public override void Draw(Graphics graphics, Pen pen)
         {
             
-            base.RealisationDraw(graphics, pen, GetPoints(StartPoint));
+            base.RealisationDraw(graphics, pen, points);
         }
 
-        public override List<Point> GetPoints(Point startPoint)
-        {
-            
-            return base.RealisationGetPoints(startPoint);
+        public override void GetPoints()
+        {            
+            points=base.RealisationGetPoints(StartPoint);
+            points.RemoveAt(points.Count - 1);
         }
     }
 }
