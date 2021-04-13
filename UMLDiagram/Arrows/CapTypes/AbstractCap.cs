@@ -7,8 +7,10 @@ namespace UMLDiagram.Arrows.CapTypes
 {
     public abstract class AbstractCap
     {
-        public Point StartPoint { get; set; }// начало рисования наконечника
-         public List<Point> GetPoints()
+       abstract public Point StartPoint { get; set; }// начало рисования наконечника
+       abstract public List<Point> GetPoints(Point StartPoint);
+        abstract public void Draw(Graphics graphics, Pen pen, List<Point> points);
+        protected List<Point> RealisationGetPoints(Point startPoint)
         {
             List<Point> points = new List<Point>();
 
@@ -21,12 +23,12 @@ namespace UMLDiagram.Arrows.CapTypes
 
             double angle = Math.Atan2(StartPoint.Y - StartPoint.Y, StartPoint.X - StartPoint.X) + Math.PI; // угол поворота линии
 
-            x1 = StartPoint.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
-            y1 = StartPoint.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
-            x2 = StartPoint.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
-            y2 = StartPoint.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
-            x3 = StartPoint.X - 30 * Math.Cos(angle);
-            y3 = StartPoint.Y - 30 * Math.Sin(angle);
+            x1 = startPoint.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
+            y1 = startPoint.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
+            x2 = startPoint.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
+            y2 = startPoint.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
+            x3 = startPoint.X - 30 * Math.Cos(angle);
+            y3 = startPoint.Y - 30 * Math.Sin(angle);
 
             x4 = StartPoint.X + 30 * Math.Cos(angle);
             y4 = StartPoint.Y + 30 * Math.Sin(angle);
@@ -39,7 +41,7 @@ namespace UMLDiagram.Arrows.CapTypes
             return points;
         }
 
-        public void Draw(Graphics graphics, Pen pen, List<Point> points)
+        public void RealisationDraw(Graphics graphics, Pen pen, List<Point> points)
         {
             graphics.DrawLines(pen,points.ToArray());
         }
