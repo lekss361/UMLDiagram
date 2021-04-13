@@ -50,6 +50,12 @@
     <Compile Include="Arrows\AddictionArrow.cs" />
     <Compile Include="Arrows\AggregationArrow.cs" />
     <Compile Include="Arrows\AssociationArrow.cs" />
+    <Compile Include="Arrows\CapTypes\AbstractCap.cs" />
+    <Compile Include="Arrows\CapTypes\RhombusCap.cs" />
+    <Compile Include="Arrows\CapTypes\TriangleCap.cs" />
+    <Compile Include="Arrows\CapTypes\TriangleFillCap.cs" />
+    <Compile Include="Arrows\CapTypes\RhombusFillCap.cs" />
+    <Compile Include="Arrows\CapTypes\ArrowCap.cs" />
     <Compile Include="Arrows\CompositionArrow.cs" />
     <Compile Include="Arrows\ImplementationArrow.cs" />
     <Compile Include="Arrows\InheritanceArrow.cs" />
@@ -87,6 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Arrows\LineTypes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
