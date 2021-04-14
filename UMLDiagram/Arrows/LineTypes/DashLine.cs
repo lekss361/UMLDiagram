@@ -12,5 +12,10 @@ namespace UMLDiagram.Arrows.LineTypes
             dashPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             graphics.DrawLine(dashPen, StartPoint, EndPoint);
         }
+
+        public override void Draws(Graphics graphics, Pen pen)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

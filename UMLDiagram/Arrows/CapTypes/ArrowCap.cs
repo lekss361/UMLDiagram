@@ -11,10 +11,13 @@ namespace UMLDiagram.Arrows.CapTypes
     {
         List<Point> points = new List<Point>();
 
-
         public override void Draw(Graphics graphics, Pen pen)
         {
-            
+            RealisationDraw(graphics, pen, points);
+        }
+
+        public override void Draws(Graphics graphics, Pen pen)
+        {
             RealisationDraw(graphics, pen, points);
         }
 
