@@ -49,6 +49,13 @@
     <Compile Include="Arrows\AbstractArrow.cs" />
     <Compile Include="Arrows\AddictionArrow.cs" />
     <Compile Include="Arrows\AggregationArrow.cs" />
+    <Compile Include="Arrows\ArrowConection\AbstractConection.cs" />
+    <Compile Include="Arrows\ArrowConection\AddictionConection.cs" />
+    <Compile Include="Arrows\ArrowConection\AggregationConection.cs" />
+    <Compile Include="Arrows\ArrowConection\AssociationConection.cs" />
+    <Compile Include="Arrows\ArrowConection\CompositionConection.cs" />
+    <Compile Include="Arrows\ArrowConection\ImplementationConection.cs" />
+    <Compile Include="Arrows\ArrowConection\InheritanceConection.cs" />
     <Compile Include="Arrows\AssociationArrow.cs" />
     <Compile Include="Arrows\CapTypes\AbstractCap.cs" />
     <Compile Include="Arrows\CapTypes\RhombusCap.cs" />

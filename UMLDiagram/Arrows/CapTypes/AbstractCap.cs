@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.A
+
+
 
 namespace UMLDiagram.Arrows.CapTypes
 {
-    public abstract class AbstractCap
+    public abstract class AbstractCap:
     {
         
         abstract public void GetPoints();

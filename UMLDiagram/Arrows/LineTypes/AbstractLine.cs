@@ -8,5 +8,6 @@ namespace UMLDiagram.Arrows.LineTypes
 {
     class AbstractLine
     {
+
     }
 }
