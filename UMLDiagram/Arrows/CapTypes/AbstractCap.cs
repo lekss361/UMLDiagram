@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.A
+using UMLDiagram.Arrows.ArrowConection;
 
 
 
 namespace UMLDiagram.Arrows.CapTypes
 {
-    public abstract class AbstractCap:
+    public abstract class AbstractCap:AbstractConection
     {
         
         abstract public void GetPoints();
@@ -22,7 +22,6 @@ namespace UMLDiagram.Arrows.CapTypes
 
             double x1, y1, x2, y2, x3, y3, x4, y4;
 
-            int hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2);
 
             double angle = Math.Atan2(EndPoint.Y - StartPoint.Y, EndPoint.X - StartPoint.X) + Math.PI; // угол поворота линии
 

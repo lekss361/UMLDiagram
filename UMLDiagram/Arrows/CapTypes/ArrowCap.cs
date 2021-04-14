@@ -15,12 +15,12 @@ namespace UMLDiagram.Arrows.CapTypes
         public override void Draw(Graphics graphics, Pen pen)
         {
             
-            base.RealisationDraw(graphics, pen, points);
+            RealisationDraw(graphics, pen, points);
         }
 
         public override void GetPoints()
         {            
-            points=base.RealisationGetPoints(StartPoint);
+            points=RealisationGetPoints(StartPoint);
             points.RemoveAt(points.Count - 1);
         }
     }

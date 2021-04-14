@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using UMLDiagram.Arrows.ArrowConection;
 
 namespace UMLDiagram
 {
@@ -27,6 +28,7 @@ namespace UMLDiagram
         AggregationArrow _aggregationArrow;
         ImplementationArrow _implementationArrow;
         CompositionArrow _compositionArrow;
+        AssociationConection associationConection;
 
         public Form1()
         {
@@ -48,7 +50,8 @@ namespace UMLDiagram
         {
             IsMouseDown = true;
 
-            m_Start = e.Location;                       
+            m_Start = e.Location;
+            associationConection.StartPoint = e.Location;
 
             switch (arrowType)
             {
@@ -89,6 +92,8 @@ namespace UMLDiagram
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
+                associationConection.EndPoint = e.Location;
+                associationConection.DrawAssociationConection(_graphics, MinePen);
 
                 switch (arrowType)
                 {
@@ -150,7 +155,8 @@ namespace UMLDiagram
 
         private void associationButton_Click(object sender, EventArgs e)
         {
-            arrowType = ArrowLineType.associationArrow;
+            associationConection = new AssociationConection();
+            
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
