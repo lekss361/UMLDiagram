@@ -12,7 +12,7 @@ namespace UMLDiagram.Arrows.CapTypes
     {
         
         abstract public void GetPoints();
-       abstract public void Draw(Graphics graphics, Pen pen);
+       
         protected List<Point> RealisationGetPoints(Point startPoint)
         {
             List<Point> points = new List<Point>();

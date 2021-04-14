@@ -9,14 +9,15 @@ using UMLDiagram.Arrows.CapTypes;
 
 namespace UMLDiagram.Arrows.ArrowConection
 {
-    class AssociationConection:AbstractConection
+   public class AssociationConection:AbstractConection
     {
         SolidLine solidLine = new SolidLine();
         ArrowCap arrowCap = new ArrowCap();
-        
-        
-        public void  DrawAssociationConection(Graphics graphics, Pen pen)
+
+       
+        public override void Draws(Graphics graphics, Pen pen)
         {
+            arrowCap.GetPoints();
             solidLine.DrawLine(graphics, pen);
             arrowCap.Draw(graphics, pen);
         }

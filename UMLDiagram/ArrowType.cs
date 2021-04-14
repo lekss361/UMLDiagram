@@ -8,11 +8,12 @@ namespace UMLDiagram
 {
     public enum ArrowLineType
     {
-        inheritanceArrow = 0,
-        associationArrow,
-        addictionArrow,
-        aggregationArrow,
-        implementationArrow,
-        composition
+        associationConection
+        //inheritanceArrow = 0,
+        //associationArrow,
+        //addictionArrow,
+        //aggregationArrow,
+        //implementationArrow,
+        //composition
     }
 }

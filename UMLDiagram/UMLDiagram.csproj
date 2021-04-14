@@ -64,6 +64,8 @@
     <Compile Include="Arrows\CapTypes\RhombusFillCap.cs" />
     <Compile Include="Arrows\CapTypes\ArrowCap.cs" />
     <Compile Include="Arrows\CompositionArrow.cs" />
+    <Compile Include="Arrows\FactoryConection\FactoryConection.cs" />
+    <Compile Include="Arrows\FactoryConection\Figur.cs" />
     <Compile Include="Arrows\ImplementationArrow.cs" />
     <Compile Include="Arrows\InheritanceArrow.cs" />
     <Compile Include="Arrows\LineTypes\AbstractLine.cs" />
