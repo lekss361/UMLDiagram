@@ -7,9 +7,8 @@ namespace UMLDiagram.Arrows.CapTypes
 {
     public abstract class AbstractCap
     {
-       public Point StartPoint { get; set; }// начало рисования наконечника
-        public Point EndPoint { get; set; }
-       abstract public void GetPoints();
+        
+        abstract public void GetPoints();
        abstract public void Draw(Graphics graphics, Pen pen);
         protected List<Point> RealisationGetPoints(Point startPoint)
         {
