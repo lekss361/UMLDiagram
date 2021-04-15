@@ -28,7 +28,8 @@ namespace UMLDiagram
         AggregationArrow _aggregationArrow;
         ImplementationArrow _implementationArrow;
         CompositionArrow _compositionArrow;
-        AssociationConection associationConection;
+
+        AbstractFigure _abstractFigure;
 
         public Form1()
         {
@@ -51,7 +52,7 @@ namespace UMLDiagram
             IsMouseDown = true;
 
             m_Start = e.Location;
-            associationConection.StartPoint = e.Location;
+            _abstractFigure.StartPoint = e.Location;
 
             switch (arrowType)
             {
@@ -92,8 +93,10 @@ namespace UMLDiagram
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
-                associationConection.EndPoint = e.Location;
-                associationConection.DrawAssociationConection(_graphics, MinePen);
+
+                _abstractFigure.EndPoint = e.Location;
+                
+                //associationConection.DrawAssociationConection(_graphics, MinePen);
 
                 switch (arrowType)
                 {
@@ -155,7 +158,7 @@ namespace UMLDiagram
 
         private void associationButton_Click(object sender, EventArgs e)
         {
-            associationConection = new AssociationConection();
+            //associationConection = new AssociationConection();
             
         }
 

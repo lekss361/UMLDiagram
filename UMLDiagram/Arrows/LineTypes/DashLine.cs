@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace UMLDiagram.Arrows.LineTypes
 {
-    class DashLine : AbstractLine
+    public class DashLine : AbstractLine
     {
         public override void DrawLine(Graphics graphics, Pen pen)
         {
-            Pen dashPen = new Pen(pen.Color,pen.Width);
+            Pen dashPen = new Pen(pen.Color, pen.Width);
             dashPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            graphics.DrawLine(dashPen, StartPoint, EndPoint);
+            graphics.DrawLine(dashPen, aFigure.StartPoint, aFigure.EndPoint);
         }
     }
 }

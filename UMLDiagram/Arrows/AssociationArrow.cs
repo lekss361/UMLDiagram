@@ -20,7 +20,7 @@ namespace UMLDiagram.Arrows
             graphics.DrawLine(pen, EndPoint, StartPoint); // тут рисуем линию 
             //graphics.DrawLine(pen, x3y3, x1y1);
             //graphics.DrawLine(pen, x3y3, x2y2);
-            ArrowCap arrowCap = new ArrowCap();
+            AssociationCap arrowCap = new AssociationCap();
             arrowCap.StartPoint = StartPoint;
             arrowCap.EndPoint = EndPoint;
             arrowCap.GetPoints();
