@@ -9,13 +9,13 @@ namespace UMLDiagram.Arrows.CapTypes
 {
     class TriangleFillCap : TriangleCap
     {
-        public override void DrawCap(Graphics graphics, Pen pen, Point start,Point end)
+        protected override void DrawCap(Graphics graphics, Pen pen, List<Point> points, Point startPoint, Point endPoint)
         {
-            List<Point> points = GetPoints(start,end);
+            base.DrawCap(graphics, pen, points, startPoint, endPoint); 
+
             SolidBrush solidBrush = new SolidBrush(pen.Color);
             Point[] pointF = new Point[] { points[0], points[1], points[2], points[0] };
 
-            base.DrawCap(graphics, pen, start,end);
 
             graphics.FillPolygon(solidBrush, pointF); // можем ли мы тут написать points.ToArray() , какой лист он использует
         }
