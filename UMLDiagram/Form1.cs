@@ -24,12 +24,13 @@ namespace UMLDiagram
         private Point m_Cur;
         ArrowsBuilder builder;
 
-        string typeOfLine = "";
-        string typeOfCap = "";
+
         Block block;
 
-
-
+        //string typeOfLine = "";
+        //string typeOfCap = "";
+        ArrowLineType typeOfLine;
+        ArrowCapType typeOfCap;
 
 
 
@@ -123,43 +124,50 @@ namespace UMLDiagram
 
         private void associationButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "SolidLine";
-            typeOfCap = "ArrowCap";
-
-
-
-
+            //typeOfLine = "SolidLine";
+            //typeOfCap = "ArrowCap";
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.ArrowCap;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "SolidLine";
-            typeOfCap = "RhombusCap";
+            //typeOfLine = "SolidLine";
+            //typeOfCap = "RhombusCap";
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.RhombusCap;
         }
 
         private void InheritanceArrow_Click(object sender, EventArgs e)
         {
-            
-            typeOfLine = "SolidLine";
-            typeOfCap = "TriangleCap";
+            //typeOfLine = "SolidLine";
+            //typeOfCap = "TriangleCap";
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.TriangleCap;
         }       
 
         private void implementationButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "DashLine";
-            typeOfCap = "TriangleCap";
+            //typeOfLine = "DashLine";
+            //typeOfCap = "TriangleCap";
+            typeOfLine = ArrowLineType.DashLine;
+            typeOfCap = ArrowCapType.TriangleCap;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "SolidLine";
-            typeOfCap = "RhombusFillCap";
+            //typeOfLine = "SolidLine";
+            //typeOfCap = "RhombusFillCap";
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.RhombusFillCap;
         }
 
         private void addictionButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "SolidLine";
-            typeOfCap = "TriangleFillCap";
+            //typeOfLine = "SolidLine";
+            //typeOfCap = "TriangleFillCap";
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.TriangleFillCap;
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

@@ -57,11 +57,13 @@
     <Compile Include="Arrows\LineTypes\AbstractLine.cs" />
     <Compile Include="Arrows\LineTypes\DashLine.cs" />
     <Compile Include="Arrows\LineTypes\SolidLine.cs" />
+    <Compile Include="ArrowType.cs" />
     <Compile Include="BlockS\AbstractBlock.cs" />
     <Compile Include="BlockS\Block.cs" />
     <Compile Include="Factory\ArrowsBuilder.cs" />
     <Compile Include="Factory\FactoryForCap.cs" />
     <Compile Include="Factory\FactoryForLine.cs" />
+    <Compile Include="Factory\IFactory.cs" />
     <Compile Include="IFigure.cs" />
     <Compile Include="LineList.cs" />
     <Compile Include="Form1.cs">

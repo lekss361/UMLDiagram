@@ -20,7 +20,7 @@ namespace UMLDiagram
 
         public override void Draw(Graphics graphics, Pen pen, Point start, Point end)
         {
-            cap.DrawCap(graphics, pen, end, start);
+            cap.Draw(graphics, pen, end, start);
             line.DrawLine(graphics,pen,end,start);
         }
     }

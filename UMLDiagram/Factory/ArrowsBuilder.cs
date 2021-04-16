@@ -8,52 +8,23 @@ using UMLDiagram.Arrows.LineTypes;
 
 namespace UMLDiagram.Factory
 {
-    public class ArrowsBuilder : IFactory
+    class ArrowsBuilder
     {
-        //public AbstractArrow GetFigure()
-        //{
-        //    //return new ConcretArrow(new AssociationCap(), new SolidLine());
-        //    return new Arrow(cap, line);
-        //}
+        private FactoryForCap factoryForCap;
+        private FactoryForLine factoryForLine;
 
-        public AbstractArrow CreateArrow(ArrowLineType arrowType)
+        public ArrowsBuilder()
         {
-            AbstractCap cap = null;
-            AbstractLine line = null;
+            factoryForCap = new FactoryForCap();
+            factoryForLine = new FactoryForLine();
+        }
 
-            switch (arrowType)
-            {
-                case ArrowLineType.inheritanceArrow:
-                    cap = new TriangleCap();
-                    line = new SolidLine();
-                    break;
-                case ArrowLineType.associationArrow:
-                    cap = new ArrowCap();
-                    line = new SolidLine();
-                    break;
-                case ArrowLineType.addictionArrow:
-                    cap = new ArrowCap();
-                    line = new DashLine();
-                    break;
-                case ArrowLineType.aggregationArrow:
-                    cap = new RhombusCap();
-                    line = new SolidLine();
-                    break;
-                case ArrowLineType.implementationArrow:
-                    cap = new TriangleCap();
-                    line = new DashLine();
-                    break;
-                case ArrowLineType.composition:
-                    cap = new RhombusFillCap();
-                    line = new SolidLine();
-                    break;
-                default:
-                    break;
-            }
+        public AbstractArrow CreateArrow(ArrowCapType typeForCap, ArrowLineType typeForLine)
+        {
+            AbstractCap cap = factoryForCap.createCap(typeForCap);
+            AbstractLine line = factoryForLine.createLine(typeForLine);
 
             return new Arrow(cap, line);
         }
-
-
     }
 }

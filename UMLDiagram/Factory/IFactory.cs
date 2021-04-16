@@ -9,6 +9,5 @@ namespace UMLDiagram.Factory
     public interface IFactory
     {
         AbstractArrow CreateArrow(ArrowLineType arrowType);
-
     }
 }
