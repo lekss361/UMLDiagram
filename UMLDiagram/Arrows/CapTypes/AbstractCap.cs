@@ -15,13 +15,15 @@ namespace UMLDiagram.Arrows.CapTypes
 
         //abstract public void GetPoints();
 
-        public List<Point> GetPoints(Point _startPoint, Point _endPoint)
+
+        public List<Point> Draw(Graphics graphics, Pen pen, Point startPoint, Point endPoint)
         {
-            return new List<Point>(CalculatePoints(_startPoint, _endPoint));
-
+            var points = CalculatePoints(startPoint, endPoint);
+            DrawCap(graphics, pen, points, startPoint, endPoint);
+            return points;
         }
-        public abstract void DrawCap(Graphics graphics, Pen pen,Point startPoint, Point endPoint);
 
+        protected abstract void DrawCap(Graphics graphics, Pen pen, List<Point> points, Point startPoint, Point endPoint);
 
 
 

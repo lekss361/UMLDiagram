@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using UMLDiagram.Factory;
 using UMLDiagram.Arrows;
 
+using UMLDiagram.BlockS;
+
 namespace UMLDiagram
 {
     public partial class Form1 : Form
@@ -13,6 +15,8 @@ namespace UMLDiagram
         Bitmap _mainBitmap;
         Bitmap _tmpBitmap;
         Graphics _graphics;
+        List<IFigure> listOfFigure = new List<IFigure> ();
+
         Pen MinePen = new Pen(Color.Black, 3);
 
         private bool IsMouseDown = false;
@@ -21,12 +25,15 @@ namespace UMLDiagram
         ArrowsBuilder builder;
 
         string typeOfLine = "";
-        string typeOfCap = ""; 
+        string typeOfCap = "";
+        Block block;
 
 
-        
 
-        private List<LineList> MyLines = new List<LineList>();
+
+
+
+        private List<AbstractArrow> MyLines = new List<AbstractArrow>();
 
         
 
@@ -43,7 +50,7 @@ namespace UMLDiagram
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
 
-           // _associationArrow = new AssociationArrow();
+           
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -51,57 +58,32 @@ namespace UMLDiagram
             IsMouseDown = true;
             m_End = e.Location;
             
-            //associationConection.StartPoint = e.Location;
 
-            //switch (arrowType)
-            //{
-            //    case ArrowLineType.inheritanceArrow:
-            //        _inheritanceArrow = new InheritanceArrow();
-            //        _inheritanceArrow.StartPoint = e.Location;
-            //        break;
-            //    case ArrowLineType.associationArrow:
-            //        _associationArrow = new AssociationArrow();
-            //        _associationArrow.StartPoint = e.Location;
-            //        break;
-            //    case ArrowLineType.addictionArrow:
-            //        _addictionArrow = new AddictionArrow();
-            //        _addictionArrow.StartPoint = e.Location;
-            //        break;
-            //    case ArrowLineType.aggregationArrow:
-            //        _aggregationArrow = new AggregationArrow();
-            //        _aggregationArrow.StartPoint = e.Location;
-            //        break;
-            //    case ArrowLineType.implementationArrow:
-            //        _implementationArrow = new ImplementationArrow();
-            //        _implementationArrow.StartPoint = e.Location;
-            //        break;
-            //    case ArrowLineType.composition:
-            //        _compositionArrow = new CompositionArrow();
-            //        _compositionArrow.StartPoint = e.Location;
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (IsMouseDown == true)
             {
-                m_Cur = e.Location;                
+                m_Cur = e.Location;
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                List<Point> poin = new List<Point>();
+                //block.DrawBlock(_graphics, MinePen, m_End, m_Cur);
 
-               //m_Cur = e.Location;
+
 
                 builder = new ArrowsBuilder();
                 var arrow = builder.CreateArrow(typeOfCap, typeOfLine);
-                arrow.Draw(_graphics,MinePen,m_End, m_Cur);
-                
+                arrow.Draw(_graphics, MinePen, m_End, m_Cur);
+
+
+
+                //listOfFigure.Add(arrow);
+
                 pictureBox1.Image = _tmpBitmap;
+
 
                 GC.Collect();
             }
@@ -111,6 +93,11 @@ namespace UMLDiagram
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             IsMouseDown = false;
+            //_tmpBitmap = (Bitmap)_mainBitmap.Clone();
+            //_graphics = Graphics.FromImage(_tmpBitmap);
+
+            //block.DrawBlock(_graphics, MinePen, m_End, m_Cur);
+            //pictureBox1.Image = _tmpBitmap;
             _mainBitmap = _tmpBitmap;
         }
 
@@ -176,6 +163,11 @@ namespace UMLDiagram
             _graphics = Graphics.FromImage(_mainBitmap);
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
+        }
+
+        private void buttonClass_Click(object sender, EventArgs e)
+        {
+             block = new Block();
         }
     }
 }

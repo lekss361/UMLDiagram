@@ -9,7 +9,7 @@ namespace UMLDiagram.Factory
 {
    public  class FactoryForCap
     {
-        public AbstractCap createCap(string type) //как передавать тип?
+        public AbstractCap createCap(string type) 
 
         {
             AbstractCap cap = null;
