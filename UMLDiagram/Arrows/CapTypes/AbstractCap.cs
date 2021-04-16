@@ -2,13 +2,30 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using UMLDiagram.Arrows;
+
+
 
 namespace UMLDiagram.Arrows.CapTypes
 {
     public abstract class AbstractCap
     {
-        public Point StartPoint { get; set; }// начало рисования наконечника
-         public List<Point> GetPoints()
+        public Point _startPoint { get; set; } // like mCur
+        public Point _endPoint { get; set; }
+
+        //abstract public void GetPoints();
+
+        public List<Point> GetPoints(Point _startPoint, Point _endPoint)
+        {
+            return new List<Point>(CalculatePoints(_startPoint, _endPoint));
+
+        }
+        public abstract void DrawCap(Graphics graphics, Pen pen,Point startPoint, Point endPoint);
+
+
+
+
+        private List<Point> CalculatePoints(Point _startPoint , Point _endPoint)
         {
             List<Point> points = new List<Point>();
 
@@ -17,31 +34,27 @@ namespace UMLDiagram.Arrows.CapTypes
 
             double x1, y1, x2, y2, x3, y3, x4, y4;
 
-            int hightTriangle = Convert.ToInt32(arrow_lenght * Math.Sqrt(3) / 2);
 
-            double angle = Math.Atan2(StartPoint.Y - StartPoint.Y, StartPoint.X - StartPoint.X) + Math.PI; // угол поворота линии
+            double angle = Math.Atan2(_startPoint.Y - _endPoint.Y, _startPoint.X - _endPoint.X) + Math.PI; // угол поворота линии
 
-            x1 = StartPoint.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
-            y1 = StartPoint.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
-            x2 = StartPoint.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
-            y2 = StartPoint.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
-            x3 = StartPoint.X - 30 * Math.Cos(angle);
-            y3 = StartPoint.Y - 30 * Math.Sin(angle);
+            x1 = _startPoint.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
+            y1 = _startPoint.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
 
-            x4 = StartPoint.X + 30 * Math.Cos(angle);
-            y4 = StartPoint.Y + 30 * Math.Sin(angle);
+            x2 = _startPoint.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
+            y2 = _startPoint.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
+
+            x3 = _startPoint.X - 30 * Math.Cos(angle);
+            y3 = _startPoint.Y - 30 * Math.Sin(angle);
+
+            x4 = _startPoint.X + 30 * Math.Cos(angle);
+            y4 = _startPoint.Y + 30 * Math.Sin(angle);
 
             points.Add(new Point(Convert.ToInt32(x1), Convert.ToInt32(y1)));
-            points.Add(new Point(Convert.ToInt32(x2), Convert.ToInt32(y2)));
             points.Add(new Point(Convert.ToInt32(x3), Convert.ToInt32(y3)));
+            points.Add(new Point(Convert.ToInt32(x2), Convert.ToInt32(y2)));
             points.Add(new Point(Convert.ToInt32(x4), Convert.ToInt32(y4)));
 
             return points;
-        }
-
-        public void Draw(Graphics graphics, Pen pen, List<Point> points)
-        {
-            graphics.DrawLines(pen,points.ToArray());
         }
     }
 }
