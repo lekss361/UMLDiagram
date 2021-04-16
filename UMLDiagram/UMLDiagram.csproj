@@ -46,20 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arrows\AbstractArrow.cs" />
-    <Compile Include="Arrows\AddictionArrow.cs" />
-    <Compile Include="Arrows\AggregationArrow.cs" />
-    <Compile Include="Arrows\AssociationArrow.cs" />
+    <Compile Include="AbstractArrow.cs" />
+    <Compile Include="Arrow.cs" />
     <Compile Include="Arrows\CapTypes\AbstractCap.cs" />
     <Compile Include="Arrows\CapTypes\RhombusCap.cs" />
     <Compile Include="Arrows\CapTypes\TriangleCap.cs" />
     <Compile Include="Arrows\CapTypes\TriangleFillCap.cs" />
     <Compile Include="Arrows\CapTypes\RhombusFillCap.cs" />
     <Compile Include="Arrows\CapTypes\ArrowCap.cs" />
-    <Compile Include="Arrows\CompositionArrow.cs" />
-    <Compile Include="Arrows\ImplementationArrow.cs" />
-    <Compile Include="Arrows\InheritanceArrow.cs" />
-    <Compile Include="ArrowType.cs" />
+    <Compile Include="Arrows\LineTypes\AbstractLine.cs" />
+    <Compile Include="Arrows\LineTypes\DashLine.cs" />
+    <Compile Include="Arrows\LineTypes\SolidLine.cs" />
+    <Compile Include="Factory\ArrowsBuilder.cs" />
+    <Compile Include="Factory\FactoryForCap.cs" />
+    <Compile Include="Factory\FactoryForLine.cs" />
     <Compile Include="LineList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -94,8 +94,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Arrows\LineTypes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
