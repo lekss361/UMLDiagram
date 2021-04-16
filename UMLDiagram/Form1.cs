@@ -57,7 +57,11 @@ namespace UMLDiagram
         {
             IsMouseDown = true;
             m_End = e.Location;
-            
+            //_tmpBitmap = (Bitmap)_mainBitmap.Clone();
+            //_graphics = Graphics.FromImage(_tmpBitmap);
+
+            //block.DrawBlock(_graphics, MinePen, m_End);
+            //pictureBox1.Image = _tmpBitmap;
 
         }
 
@@ -77,6 +81,7 @@ namespace UMLDiagram
                 builder = new ArrowsBuilder();
                 var arrow = builder.CreateArrow(typeOfCap, typeOfLine);
                 arrow.Draw(_graphics, MinePen, m_End, m_Cur);
+                //block.DrawBlock(_graphics, MinePen, m_End);
 
 
 

@@ -11,12 +11,12 @@ namespace UMLDiagram.BlockS
     {
         int weigth;
         int heigth;
-        public override void DrawBlock(Graphics graphics, Pen pen, Point end, Point start)
+        public override void DrawBlock(Graphics graphics, Pen pen,  Point start)
         {
-            weigth = end.X - start.X;
-            heigth = start.Y - end.Y;
+            //weigth = end.X - start.X;
+            //heigth = start.Y - end.Y;
 
-            graphics.DrawRectangle(pen, start.X, end.Y,100,100);
+            graphics.DrawRectangle(pen, start.X, start.Y,100,100);
         }
     }
 }
