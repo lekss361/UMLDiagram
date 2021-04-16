@@ -8,23 +8,52 @@ using UMLDiagram.Arrows.LineTypes;
 
 namespace UMLDiagram.Factory
 {
-    class ArrowsBuilder
+    public class ArrowsBuilder : IFactory
     {
-        private FactoryForCap factoryForCap;
-        private FactoryForLine factoryForLine;
+        //public AbstractArrow GetFigure()
+        //{
+        //    //return new ConcretArrow(new AssociationCap(), new SolidLine());
+        //    return new Arrow(cap, line);
+        //}
 
-        public ArrowsBuilder()
+        public AbstractArrow CreateArrow(ArrowLineType arrowType)
         {
-            factoryForCap = new FactoryForCap();
-            factoryForLine = new FactoryForLine();
-        }
+            AbstractCap cap = null;
+            AbstractLine line = null;
 
-        public AbstractArrow CreateArrow(string typeForCap, string typeForLine)
-        {
-            AbstractCap cap = factoryForCap.createCap(typeForCap);
-            AbstractLine line = factoryForLine.createLine(typeForLine);
+            switch (arrowType)
+            {
+                case ArrowLineType.inheritanceArrow:
+                    cap = new TriangleCap();
+                    line = new SolidLine();
+                    break;
+                case ArrowLineType.associationArrow:
+                    cap = new ArrowCap();
+                    line = new SolidLine();
+                    break;
+                case ArrowLineType.addictionArrow:
+                    cap = new ArrowCap();
+                    line = new DashLine();
+                    break;
+                case ArrowLineType.aggregationArrow:
+                    cap = new RhombusCap();
+                    line = new SolidLine();
+                    break;
+                case ArrowLineType.implementationArrow:
+                    cap = new TriangleCap();
+                    line = new DashLine();
+                    break;
+                case ArrowLineType.composition:
+                    cap = new RhombusFillCap();
+                    line = new SolidLine();
+                    break;
+                default:
+                    break;
+            }
 
             return new Arrow(cap, line);
         }
+
+
     }
 }

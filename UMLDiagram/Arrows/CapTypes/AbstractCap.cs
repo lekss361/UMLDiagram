@@ -15,17 +15,17 @@ namespace UMLDiagram.Arrows.CapTypes
 
         //abstract public void GetPoints();
 
-        public List<Point> GetPoints(Point _startPoint, Point _endPoint)
-        {
-            return new List<Point>(CalculatePoints(_startPoint, _endPoint));
+        //public List<Point> GetPoints(Point _startPoint, Point _endPoint)
+        //{
+        //    return new List<Point>(CalculatePoints(_startPoint, _endPoint));
 
-        }
+        //}
         public abstract void DrawCap(Graphics graphics, Pen pen,Point startPoint, Point endPoint);
 
 
 
-
-        private List<Point> CalculatePoints(Point _startPoint , Point _endPoint)
+        public List<Point> GetPoints(Point _startPoint, Point _endPoint)
+        //private List<Point> CalculatePoints(Point _startPoint , Point _endPoint)
         {
             List<Point> points = new List<Point>();
 
@@ -54,7 +54,8 @@ namespace UMLDiagram.Arrows.CapTypes
             points.Add(new Point(Convert.ToInt32(x2), Convert.ToInt32(y2)));
             points.Add(new Point(Convert.ToInt32(x4), Convert.ToInt32(y4)));
 
-            return points;
+            //return points;
+            return new List<Point>(points);
         }
     }
 }
