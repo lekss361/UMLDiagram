@@ -1,4 +1,4 @@
-﻿using UMLDiagram.Arrows;
+﻿using System.Drawing.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -153,18 +153,49 @@ namespace UMLDiagram
              block = new Block();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+        //    _graphics = Graphics.FromImage(_mainBitmap);
+        //    _graphics.Clear(Color.White);
+
+        //    foreach (AbstractArrow a in listOfArrows)
+        //    {
+        //        a.Draw(_graphics, MinePen);
+        //    }
+
+        //    pictureBox1.Image = _mainBitmap;
+        //}
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _graphics = Graphics.FromImage(_mainBitmap);
-            _graphics.Clear(Color.White);
+            saveFileDialog1.Filter = "Class Diagram Files|*.umldiagram|JPeg Image|*.jpg";
+            saveFileDialog1.ShowDialog();
 
-            foreach (AbstractArrow a in listOfArrows)
+            if (saveFileDialog1.FileName != "")
             {
-                a.Draw(_graphics, MinePen);
-            }
+                switch (saveFileDialog1.FilterIndex)
+                {
+                    case 1:
+                        _mainBitmap.Save(saveFileDialog1.FileName);
+                        break;
 
-            pictureBox1.Image = _mainBitmap;
+                    case 2:
+                        _mainBitmap.Save(saveFileDialog1.FileName, ImageFormat.Jpeg);
+                        break;
+                }
+            }
+        }
+
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+
+            if (openFileDialog1.FileName != "")
+            {
+                _mainBitmap = (Bitmap)Image.FromFile(openFileDialog1.FileName);
+                pictureBox1.Image = _mainBitmap;
+            }
         }
     }
 }
