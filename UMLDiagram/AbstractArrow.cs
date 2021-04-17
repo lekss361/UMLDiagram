@@ -10,7 +10,7 @@ namespace UMLDiagram
         protected AbstractCap cap;
         protected AbstractLine line;
 
-        public Point _startPoint { get; set; } // like mCur
+        public Point _startPoint { get; set; } 
         public Point _endPoint { get; set; }
 
         public AbstractArrow(AbstractCap absCap, AbstractLine absLine)
@@ -19,7 +19,7 @@ namespace UMLDiagram
             line = absLine;
         }
 
-        public abstract void Draw(Graphics graphics, Pen pen, Point end,Point start);
+        public abstract void Draw(Graphics graphics, Pen pen);
 
     }
 }

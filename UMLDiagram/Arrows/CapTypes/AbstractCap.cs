@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using UMLDiagram.Arrows;
-
 
 
 namespace UMLDiagram.Arrows.CapTypes
 {
     public abstract class AbstractCap
     {
-        public Point _startPoint { get; set; } // like mCur
+        public Point _startPoint { get; set; } 
         public Point _endPoint { get; set; }
-
-        //abstract public void GetPoints();
-
 
         public List<Point> Draw(Graphics graphics, Pen pen, Point startPoint, Point endPoint)
         {
@@ -24,7 +18,6 @@ namespace UMLDiagram.Arrows.CapTypes
         }
 
         protected abstract void DrawCap(Graphics graphics, Pen pen, List<Point> points, Point startPoint, Point endPoint);
-
 
 
         private List<Point> CalculatePoints(Point _startPoint , Point _endPoint)
@@ -56,7 +49,6 @@ namespace UMLDiagram.Arrows.CapTypes
             points.Add(new Point(Convert.ToInt32(x2), Convert.ToInt32(y2)));
             points.Add(new Point(Convert.ToInt32(x4), Convert.ToInt32(y4)));
 
-            //return points;
             return new List<Point>(points);
         }
     }

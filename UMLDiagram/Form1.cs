@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using UMLDiagram.Factory;
-using UMLDiagram.Arrows;
 
 using UMLDiagram.BlockS;
 
@@ -14,29 +13,26 @@ namespace UMLDiagram
     {
         Bitmap _mainBitmap;
         Bitmap _tmpBitmap;
-        Graphics _graphics;
-        List<IFigure> listOfFigure = new List<IFigure> ();
+        Graphics _graphics;        
 
         Pen MinePen = new Pen(Color.Black, 3);
 
         private bool IsMouseDown = false;
         private Point m_End;
         private Point m_Cur;
-        ArrowsBuilder builder;
 
+        ArrowsBuilder builder;
+        AbstractArrow aArrow;
 
         Block block;
 
-        //string typeOfLine = "";
-        //string typeOfCap = "";
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
 
+        //private List<AbstractArrow> MyLines = new List<AbstractArrow>();
+        //List<IFigure> listOfFigure = new List<IFigure>();
+        List<AbstractArrow> listOfArrows = new List<AbstractArrow>();
 
-
-        private List<AbstractArrow> MyLines = new List<AbstractArrow>();
-
-        
 
         public Form1()
         {
@@ -51,18 +47,18 @@ namespace UMLDiagram
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
 
-           
+            
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             IsMouseDown = true;
             m_End = e.Location;
-            //_tmpBitmap = (Bitmap)_mainBitmap.Clone();
-            //_graphics = Graphics.FromImage(_tmpBitmap);
 
-            //block.DrawBlock(_graphics, MinePen, m_End);
-            //pictureBox1.Image = _tmpBitmap;
+            builder = new ArrowsBuilder();
+            aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+
+            aArrow._startPoint = e.Location;
 
         }
 
@@ -71,25 +67,15 @@ namespace UMLDiagram
             if (IsMouseDown == true)
             {
                 m_Cur = e.Location;
+                aArrow._endPoint = e.Location;
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                //block.DrawBlock(_graphics, MinePen, m_End, m_Cur);
-
-
-
-                builder = new ArrowsBuilder();
-                var arrow = builder.CreateArrow(typeOfCap, typeOfLine);
-                arrow.Draw(_graphics, MinePen, m_End, m_Cur);
-                //block.DrawBlock(_graphics, MinePen, m_End);
-
-
-
-                //listOfFigure.Add(arrow);
+                aArrow.Draw(_graphics, MinePen);
+                //aArrow.Draw(_graphics, MinePen, m_End, m_Cur);
 
                 pictureBox1.Image = _tmpBitmap;
-
 
                 GC.Collect();
             }
@@ -99,12 +85,8 @@ namespace UMLDiagram
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             IsMouseDown = false;
-            //_tmpBitmap = (Bitmap)_mainBitmap.Clone();
-            //_graphics = Graphics.FromImage(_tmpBitmap);
-
-            //block.DrawBlock(_graphics, MinePen, m_End, m_Cur);
-            //pictureBox1.Image = _tmpBitmap;
             _mainBitmap = _tmpBitmap;
+            listOfArrows.Add(aArrow);
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
@@ -124,48 +106,36 @@ namespace UMLDiagram
 
         private void associationButton_Click(object sender, EventArgs e)
         {
-            //typeOfLine = "SolidLine";
-            //typeOfCap = "ArrowCap";
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.ArrowCap;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            //typeOfLine = "SolidLine";
-            //typeOfCap = "RhombusCap";
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusCap;
         }
 
         private void InheritanceArrow_Click(object sender, EventArgs e)
         {
-            //typeOfLine = "SolidLine";
-            //typeOfCap = "TriangleCap";
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleCap;
         }       
 
         private void implementationButton_Click(object sender, EventArgs e)
         {
-            //typeOfLine = "DashLine";
-            //typeOfCap = "TriangleCap";
             typeOfLine = ArrowLineType.DashLine;
             typeOfCap = ArrowCapType.TriangleCap;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
-            //typeOfLine = "SolidLine";
-            //typeOfCap = "RhombusFillCap";
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusFillCap;
         }
 
         private void addictionButton_Click(object sender, EventArgs e)
         {
-            //typeOfLine = "SolidLine";
-            //typeOfCap = "TriangleFillCap";
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleFillCap;
         }
@@ -181,6 +151,20 @@ namespace UMLDiagram
         private void buttonClass_Click(object sender, EventArgs e)
         {
              block = new Block();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _graphics = Graphics.FromImage(_mainBitmap);
+            _graphics.Clear(Color.White);
+
+            foreach (AbstractArrow a in listOfArrows)
+            {
+                a.Draw(_graphics, MinePen);
+            }
+
+            pictureBox1.Image = _mainBitmap;
         }
     }
 }
