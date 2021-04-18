@@ -26,8 +26,14 @@ namespace UMLDiagram
 
         string typeOfLine = "";
         string typeOfCap = "";
-        Block block;
+        Block block1;
 
+        public static string nameClass { get; set; }
+        public static string atributes { get; set; }
+        public static string methods { get; set; }
+
+
+        static string classN;
 
 
 
@@ -82,7 +88,7 @@ namespace UMLDiagram
                 //var arrow = builder.CreateArrow(typeOfCap, typeOfLine);
                 //arrow.Draw(_graphics, MinePen, m_End, m_Cur);
                 //block.DrawBlock(_graphics, MinePen, m_End);
-                block.DrawBlock(_graphics, MinePen, e.Location);
+                block1.DrawBlock(_graphics, MinePen, e.Location, classN, atributes , methods);
 
 
                 //listOfFigure.Add(arrow);
@@ -103,9 +109,9 @@ namespace UMLDiagram
 
             //block.DrawBlock(_graphics, MinePen, m_End, m_Cur);
             //pictureBox1.Image = _tmpBitmap;
-            var form = new PropertyForBlock();
-            form.Show();
-            block._nameClass = form.GetName();
+            
+            
+            //block._nameClass = form.GetName();
             _mainBitmap = _tmpBitmap;
         }
 
@@ -128,9 +134,6 @@ namespace UMLDiagram
         {
             typeOfLine = "SolidLine";
             typeOfCap = "ArrowCap";
-
-
-
 
         }
 
@@ -175,7 +178,25 @@ namespace UMLDiagram
 
         private void buttonClass_Click(object sender, EventArgs e)
         {
-             block = new Block();
+             block1 = new Block();
+        }
+            
+        public static void SetPropety(string nameM, string atributesM,string methodsM)
+        {
+         
+            classN = nameM;
+
+            atributes = atributesM;
+            methods = methodsM;
+
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var form = new PropertyForBlock();
+            form.Show();
         }
     }
 }

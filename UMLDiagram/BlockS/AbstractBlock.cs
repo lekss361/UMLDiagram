@@ -9,17 +9,19 @@ namespace UMLDiagram.BlockS
 {
     public abstract class AbstractBlock 
     {
-        public Point _startPoint { get; set; } // like mCur
-        public Point _endPoint { get; set; }
+        public Point startPoint { get; set; } // like mCur
+        public Point endPoint { get; set; }
 
-        public Rectangle _mainRect{ get; set; }
-        public Rectangle _second { get; set; }
+        public Rectangle mainRect{ get; set; }
+        public Rectangle second { get; set; }
 
-        public string _nameClass { get; set; }
+        public string nameClass { get; set; }
+        public string atributesText { get; set; }
+        public string methodsText { get; set; }
 
 
 
-        public abstract void DrawBlock(Graphics graphics, Pen pen,  Point start);
+        public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met);
 
     }
 }
