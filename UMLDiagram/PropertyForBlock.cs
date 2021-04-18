@@ -12,41 +12,33 @@ namespace UMLDiagram
 {
     public partial class PropertyForBlock : Form
     {
-        public static string _nameText { get; set; }
-        public static string _atributesText { get; set; }
-        public static string _methodsText { get; set; }
-
-
-
         public PropertyForBlock()
         {
             InitializeComponent();
         }
+        public static string _nameOfBlock { get; set; }
+        public static string _atributesOfBlock { get; set; }
+        public static string _methodsOfBlock { get; set; }
 
-        private void NameProperty_TextChanged(object sender, EventArgs e)
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-            _nameText = nameTextBox.Text;
+            _nameOfBlock = nameTextBox.Text;
         }
 
-        private void AtributesProperty_TextChanged(object sender, EventArgs e)
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
-            _atributesText = atributesTextBox.Text;
+            _atributesOfBlock = richTextBox2.Text;
         }
 
-        private void MethodsProterty_TextChanged(object sender, EventArgs e)
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
         {
-            _methodsText = methodsTextBox.Text;
+            _methodsOfBlock = richTextBox3.Text;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-            Close();
-
-        }
         public string GetName()
         {
-            return _nameText;
+            
+            return _nameOfBlock;
         }
     }
 }

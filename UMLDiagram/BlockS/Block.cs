@@ -11,12 +11,23 @@ namespace UMLDiagram.BlockS
     {
         int weigth;
         int heigth;
+        public Block()
+        {
+            _nameClass = "Class";
+        }
         public override void DrawBlock(Graphics graphics, Pen pen,  Point start)
         {
             //weigth = end.X - start.X;
             //heigth = start.Y - end.Y;
+            
+            graphics.DrawRectangle(pen, start.X, start.Y,150,200);
+            graphics.DrawRectangle(pen, start.X, start.Y, 150, 40);
 
-            graphics.DrawRectangle(pen, start.X, start.Y,100,100);
+            Font drawFont = new Font("Arial", 16);
+            SolidBrush drawBrush = new SolidBrush(Color.Black);
+            float x = start.X + 40;
+            float y = start.Y + 10;
+            graphics.DrawString(_nameClass, drawFont, drawBrush, x, y);
         }
     }
 }

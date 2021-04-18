@@ -78,11 +78,11 @@ namespace UMLDiagram
 
 
 
-                builder = new ArrowsBuilder();
-                var arrow = builder.CreateArrow(typeOfCap, typeOfLine);
-                arrow.Draw(_graphics, MinePen, m_End, m_Cur);
+                //builder = new ArrowsBuilder();
+                //var arrow = builder.CreateArrow(typeOfCap, typeOfLine);
+                //arrow.Draw(_graphics, MinePen, m_End, m_Cur);
                 //block.DrawBlock(_graphics, MinePen, m_End);
-
+                block.DrawBlock(_graphics, MinePen, e.Location);
 
 
                 //listOfFigure.Add(arrow);
@@ -103,6 +103,9 @@ namespace UMLDiagram
 
             //block.DrawBlock(_graphics, MinePen, m_End, m_Cur);
             //pictureBox1.Image = _tmpBitmap;
+            var form = new PropertyForBlock();
+            form.Show();
+            block._nameClass = form.GetName();
             _mainBitmap = _tmpBitmap;
         }
 
