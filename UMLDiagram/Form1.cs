@@ -153,20 +153,6 @@ namespace UMLDiagram
              block = new Block();
         }
 
-        //private void button2_Click(object sender, EventArgs e)
-        //{
-        //    _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-        //    _graphics = Graphics.FromImage(_mainBitmap);
-        //    _graphics.Clear(Color.White);
-
-        //    foreach (AbstractArrow a in listOfArrows)
-        //    {
-        //        a.Draw(_graphics, MinePen);
-        //    }
-
-        //    pictureBox1.Image = _mainBitmap;
-        //}
-
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveFileDialog1.Filter = "Class Diagram Files|*.umldiagram|JPeg Image|*.jpg";
