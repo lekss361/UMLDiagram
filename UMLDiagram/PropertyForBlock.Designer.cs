@@ -111,6 +111,7 @@ namespace UMLDiagram
             this.okey.TabIndex = 7;
             this.okey.Text = "OK";
             this.okey.UseVisualStyleBackColor = true;
+            this.okey.Click += new System.EventHandler(this.okey_Click);
             // 
             // PropertyForBlock
             // 
@@ -127,6 +128,7 @@ namespace UMLDiagram
             this.MaximizeBox = false;
             this.Name = "PropertyForBlock";
             this.Text = "PropertyForBlock";
+            this.Load += new System.EventHandler(this.PropertyForBlock_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

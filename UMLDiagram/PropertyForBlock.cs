@@ -23,6 +23,8 @@ namespace UMLDiagram
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
             _nameOfBlock = nameTextBox.Text;
+            
+
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
@@ -34,11 +36,15 @@ namespace UMLDiagram
         {
             _methodsOfBlock = richTextBox3.Text;
         }
-
-        public string GetName()
+        private void PropertyForBlock_Load(object sender, EventArgs e)
         {
-            
-            return _nameOfBlock;
+
+        }
+
+        private void okey_Click(object sender, EventArgs e)
+        {
+            Form1.SetPropety(_nameOfBlock, _atributesOfBlock, _methodsOfBlock);
+            Close();
         }
     }
 }
