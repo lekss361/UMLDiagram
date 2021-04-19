@@ -41,9 +41,14 @@ namespace UMLDiagram
         //List<IFigure> listOfFigure = new List<IFigure>();
         List<AbstractArrow> listOfArrows = new List<AbstractArrow>();
 
+        List<Point> startAndEndLinePoints = new List<Point>();
+        bool pointFocused;
+        Point pointFocus;
+
         public Form1()
         {
             InitializeComponent();
+            pointFocused = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -61,6 +66,7 @@ namespace UMLDiagram
         {
             IsMouseDown = true;
             m_End = e.Location;
+            
 
             builder = new ArrowsBuilder();
             aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
@@ -73,11 +79,10 @@ namespace UMLDiagram
             if (IsMouseDown == true)
             {
                 m_Cur = e.Location;
-                aArrow._endPoint = e.Location;
+                aArrow._endPoint = e.Location;                
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
-
 
                 aArrow.Draw(_graphics, MinePen);
 
@@ -86,6 +91,39 @@ namespace UMLDiagram
                 pictureBox1.Image = _tmpBitmap;
                 GC.Collect();
             }
+            else
+            {
+                pointFocused = false;
+                pointFocus = new Point();
+
+                for (int i=0; i < startAndEndLinePoints.Count; i++)
+                {
+                    if (Math.Abs(startAndEndLinePoints[i].X - e.Location.X) < 2 
+                        & Math.Abs(startAndEndLinePoints[i].Y - e.Location.Y) < 2)
+                    //if (startAndEndLinePoints.Contains(e.Location))
+                    {
+                        pointFocused = true;
+                        pointFocus = e.Location;
+                    }
+                }
+            }
+            if (pointFocused == true)
+            {
+                _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                _graphics = Graphics.FromImage(_tmpBitmap);
+
+                Pen FocusPen = new Pen(Color.Red, 5);
+                int focusWidth = trackBarWidth.Value;
+
+                //_graphics.DrawRectangle(FocusPen, pointFocus.X-3, pointFocus.Y - 3, 6, 6);
+                //_graphics.DrawRectangle(FocusPen, pointFocus.X - 3, pointFocus.Y - 3, 2*focusWidth, 2*focusWidth);
+                _graphics.DrawEllipse(FocusPen, pointFocus.X - 3, pointFocus.Y - 3, 2 * 6, 2 * 6);
+
+                pictureBox1.Image = _tmpBitmap;
+                GC.Collect();
+
+            }
+
 
         }
 
@@ -94,6 +132,9 @@ namespace UMLDiagram
             IsMouseDown = false;
             _mainBitmap = _tmpBitmap;
             listOfArrows.Add(aArrow);
+
+            startAndEndLinePoints.Add(m_End);
+            startAndEndLinePoints.Add(m_Cur);
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
