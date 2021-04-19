@@ -38,6 +38,7 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.implementationButton = new System.Windows.Forms.Button();
             this.inheritanceButton = new System.Windows.Forms.Button();
             this.colorLineButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -152,6 +152,16 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(50, 309);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 28);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "+";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -292,16 +302,6 @@
             this.colorLineButton.UseMnemonic = false;
             this.colorLineButton.UseVisualStyleBackColor = true;
             this.colorLineButton.Click += new System.EventHandler(this.SwitchColorPaintig);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(50, 309);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 28);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "+";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
