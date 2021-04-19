@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,22 +9,21 @@ namespace UMLDiagram.Factory
 {
     class FactoryForLine
     {
-        public AbstractLine createLine(string type)
+        public AbstractLine createLine(ArrowLineType type)
         {
             AbstractLine line = null;
+
             switch (type)
             {
-                case "DashLine":
+                case ArrowLineType.DashLine:
                     line = new DashLine();
                     break;
-                case "SolidLine":
+                case ArrowLineType.SolidLine:
                     line = new SolidLine();
                     break;
                 default:
                     break;
             }
-
-
 
             return line;
         }

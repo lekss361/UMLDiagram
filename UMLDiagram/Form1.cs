@@ -1,10 +1,10 @@
-﻿using UMLDiagram.Arrows;
+﻿using System.Drawing.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using UMLDiagram.Factory;
-using UMLDiagram.Arrows;
+
 
 using UMLDiagram.BlockS;
 
@@ -15,17 +15,19 @@ namespace UMLDiagram
         Bitmap _mainBitmap;
         Bitmap _tmpBitmap;
         Graphics _graphics;
-        List<IFigure> listOfFigure = new List<IFigure> ();
-
+        
         Pen MinePen = new Pen(Color.Black, 3);
 
         private bool IsMouseDown = false;
         private Point m_End;
         private Point m_Cur;
+        
         ArrowsBuilder builder;
+        AbstractArrow aArrow;
 
-        string typeOfLine = "";
-        string typeOfCap = "";
+        ArrowLineType typeOfLine;
+        ArrowCapType typeOfCap;
+
         Block block1;
 
         public static string nameClass { get; set; }
@@ -35,13 +37,9 @@ namespace UMLDiagram
 
         static string classN;
 
-
-
-
-
-        private List<AbstractArrow> MyLines = new List<AbstractArrow>();
-
-        
+        //private List<AbstractArrow> MyLines = new List<AbstractArrow>();
+        //List<IFigure> listOfFigure = new List<IFigure>();
+        List<AbstractArrow> listOfArrows = new List<AbstractArrow>();
 
         public Form1()
         {
@@ -63,12 +61,11 @@ namespace UMLDiagram
         {
             IsMouseDown = true;
             m_End = e.Location;
-            //_tmpBitmap = (Bitmap)_mainBitmap.Clone();
-            //_graphics = Graphics.FromImage(_tmpBitmap);
 
-            //block.DrawBlock(_graphics, MinePen, m_End);
-            //pictureBox1.Image = _tmpBitmap;
+            builder = new ArrowsBuilder();
+            aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
 
+            aArrow._startPoint = e.Location;
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -76,26 +73,17 @@ namespace UMLDiagram
             if (IsMouseDown == true)
             {
                 m_Cur = e.Location;
+                aArrow._endPoint = e.Location;
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                //block.DrawBlock(_graphics, MinePen, m_End, m_Cur);
 
+                aArrow.Draw(_graphics, MinePen);
 
-
-                //builder = new ArrowsBuilder();
-                //var arrow = builder.CreateArrow(typeOfCap, typeOfLine);
-                //arrow.Draw(_graphics, MinePen, m_End, m_Cur);
-                //block.DrawBlock(_graphics, MinePen, m_End);
-                block1.DrawBlock(_graphics, MinePen, e.Location, classN, atributes , methods);
-
-
-                //listOfFigure.Add(arrow);
+                //block1.DrawBlock(_graphics, MinePen, e.Location, classN, atributes , methods);
 
                 pictureBox1.Image = _tmpBitmap;
-
-
                 GC.Collect();
             }
 
@@ -104,15 +92,8 @@ namespace UMLDiagram
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             IsMouseDown = false;
-            //_tmpBitmap = (Bitmap)_mainBitmap.Clone();
-            //_graphics = Graphics.FromImage(_tmpBitmap);
-
-            //block.DrawBlock(_graphics, MinePen, m_End, m_Cur);
-            //pictureBox1.Image = _tmpBitmap;
-            
-            
-            //block._nameClass = form.GetName();
             _mainBitmap = _tmpBitmap;
+            listOfArrows.Add(aArrow);
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
@@ -132,40 +113,38 @@ namespace UMLDiagram
 
         private void associationButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "SolidLine";
-            typeOfCap = "ArrowCap";
-
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.ArrowCap;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "SolidLine";
-            typeOfCap = "RhombusCap";
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.RhombusCap;
         }
 
         private void InheritanceArrow_Click(object sender, EventArgs e)
         {
-            
-            typeOfLine = "SolidLine";
-            typeOfCap = "TriangleCap";
-        }       
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.TriangleCap;
+        }
 
         private void implementationButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "DashLine";
-            typeOfCap = "TriangleCap";
+            typeOfLine = ArrowLineType.DashLine;
+            typeOfCap = ArrowCapType.TriangleCap;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "SolidLine";
-            typeOfCap = "RhombusFillCap";
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.RhombusFillCap;
         }
 
         private void addictionButton_Click(object sender, EventArgs e)
         {
-            typeOfLine = "SolidLine";
-            typeOfCap = "TriangleFillCap";
+            typeOfLine = ArrowLineType.SolidLine;
+            typeOfCap = ArrowCapType.TriangleFillCap;
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -197,6 +176,37 @@ namespace UMLDiagram
         {
             var form = new PropertyForBlock();
             form.Show();
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "Class Diagram Files|*.umldiagram|JPeg Image|*.jpg";
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                switch (saveFileDialog1.FilterIndex)
+                {
+                    case 1:
+                        _mainBitmap.Save(saveFileDialog1.FileName);
+                        break;
+
+                    case 2:
+                        _mainBitmap.Save(saveFileDialog1.FileName, ImageFormat.Jpeg);
+                        break;
+                }
+            }
+        }
+
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+
+            if (openFileDialog1.FileName != "")
+            {
+                _mainBitmap = (Bitmap)Image.FromFile(openFileDialog1.FileName);
+                pictureBox1.Image = _mainBitmap;
+            }
         }
     }
 }

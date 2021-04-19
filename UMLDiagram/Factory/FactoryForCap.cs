@@ -7,28 +7,27 @@ using UMLDiagram.Arrows.CapTypes;
 
 namespace UMLDiagram.Factory
 {
-   public  class FactoryForCap
+    public class FactoryForCap
     {
-        public AbstractCap createCap(string type) 
-
+        public AbstractCap createCap(ArrowCapType type)
         {
             AbstractCap cap = null;
 
             switch (type)
             {
-                case "ArrowCap":
-                    cap = new ArrowCap(); 
+                case ArrowCapType.ArrowCap:
+                    cap = new ArrowCap();
                     break;
-                case "TriangleCap":
+                case ArrowCapType.TriangleCap:
                     cap = new TriangleCap();
                     break;
-                case "RhombusCap":
+                case ArrowCapType.RhombusCap:
                     cap = new RhombusCap();
                     break;
-                case "RhombusFillCap":
+                case ArrowCapType.RhombusFillCap:
                     cap = new RhombusFillCap();
                     break;
-                case "TriangleFillCap":
+                case ArrowCapType.TriangleFillCap:
                     cap = new TriangleFillCap();
                     break;
                 default:

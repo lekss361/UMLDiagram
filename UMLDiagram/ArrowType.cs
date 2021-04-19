@@ -14,7 +14,7 @@ namespace UMLDiagram
         //aggregationArrow,
         //implementationArrow,
         //composition
-        DashLine=0,
+        DashLine = 0,
         SolidLine
     }
 

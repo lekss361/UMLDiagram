@@ -12,16 +12,19 @@ namespace UMLDiagram
 {
     class Arrow : AbstractArrow
     {
-        public Arrow(AbstractCap absCap, AbstractLine absLine) 
-            : base (absCap, absLine)
+        public Arrow(AbstractCap absCap, AbstractLine absLine)
+            : base(absCap, absLine)
         {
-            
+
         }
 
-        public override void Draw(Graphics graphics, Pen pen, Point start, Point end)
+        public override void Draw(Graphics graphics, Pen pen)
         {
+            Point end = _endPoint;
+            Point start = _startPoint;
+
             cap.Draw(graphics, pen, end, start);
-            line.DrawLine(graphics,pen,end,start);
+            line.DrawLine(graphics, pen, end, start);
         }
     }
 }

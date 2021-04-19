@@ -19,7 +19,7 @@ namespace UMLDiagram.Factory
             factoryForLine = new FactoryForLine();
         }
 
-        public AbstractArrow CreateArrow(string typeForCap, string typeForLine)
+        public AbstractArrow CreateArrow(ArrowCapType typeForCap, ArrowLineType typeForLine)
         {
             AbstractCap cap = factoryForCap.createCap(typeForCap);
             AbstractLine line = factoryForLine.createLine(typeForLine);
