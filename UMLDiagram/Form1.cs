@@ -28,14 +28,19 @@ namespace UMLDiagram
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
 
-        Block block1;
+        Block block1 = new Block();
+        float width1;
 
         public static string nameClass { get; set; }
         public static string atributes { get; set; }
         public static string methods { get; set; }
 
+        public static Font fon1 { get; set; }
+
 
         static string classN;
+        static string atrN;
+        static string metN;
 
         //private List<AbstractArrow> MyLines = new List<AbstractArrow>();
         //List<IFigure> listOfFigure = new List<IFigure>();
@@ -79,9 +84,9 @@ namespace UMLDiagram
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
 
-                aArrow.Draw(_graphics, MinePen);
+                //aArrow.Draw(_graphics, MinePen);
 
-                //block1.DrawBlock(_graphics, MinePen, e.Location, classN, atributes , methods);
+                block1.DrawBlock(_graphics, MinePen, e.Location, classN, atributes , methods,width1);
 
                 pictureBox1.Image = _tmpBitmap;
                 GC.Collect();
@@ -160,15 +165,13 @@ namespace UMLDiagram
              block1 = new Block();
         }
             
-        public static void SetPropety(string nameM, string atributesM,string methodsM)
+        public static void SetPropety(string nameM, string atributesM,string methodsM,Font font)
         {
-         
-            classN = nameM;
+            nameClass = nameM;
 
             atributes = atributesM;
             methods = methodsM;
-
-
+            fon1 = font;
 
         }
 
@@ -207,6 +210,13 @@ namespace UMLDiagram
                 _mainBitmap = (Bitmap)Image.FromFile(openFileDialog1.FileName);
                 pictureBox1.Image = _mainBitmap;
             }
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            //Graphics g = e.Graphics;
+            // block1.CalculateSizeBlock(nameClass, atributes, methods,fon1,e);
+            width1 = Block.CalculateSizeBlock(nameClass, atributes, methods, fon1, e);
         }
     }
 }

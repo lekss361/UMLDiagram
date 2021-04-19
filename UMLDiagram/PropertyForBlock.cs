@@ -20,10 +20,14 @@ namespace UMLDiagram
         public static string _atributesOfBlock { get; set; }
         public static string _methodsOfBlock { get; set; }
 
+        Font fon2;
+
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
             _nameOfBlock = nameTextBox.Text;
-            
+            fon2 = nameTextBox.Font;
+
+
 
         }
 
@@ -43,7 +47,7 @@ namespace UMLDiagram
 
         private void okey_Click(object sender, EventArgs e)
         {
-            Form1.SetPropety(_nameOfBlock, _atributesOfBlock, _methodsOfBlock);
+            Form1.SetPropety(_nameOfBlock, _atributesOfBlock, _methodsOfBlock,fon2);
             Close();
         }
     }

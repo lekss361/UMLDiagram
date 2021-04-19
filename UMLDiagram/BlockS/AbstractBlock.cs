@@ -21,7 +21,7 @@ namespace UMLDiagram.BlockS
 
 
 
-        public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met);
+        public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width);
 
     }
 }
