@@ -29,7 +29,8 @@ namespace UMLDiagram
         ArrowCapType typeOfCap;
 
         Block block1 = new Block();
-        float width1;
+        public static float  width1{ get; set; }
+        public static float height1 { get; set; }
 
         public static string nameClass { get; set; }
         public static string atributes { get; set; }
@@ -50,8 +51,25 @@ namespace UMLDiagram
         {
             InitializeComponent();
         }
+        public static void SetPropety(string nameM, string atributesM,string methodsM,Font font)
+        {
+            nameClass = nameM;
 
-        private void Form1_Load(object sender, EventArgs e)
+            atributes = atributesM;
+            methods = methodsM;
+            fon1 = font;
+
+        }
+
+        public static void SetWidthAndHeist(float wid, float heig)
+        {
+            width1 = wid;
+            height1 = heig;
+
+
+        }
+
+    private void Form1_Load(object sender, EventArgs e)
         {
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             
@@ -59,7 +77,6 @@ namespace UMLDiagram
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
 
-           
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -86,7 +103,7 @@ namespace UMLDiagram
 
                 //aArrow.Draw(_graphics, MinePen);
 
-                block1.DrawBlock(_graphics, MinePen, e.Location, classN, atributes , methods,width1);
+                block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1);
 
                 pictureBox1.Image = _tmpBitmap;
                 GC.Collect();
@@ -112,9 +129,6 @@ namespace UMLDiagram
         {
             MinePen.Width = trackBarWidth.Value;
         }
-
-
-
 
         private void associationButton_Click(object sender, EventArgs e)
         {
@@ -165,15 +179,6 @@ namespace UMLDiagram
              block1 = new Block();
         }
             
-        public static void SetPropety(string nameM, string atributesM,string methodsM,Font font)
-        {
-            nameClass = nameM;
-
-            atributes = atributesM;
-            methods = methodsM;
-            fon1 = font;
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -212,11 +217,6 @@ namespace UMLDiagram
             }
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-            //Graphics g = e.Graphics;
-            // block1.CalculateSizeBlock(nameClass, atributes, methods,fon1,e);
-            width1 = Block.CalculateSizeBlock(nameClass, atributes, methods, fon1, e);
-        }
+
     }
 }

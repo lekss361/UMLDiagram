@@ -15,13 +15,13 @@ namespace UMLDiagram.BlockS
         public Rectangle mainRect{ get; set; }
         public Rectangle second { get; set; }
 
-        public string nameClass { get; set; }
-        public string atributesText { get; set; }
-        public string methodsText { get; set; }
+        //public string nameClass { get; set; }
+        //public string atributesText { get; set; }
+        //public string methodsText { get; set; }
 
 
 
-        public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width);
+        public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width,float heigth);
 
     }
 }

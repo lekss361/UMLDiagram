@@ -38,6 +38,7 @@ namespace UMLDiagram
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.okey = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // nameTextBox
@@ -129,6 +130,7 @@ namespace UMLDiagram
             this.Name = "PropertyForBlock";
             this.Text = "PropertyForBlock";
             this.Load += new System.EventHandler(this.PropertyForBlock_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.PropertyForBlock_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,5 +146,6 @@ namespace UMLDiagram
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button okey;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
