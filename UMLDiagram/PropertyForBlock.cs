@@ -25,7 +25,7 @@ namespace UMLDiagram
         static SizeF methodSize { get; set; }
 
         public static float widthParam { get; set; }
-        public static float heightParam { get; set; }
+        public static float heightFont { get; set; }
         public static int countLinesAtr { get; set; }
         public static int countLinesMet { get; set; }
 
@@ -42,7 +42,7 @@ namespace UMLDiagram
         {
             _atributesOfBlock = richTextBox2.Text;
             countLinesAtr = richTextBox2.Lines.Count();
-            heightParam = richTextBox2.Font.Height;
+            heightFont = richTextBox2.Font.Height;
         }
 
         private void richTextBox3_TextChanged(object sender, EventArgs e)
@@ -125,8 +125,8 @@ namespace UMLDiagram
         private void PropertyForBlock_Paint(object sender, PaintEventArgs e)
         {
             widthParam = CalculateWidthBlock(_nameOfBlock, _atributesOfBlock, _methodsOfBlock, fon2, e);
-            heightParam = heightParam;
-            Form1.SetWidthAndHeist(widthParam,heightParam);
+            //heightFont = heightFont;
+            Form1.SetWidthAndHeist(widthParam,heightFont);
             
         }
 

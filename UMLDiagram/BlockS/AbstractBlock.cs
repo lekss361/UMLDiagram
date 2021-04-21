@@ -14,15 +14,28 @@ namespace UMLDiagram.BlockS
         public Point endPoint { get; set; }
 
         public Rectangle mainRect{ get; set; }
-        public Rectangle second { get; set; }
+        public Rectangle secondRect { get; set; }
 
-        //public string nameClass { get; set; }
-        //public string atributesText { get; set; }
-        //public string methodsText { get; set; }
+        public static string NameField { get; set; }
+        public static string AtribureField { get; set; }
+        public static string MethodField { get; set; }
+        public static Font font { get; set; }
+
+        public static float WidthRect { get; set; }
+        public static float HeigthFont { get; set; }
+
+        public static int NumOfAtributeLines { get; set; }
+        public static int NumOfMethodLines { get; set; }
+
+
+
+
+
+        
 
 
 
         public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width,float heigth, int cAtrL,int cMetL);
-
+        public abstract void DrawBlock(Graphics graphics, Pen pen, Point start);
     }
 }

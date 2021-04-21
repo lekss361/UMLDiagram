@@ -32,11 +32,11 @@ namespace UMLDiagram
         public static float  width1{ get; set; }
         public static float height1 { get; set; }
 
-        public static string nameClass { get; set; }
-        public static string atributes { get; set; }
-        public static string methods { get; set; }
+        //public static string nameClass { get; set; }
+        //public static string atributes { get; set; }
+        //public static string methods { get; set; }
 
-        public static Font fon1 { get; set; }
+        //public static Font font { get; set; }
 
         public static int LinesAtr { get; set; }
         public static int LinesMet { get; set; }
@@ -49,28 +49,26 @@ namespace UMLDiagram
         {
             InitializeComponent();
         }
-        public static void SetPropety(string nameM, string atributesM,string methodsM,Font font)
+        public static void SetPropety(string nameF, string atributF,string methodsF,Font font)
         {
-            nameClass = nameM;
+            Block.NameField = nameF;
 
-            atributes = atributesM;
-            methods = methodsM;
-            fon1 = font;
+            Block.AtribureField = atributF;
+            Block.MethodField = methodsF;
+            Block.font = font;
 
         }
 
         public static void SetWidthAndHeist(float wid, float heig)
         {
-            width1 = wid;
-            height1 = heig;
-
-
+            Block.WidthRect = wid;
+            Block.HeigthFont = heig;
         }
 
         public static void SetCountLines(int atr, int met)
         {
-            LinesAtr = atr;
-            LinesMet = met;
+            Block.NumOfAtributeLines = atr;
+            Block.NumOfMethodLines = met;
         }
 
     private void Form1_Load(object sender, EventArgs e)
@@ -99,16 +97,16 @@ namespace UMLDiagram
             if (IsMouseDown == true)
             {
                 m_Cur = e.Location;
-                aArrow._endPoint = e.Location;
+               // aArrow._endPoint = e.Location;
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                block1 = new Block(e.Location, height1, LinesAtr, LinesMet);
+                block1 = new Block(e.Location);
                 //aArrow.Draw(_graphics, MinePen);
 
-                block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
-
+                //block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
+                block1.DrawBlock(_graphics, MinePen, e.Location);
                 pictureBox1.Image = _tmpBitmap;
                 GC.Collect();
             }
