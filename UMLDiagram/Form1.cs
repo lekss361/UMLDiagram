@@ -38,10 +38,8 @@ namespace UMLDiagram
 
         public static Font fon1 { get; set; }
 
-
-        static string classN;
-        static string atrN;
-        static string metN;
+        public static int LinesAtr { get; set; }
+        public static int LinesMet { get; set; }
 
         //private List<AbstractArrow> MyLines = new List<AbstractArrow>();
         //List<IFigure> listOfFigure = new List<IFigure>();
@@ -69,6 +67,12 @@ namespace UMLDiagram
 
         }
 
+        public static void SetCountLines(int atr, int met)
+        {
+            LinesAtr = atr;
+            LinesMet = met;
+        }
+
     private void Form1_Load(object sender, EventArgs e)
         {
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -86,7 +90,7 @@ namespace UMLDiagram
 
             builder = new ArrowsBuilder();
             aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
-
+            
             aArrow._startPoint = e.Location;
         }
 
@@ -100,10 +104,10 @@ namespace UMLDiagram
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-
+                block1 = new Block(e.Location, height1, LinesAtr, LinesMet);
                 //aArrow.Draw(_graphics, MinePen);
 
-                block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1);
+                block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
 
                 pictureBox1.Image = _tmpBitmap;
                 GC.Collect();
@@ -176,7 +180,7 @@ namespace UMLDiagram
 
         private void buttonClass_Click(object sender, EventArgs e)
         {
-             block1 = new Block();
+             //block1 = new Block();
         }
             
 

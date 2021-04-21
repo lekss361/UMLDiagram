@@ -9,6 +9,7 @@ namespace UMLDiagram.BlockS
 {
     public abstract class AbstractBlock 
     {
+       //protected List<AbstactModule> _modules;
         public Point startPoint { get; set; } // like mCur
         public Point endPoint { get; set; }
 
@@ -21,7 +22,7 @@ namespace UMLDiagram.BlockS
 
 
 
-        public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width,float heigth);
+        public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width,float heigth, int cAtrL,int cMetL);
 
     }
 }

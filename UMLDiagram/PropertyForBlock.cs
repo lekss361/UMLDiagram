@@ -26,23 +26,29 @@ namespace UMLDiagram
 
         public static float widthParam { get; set; }
         public static float heightParam { get; set; }
+        public static int countLinesAtr { get; set; }
+        public static int countLinesMet { get; set; }
 
         public static Font fon2 { get; set; }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
             _nameOfBlock = nameTextBox.Text;
+           
             fon2 = nameTextBox.Font;
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
             _atributesOfBlock = richTextBox2.Text;
+            countLinesAtr = richTextBox2.Lines.Count();
+            heightParam = richTextBox2.Font.Height;
         }
 
         private void richTextBox3_TextChanged(object sender, EventArgs e)
         {
             _methodsOfBlock = richTextBox3.Text;
+            countLinesMet = richTextBox3.Lines.Count();
         }
         private void PropertyForBlock_Load(object sender, EventArgs e)
         {
@@ -53,6 +59,7 @@ namespace UMLDiagram
         private void okey_Click(object sender, EventArgs e)
         {
             Form1.SetPropety(_nameOfBlock, _atributesOfBlock, _methodsOfBlock,fon2);
+            Form1.SetCountLines(countLinesAtr, countLinesMet);
             Close();
         }
         private static void GetParametersForBlock(string name, string atr, string met, Font strFont, PaintEventArgs e)
@@ -84,23 +91,24 @@ namespace UMLDiagram
             }
             return with;
         }
-        private static float GetHeight(SizeF name, SizeF atr, SizeF met)
-        {
-            float height;
-            if ((name.Height >= atr.Height) && (name.Height >= met.Height)) // может быть поставить >=  ?
-            {
-                height = name.Height;
-            }
-            else if ((atr.Height >= met.Height) && (atr.Height >= name.Height))
-            {
-                height = atr.Height;
-            }
-            else
-            {
-                height = met.Height;
-            }
-            return height;
-        }
+        //private static float GetHeight(SizeF name, SizeF atr, SizeF met)
+        //{
+        //    //float height;
+        //    //if ((name.Height >= atr.Height) && (name.Height >= met.Height)) // может быть поставить >=  ?
+        //    //{
+        //    //    height = name.Height;
+        //    //}
+        //    //else if ((atr.Height >= met.Height) && (atr.Height >= name.Height))
+        //    //{
+        //    //    height = atr.Height;
+        //    //}
+        //    //else
+        //    //{
+        //    //    height = met.Height;
+        //    //}
+        //    //return height;
+        //}
+        
         private static float CalculateWidthBlock(string name, string atr, string met, Font strFont, PaintEventArgs e)
         {
             float with;
@@ -117,8 +125,9 @@ namespace UMLDiagram
         private void PropertyForBlock_Paint(object sender, PaintEventArgs e)
         {
             widthParam = CalculateWidthBlock(_nameOfBlock, _atributesOfBlock, _methodsOfBlock, fon2, e);
-            heightParam = GetHeight(nameSize, atributeSize, methodSize);
+            heightParam = heightParam;
             Form1.SetWidthAndHeist(widthParam,heightParam);
+            
         }
 
     }

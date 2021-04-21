@@ -13,24 +13,51 @@ namespace UMLDiagram.BlockS
         static float width;
         static float heigth;
 
+        static Point _startName;
+        static Point _startAtr;
+        static Point _startMet;
+
+        public static void SetPointForLines(Point st, float heigth, int cAtrL, int cMetL)
+        {
+            _startName.X = st.X + 10;
+            _startName.Y = st.Y;
+
+            int outp = (int)heigth + 20;
+
+            _startAtr.X = st.X + 10;
+            _startAtr.Y = st.Y + (int)heigth + 20 ;
+
+            int metP = outp + (cAtrL * (int)heigth + 20);
+            _startMet.Y = st.Y  + (int)heigth + 20 + (cAtrL * (int)heigth + 20);
+            _startMet.X = st.X + 10;
+        }
+
         public Block()
         {
             
         }
-        public override void DrawBlock(Graphics graphics, Pen pen, Point start, string name, string atr,string met,float width,float heigth)
+        public Block(Point st, float heigth, int cAtrL, int cMetL)
         {
-           
-            graphics.DrawRectangle(pen, start.X, start.Y,width*2, 200);
-            graphics.DrawRectangle(pen, start.X, start.Y, width*2, 40);
-            
-            Font drawFont = new Font("Arial", 12);
+            SetPointForLines(st, heigth, cAtrL, cMetL);
+        }
+        public override void DrawBlock(Graphics graphics, Pen pen, Point start, string name, string atr,string met,float width,float heigth, int cAtrL, int cMetL)
+        {
+
+            float mult = (cAtrL + cMetL) * heigth + 60;
+            float par = mult + 40 + 50 + 70;
+
+
+            graphics.DrawRectangle(pen, start.X, start.Y,width+10, mult); //основной 
+            graphics.DrawRectangle(pen, start.X, start.Y, width+10 , heigth+10); //heigth+10 - высота с именем  
+
+            Font drawFont = new Font("Arial", 8);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
-            float x = start.X + 40;
-            float y = start.Y + 10;
-            graphics.DrawString(name, drawFont, drawBrush, start.X + 10, start.Y + 10);
-            graphics.DrawString(atr, drawFont, drawBrush, start.X + 10, start.Y + 60);
-            graphics.DrawString(met, drawFont, drawBrush, start.X + 10, start.Y + 120);
-           // TextRenderer.DrawText(graphics, met, drawFont, start, Color.Red);
+           
+            
+            graphics.DrawString(name, drawFont, drawBrush, _startName.X , _startName.Y);
+            graphics.DrawString(atr, drawFont, drawBrush, _startAtr.X, _startAtr.Y );
+            graphics.DrawString(met, drawFont, drawBrush, _startMet.X , _startMet.Y );
+            
         }
     }
 }
