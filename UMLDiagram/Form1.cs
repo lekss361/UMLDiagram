@@ -7,6 +7,7 @@ using UMLDiagram.Factory;
 
 
 using UMLDiagram.BlockS;
+using System.Diagnostics;
 
 namespace UMLDiagram
 {
@@ -28,15 +29,9 @@ namespace UMLDiagram
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
 
-        Block block1 = new Block();
+        Block block1;
         public static float  width1{ get; set; }
         public static float height1 { get; set; }
-
-        //public static string nameClass { get; set; }
-        //public static string atributes { get; set; }
-        //public static string methods { get; set; }
-
-        //public static Font font { get; set; }
 
         public static int LinesAtr { get; set; }
         public static int LinesMet { get; set; }
@@ -49,26 +44,27 @@ namespace UMLDiagram
         {
             InitializeComponent();
         }
-        public static void SetPropety(string nameF, string atributF,string methodsF,Font font)
+        public void SetPropety(string nameF, string atributF,string methodsF,Font font)
         {
-            Block.NameField = nameF;
+            // block1.NameField = nameF;
+            block1.NameField = nameF;
 
-            Block.AtribureField = atributF;
-            Block.MethodField = methodsF;
-            Block.font = font;
+            block1.AtribureField = atributF;
+            block1.MethodField = methodsF;
+            block1.font = font;
 
         }
 
-        public static void SetWidthAndHeist(float wid, float heig)
+        public void SetWidthAndHeist(float wid, float heig)
         {
-            Block.WidthRect = wid;
-            Block.HeigthFont = heig;
+            block1.WidthRect = wid;
+            block1.HeigthFont = heig;
         }
 
-        public static void SetCountLines(int atr, int met)
+        public void SetCountLines(int atr, int met)
         {
-            Block.NumOfAtributeLines = atr;
-            Block.NumOfMethodLines = met;
+            block1.NumOfAtributeLines = atr;
+            block1.NumOfMethodLines = met;
         }
 
     private void Form1_Load(object sender, EventArgs e)
@@ -83,6 +79,7 @@ namespace UMLDiagram
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            block1.SetPointForLines(e.Location);
             IsMouseDown = true;
             m_End = e.Location;
 
@@ -96,19 +93,24 @@ namespace UMLDiagram
         {
             if (IsMouseDown == true)
             {
+                block1.SetPointForLines(e.Location);
                 m_Cur = e.Location;
                // aArrow._endPoint = e.Location;
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                block1 = new Block(e.Location);
+                //block1.startPoint = e.Location;
                 //aArrow.Draw(_graphics, MinePen);
 
                 //block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
                 block1.DrawBlock(_graphics, MinePen, e.Location);
                 pictureBox1.Image = _tmpBitmap;
-                GC.Collect();
+                if (GC.GetTotalMemory(true) > 1073741824)
+                {
+                    GC.Collect();
+                }
+                
             }
 
         }
@@ -117,6 +119,9 @@ namespace UMLDiagram
         {
             IsMouseDown = false;
             _mainBitmap = _tmpBitmap;
+            block1.NameField = null;
+            block1.AtribureField = null;
+            block1.MethodField = null;
             listOfArrows.Add(aArrow);
         }
 
@@ -178,14 +183,16 @@ namespace UMLDiagram
 
         private void buttonClass_Click(object sender, EventArgs e)
         {
-             //block1 = new Block();
+            block1 = new Block();
+            var form = new PropertyForBlock(this);
+            form.Show();
         }
             
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var form = new PropertyForBlock();
-            form.Show();
+            //var form = new PropertyForBlock(this);
+            //form.Show();
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)

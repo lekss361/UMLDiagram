@@ -12,8 +12,9 @@ namespace UMLDiagram
 {
     public partial class PropertyForBlock : Form
     {
-        public PropertyForBlock()
+        public PropertyForBlock(Form1 form)
         {
+            this.form1 = form;
             InitializeComponent();
         }
         public static string _nameOfBlock { get; set; }
@@ -28,6 +29,8 @@ namespace UMLDiagram
         public static float heightFont { get; set; }
         public static int countLinesAtr { get; set; }
         public static int countLinesMet { get; set; }
+
+        private Form1 form1;
 
         public static Font fon2 { get; set; }
 
@@ -58,8 +61,8 @@ namespace UMLDiagram
 
         private void okey_Click(object sender, EventArgs e)
         {
-            Form1.SetPropety(_nameOfBlock, _atributesOfBlock, _methodsOfBlock,fon2);
-            Form1.SetCountLines(countLinesAtr, countLinesMet);
+            form1.SetPropety(_nameOfBlock, _atributesOfBlock, _methodsOfBlock,fon2);
+            form1.SetCountLines(countLinesAtr, countLinesMet);
             Close();
         }
         private static void GetParametersForBlock(string name, string atr, string met, Font strFont, PaintEventArgs e)
@@ -126,7 +129,7 @@ namespace UMLDiagram
         {
             widthParam = CalculateWidthBlock(_nameOfBlock, _atributesOfBlock, _methodsOfBlock, fon2, e);
             //heightFont = heightFont;
-            Form1.SetWidthAndHeist(widthParam,heightFont);
+            form1.SetWidthAndHeist(widthParam,heightFont);
             
         }
 

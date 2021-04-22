@@ -16,16 +16,16 @@ namespace UMLDiagram.BlockS
         public Rectangle mainRect{ get; set; }
         public Rectangle secondRect { get; set; }
 
-        public static string NameField { get; set; }
-        public static string AtribureField { get; set; }
-        public static string MethodField { get; set; }
-        public static Font font { get; set; }
+        public string NameField { get; set; }
+        public string AtribureField { get; set; }
+        public string MethodField { get; set; }
+        public Font font { get; set; }
 
-        public static float WidthRect { get; set; }
-        public static float HeigthFont { get; set; }
+        public float WidthRect { get; set; }
+        public float HeigthFont { get; set; }
 
-        public static int NumOfAtributeLines { get; set; }
-        public static int NumOfMethodLines { get; set; }
+        public int NumOfAtributeLines { get; set; }
+        public int NumOfMethodLines { get; set; }
 
 
 
