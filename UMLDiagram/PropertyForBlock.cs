@@ -133,5 +133,17 @@ namespace UMLDiagram
             
         }
 
+        private void chooseFont_Click(object sender, EventArgs e)
+        {
+            //FontDialog fontDialog1 = new FontDialog();
+            
+            if ( (fontDialog1.ShowDialog()== DialogResult.OK))
+            {
+                nameTextBox.Font = fontDialog1.Font;
+                richTextBox2.Font = fontDialog1.Font;
+                richTextBox3.Font = fontDialog1.Font;
+                
+            }
+        }
     }
 }

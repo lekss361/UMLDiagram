@@ -51,7 +51,7 @@ namespace UMLDiagram
 
             block1.AtribureField = atributF;
             block1.MethodField = methodsF;
-            block1.font = font;
+            block1.drawFont = font;
 
         }
 

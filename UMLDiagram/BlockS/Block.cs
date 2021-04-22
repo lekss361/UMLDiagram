@@ -76,7 +76,7 @@ namespace UMLDiagram.BlockS
             graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, totaLength); //основной 
             graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, HeigthFont + 10); //heigth+10 - высота с именем  
 
-            Font drawFont = new Font("Arial", 8);
+            //Font drawFont = new Font("Arial", 8);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
 
             graphics.DrawString(NameField, drawFont, drawBrush, _startName.X, _startName.Y);

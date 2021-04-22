@@ -67,9 +67,9 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 24);
             this.pictureBox1.MaximumSize = new System.Drawing.Size(3500, 3500);
-            this.pictureBox1.MinimumSize = new System.Drawing.Size(2000, 2000);
+            this.pictureBox1.MinimumSize = new System.Drawing.Size(1500, 1500);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(2000, 2000);
+            this.pictureBox1.Size = new System.Drawing.Size(1500, 1500);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
