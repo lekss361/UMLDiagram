@@ -34,6 +34,8 @@ namespace UMLDiagram
 
         public static Font fon2 { get; set; }
 
+
+
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
             _nameOfBlock = nameTextBox.Text;

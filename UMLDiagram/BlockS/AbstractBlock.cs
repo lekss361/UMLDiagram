@@ -19,6 +19,11 @@ namespace UMLDiagram.BlockS
         public string NameField { get; set; }
         public string AtribureField { get; set; }
         public string MethodField { get; set; }
+
+        public Point _startName;
+        public Point _startAtr;
+        public Point _startMet;
+
         public Font drawFont { get; set; }
 
         public float WidthRect { get; set; }

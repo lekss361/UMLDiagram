@@ -54,6 +54,7 @@ namespace UMLDiagram
             block1.drawFont = font;
 
         }
+       
 
         public void SetWidthAndHeist(float wid, float heig)
         {

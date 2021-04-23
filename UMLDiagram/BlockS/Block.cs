@@ -10,24 +10,7 @@ namespace UMLDiagram.BlockS
 {
     public class Block : AbstractBlock
     {
-        //static float width;
-        //static float heigth;
-
-        static Point _startName;
-        static Point _startAtr;
-        static Point _startMet;
-
-        //public static void SetPointForLines(Point st, float heigth, int cAtrL, int cMetL)
-        //{
-        //    _startName.X = st.X + 10;
-        //    _startName.Y = st.Y;
-
-        //    _startAtr.X = st.X + 10;
-        //    _startAtr.Y = st.Y + (int)heigth + 20 ;
-           
-        //    _startMet.Y = st.Y  + (int)heigth + 20 + (cAtrL * (int)heigth + 20);
-        //    _startMet.X = st.X + 10;
-        //}
+        
         public void SetPointForLines(Point st )
         {
             _startName.X = st.X + 10;
@@ -71,9 +54,9 @@ namespace UMLDiagram.BlockS
         public override void DrawBlock(Graphics graphics, Pen pen, Point start)
         {
 
-            float totaLength = (NumOfAtributeLines + NumOfMethodLines) * HeigthFont + 60;
+            float totaLength = ((NumOfAtributeLines + NumOfMethodLines) * HeigthFont)+ 80;
 
-            graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, totaLength); //основной 
+            graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, totaLength  ); //основной 
             graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, HeigthFont + 10); //heigth+10 - высота с именем  
 
             //Font drawFont = new Font("Arial", 8);
