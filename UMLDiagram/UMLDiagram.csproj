@@ -64,6 +64,7 @@
     <Compile Include="Factory\FactoryForCap.cs" />
     <Compile Include="Factory\FactoryForLine.cs" />
     <Compile Include="IFigure.cs" />
+    <Compile Include="IMoveable.cs" />
     <Compile Include="LineList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

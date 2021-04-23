@@ -40,10 +40,24 @@ namespace UMLDiagram
         //List<IFigure> listOfFigure = new List<IFigure>();
         List<AbstractArrow> listOfArrows = new List<AbstractArrow>();
 
+        bool isMove = false;
+        Point p;
+
+        List<Point> startAndEndLinePoints = new List<Point>();
+        //bool pointFocused = false;
+        //Point pointFocus;        
+
+        //Point newStartPointFocus;
+        //Point newEndPointFocus;
+
+        //string mode;
+        
+
         public Form1()
         {
             InitializeComponent();
         }
+
         public void SetPropety(string nameF, string atributF,string methodsF,Font font)
         {
             // block1.NameField = nameF;
@@ -79,38 +93,131 @@ namespace UMLDiagram
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            block1.SetPointForLines(e.Location);
+            //block1.SetPointForLines(e.Location);
             IsMouseDown = true;
             m_End = e.Location;
 
-            builder = new ArrowsBuilder();
-            aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
-            
-            aArrow._startPoint = e.Location;
+            if (isMove)
+            {
+                foreach (AbstractArrow a in listOfArrows)
+                {
+                    if (a.SelectPointLine(e.Location))
+                    {
+                        aArrow = a;
+                        break;
+                    }
+                }
+
+                if (aArrow != null)
+                {
+                    listOfArrows.Remove(aArrow);
+
+                    _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                    _graphics = Graphics.FromImage(_mainBitmap);
+                    _graphics.Clear(Color.White);
+
+                    foreach (AbstractArrow a in listOfArrows)
+                    {
+                        a.Draw(_graphics, MinePen);
+                    }
+
+
+                    pictureBox1.Image = _mainBitmap;
+
+                    p = e.Location;
+                }
+            }
+            else
+            {
+                builder = new ArrowsBuilder();
+                aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+                aArrow._startPoint = e.Location;
+            }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (IsMouseDown == true)
-            {
-                block1.SetPointForLines(e.Location);
-                m_Cur = e.Location;
-               // aArrow._endPoint = e.Location;
+            {               
+                //if (isMove)
+                //{
+                //    //MovePointOfLine(e.Location.X - p.X, e.Location.Y - p.Y);
+                //    //p = e.Location;
+                //    MovePointOfLine(10, 10);
+                //}
+                if (isMove && aArrow != null)
+                {
+                    aArrow.Move(e.X - p.X, e.Y - p.Y);
+                    p = e.Location;
+                }
+                else
+                {
+                    aArrow._endPoint = e.Location;
+                }
 
+                m_Cur = e.Location;
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
                 //block1.startPoint = e.Location;
-                //aArrow.Draw(_graphics, MinePen);
+                aArrow.Draw(_graphics, MinePen);
 
+                //block1.SetPointForLines(e.Location);
                 //block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
-                block1.DrawBlock(_graphics, MinePen, e.Location);
+                //block1.DrawBlock(_graphics, MinePen, e.Location);
+
                 pictureBox1.Image = _tmpBitmap;
                 if (GC.GetTotalMemory(true) > 1073741824)
                 {
                     GC.Collect();
                 }
-                
+
+
+                //// Поиск точки
+                //pointFocused = false;
+                ////pointFocus = new Point();
+                //newStartPointFocus = new Point();
+                //newEndPointFocus = new Point();
+
+                //for (int i = 0; i < startAndEndLinePoints.Count; i++)
+                //{
+                //    if (Math.Abs(startAndEndLinePoints[i].X - e.Location.X) < 5
+                //            && Math.Abs(startAndEndLinePoints[i].Y - e.Location.Y) < 5)
+                //        //if (startAndEndLinePoints.Contains(e.Location))
+                //    {
+                //        pointFocused = true;
+                //        pointFocus = e.Location;
+
+                //        if (i % 2 == 0)
+                //        {
+                //            newStartPointFocus = e.Location;
+                //        }
+                //        else
+                //        {
+                //            newEndPointFocus = e.Location;
+                //        }                        
+
+                //    }
+
+                //}
+
+                // Отрисовка круга вокруг найденной точки
+                //if (SelectPointLine(e.Location))
+                //if (pointFocused)
+                //if (aArrow.SelectPointLine(e.Location))
+                //{
+                //    _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                //    _graphics = Graphics.FromImage(_tmpBitmap);
+
+                //    Pen FocusPen = new Pen(Color.Red, 5);
+
+                //    _graphics.DrawEllipse(FocusPen, pointFocus.X - 5, pointFocus.Y - 5, 10, 10);
+
+                //    pictureBox1.Image = _tmpBitmap;
+                //    GC.Collect();
+                //}
+
+
             }
 
         }
@@ -119,10 +226,15 @@ namespace UMLDiagram
         {
             IsMouseDown = false;
             _mainBitmap = _tmpBitmap;
-            block1.NameField = null;
-            block1.AtribureField = null;
-            block1.MethodField = null;
+
+            //block1.NameField = null;
+            //block1.AtribureField = null;
+            //block1.MethodField = null;
+
             listOfArrows.Add(aArrow);
+
+            startAndEndLinePoints.Add(aArrow._startPoint);
+            startAndEndLinePoints.Add(aArrow._endPoint);
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
@@ -141,36 +253,42 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.ArrowCap;
+            isMove = false;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusCap;
+            isMove = false;
         }
 
         private void InheritanceArrow_Click(object sender, EventArgs e)
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleCap;
+            isMove = false;
         }
 
         private void implementationButton_Click(object sender, EventArgs e)
         {
             typeOfLine = ArrowLineType.DashLine;
             typeOfCap = ArrowCapType.TriangleCap;
+            isMove = false;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusFillCap;
+            isMove = false;
         }
 
         private void addictionButton_Click(object sender, EventArgs e)
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleFillCap;
+            isMove = false;
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -226,6 +344,40 @@ namespace UMLDiagram
             }
         }
 
+        private void buttonSelect_Click(object sender, EventArgs e)
+        {
+            aArrow = null;
+            isMove = true;
+        }
 
+        private void buttonStack_Click(object sender, EventArgs e)
+        {
+            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _graphics = Graphics.FromImage(_mainBitmap);
+            _graphics.Clear(Color.White);
+
+            foreach (AbstractArrow a in listOfArrows)
+            {
+                a.Draw(_graphics, MinePen);
+            }
+
+            pictureBox1.Image = _mainBitmap;
+        }
+
+        private void buttonRemoveTheLast_Click(object sender, EventArgs e)
+        {
+            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _graphics = Graphics.FromImage(_mainBitmap);
+            _graphics.Clear(Color.White);
+
+            listOfArrows.RemoveAt(listOfArrows.Count - 1);
+
+            foreach (AbstractArrow a in listOfArrows)
+            {
+                a.Draw(_graphics, MinePen);
+            }
+
+            pictureBox1.Image = _mainBitmap;
+        }
     }
 }

@@ -55,6 +55,7 @@
             this.colorLineButton = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.buttonRemoveTheLast = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -134,6 +135,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.buttonRemoveTheLast);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.addictionButton);
             this.groupBox1.Controls.Add(this.buttonClear);
@@ -179,7 +181,7 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(15, 431);
+            this.buttonClear.Location = new System.Drawing.Point(12, 473);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(109, 23);
             this.buttonClear.TabIndex = 3;
@@ -214,6 +216,7 @@
             this.buttonStack.TabIndex = 9;
             this.buttonStack.Text = "Стек";
             this.buttonStack.UseVisualStyleBackColor = false;
+            this.buttonStack.Click += new System.EventHandler(this.buttonStack_Click);
             // 
             // buttonInterface
             // 
@@ -245,6 +248,7 @@
             this.buttonSelect.TabIndex = 6;
             this.buttonSelect.Text = "Выбрать";
             this.buttonSelect.UseVisualStyleBackColor = false;
+            this.buttonSelect.Click += new System.EventHandler(this.buttonSelect_Click);
             // 
             // aggregationButton
             // 
@@ -311,6 +315,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // buttonRemoveTheLast
+            // 
+            this.buttonRemoveTheLast.Location = new System.Drawing.Point(12, 427);
+            this.buttonRemoveTheLast.Name = "buttonRemoveTheLast";
+            this.buttonRemoveTheLast.Size = new System.Drawing.Size(109, 40);
+            this.buttonRemoveTheLast.TabIndex = 3;
+            this.buttonRemoveTheLast.Text = "Удалить последний";
+            this.buttonRemoveTheLast.UseVisualStyleBackColor = true;
+            this.buttonRemoveTheLast.Click += new System.EventHandler(this.buttonRemoveTheLast_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,6 +389,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button buttonRemoveTheLast;
     }
 }
 
