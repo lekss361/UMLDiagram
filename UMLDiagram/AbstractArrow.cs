@@ -22,6 +22,40 @@ namespace UMLDiagram
         //    return startAndEndLinePoints;
         //}
 
+        protected List<Point> GetPoints()
+        {
+            List<Point> points = new List<Point>();
+            points.Add(_startPoint);
+            //int middleX = (_endPoint.X + _startPoint.X) / 2;
+            //points.Add(new Point(middleX, _startPoint.Y));
+            //points.Add(new Point(middleX, _endPoint.Y));
+            points.Add(_endPoint);
+            return points;
+        }
+
+        //public void NewPoints(Point point)
+        //{
+        //    List<Point> stEndPoints = GetStartAndEndPoints();
+
+        //    Point newStartPointFocus;
+        //    Point newEndPointFocus;
+
+        //    for (int i = 0; i < stEndPoints.Count; i++)
+        //    {
+        //        if (Math.Abs(stEndPoints[i].X - point.X) < 5
+        //                && Math.Abs(stEndPoints[i].Y - point.Y) < 5)
+        //        {
+        //            if (i % 2 == 0)
+        //            {
+        //                newStartPointFocus = point;
+        //            }
+        //            else
+        //            {
+        //                newEndPointFocus = point;
+        //            }
+        //        }
+        //    }
+        //}
 
         public AbstractArrow(AbstractCap absCap, AbstractLine absLine)
         {
@@ -75,15 +109,35 @@ namespace UMLDiagram
                 yMax = _endPoint.Y;
             }
 
-            if (point.X <= xMax && point.X >= xMin
-             && point.Y <= yMax && point.Y >= yMin)
+
+            //if (point.X <= xMax && point.X >= xMin
+            // && point.Y <= yMax && point.Y >= yMin)
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+
+            //List<Point> stEndPoints = GetStartAndEndPoints();
+            List<Point> stEndPoints = GetPoints();
+            bool pointFocused = false;
+
+            for (int i = 0; i < stEndPoints.Count; i++)
             {
-                return true;
+                if (Math.Abs(stEndPoints[i].X - point.X) < 5
+                        && Math.Abs(stEndPoints[i].Y - point.Y) < 5)
+                {
+                    pointFocused = true;
+                }
+                else
+                {
+                    pointFocused = false;
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return pointFocused;
         }
 
         public void Move(int deltaX, int deltaY)

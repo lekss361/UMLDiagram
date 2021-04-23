@@ -9,16 +9,18 @@ using UMLDiagram.Arrows;
 
 namespace UMLDiagram.Arrows.LineTypes
 {
-    class SolidLine:AbstractLine
+    class SolidLine : AbstractLine
     {
-        //public SolidLine(Point endPoint, Point stPoint) // нужно ли?
+        //public override void DrawLine(Graphics graphics, Pen pen, Point end, Point start)
         //{
-        //    _endPoint = endPoint;
-        //    _startPoint = stPoint;
+        //    graphics.DrawLine(pen, end, start);
         //}
-        public override void DrawLine(Graphics graphics, Pen pen, Point end, Point start)
+
+
+        // Ломанная линия
+        public override void DrawLine(Graphics graphics, Pen pen, List<Point> points)
         {
-            graphics.DrawLine(pen, end, start);
+            graphics.DrawLines(pen, points.ToArray());
         }
     }
 }

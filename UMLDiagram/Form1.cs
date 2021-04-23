@@ -28,6 +28,7 @@ namespace UMLDiagram
 
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
+        Mode mode;
 
         Block block1;
         public static float  width1{ get; set; }
@@ -98,6 +99,7 @@ namespace UMLDiagram
             m_End = e.Location;
 
             if (isMove)
+            //if (Mode.Moving)
             {
                 foreach (AbstractArrow a in listOfArrows)
                 {
@@ -120,7 +122,6 @@ namespace UMLDiagram
                     {
                         a.Draw(_graphics, MinePen);
                     }
-
 
                     pictureBox1.Image = _mainBitmap;
 
@@ -145,7 +146,7 @@ namespace UMLDiagram
                 //    //p = e.Location;
                 //    MovePointOfLine(10, 10);
                 //}
-                if (isMove && aArrow != null)
+                if (isMove && (aArrow != null))
                 {
                     aArrow.Move(e.X - p.X, e.Y - p.Y);
                     p = e.Location;
@@ -161,6 +162,11 @@ namespace UMLDiagram
 
                 //block1.startPoint = e.Location;
                 aArrow.Draw(_graphics, MinePen);
+                
+                Pen FocusPen = new Pen(Color.Red, 5);
+                //_graphics.DrawEllipse(FocusPen, e.Location.X - 5, e.Location.Y - 5, 10, 10);
+                _graphics.DrawEllipse(FocusPen, aArrow._startPoint.X - 5, aArrow._startPoint.Y - 5, 10, 10);
+
 
                 //block1.SetPointForLines(e.Location);
                 //block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
@@ -211,14 +217,28 @@ namespace UMLDiagram
 
                 //    Pen FocusPen = new Pen(Color.Red, 5);
 
-                //    _graphics.DrawEllipse(FocusPen, pointFocus.X - 5, pointFocus.Y - 5, 10, 10);
+                //    _graphics.DrawEllipse(FocusPen, e.Location.X - 5, e.Location.Y - 5, 10, 10);
 
                 //    pictureBox1.Image = _tmpBitmap;
                 //    GC.Collect();
                 //}
-
-
             }
+            //builder = new ArrowsBuilder();
+            //aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+
+            //if ( isMove && aArrow != null
+            //    && aArrow.SelectPointLine(e.Location))
+            //{
+            //    _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+            //    _graphics = Graphics.FromImage(_tmpBitmap);
+
+            //    Pen FocusPen = new Pen(Color.Red, 5);
+
+            //    _graphics.DrawEllipse(FocusPen, e.Location.X - 5, e.Location.Y - 5, 10, 10);
+
+            //    pictureBox1.Image = _tmpBitmap;
+            //    GC.Collect();
+            //}
 
         }
 
@@ -253,6 +273,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.ArrowCap;
+            //mode = Mode.Drawing;
             isMove = false;
         }
 
@@ -260,6 +281,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusCap;
+            //mode = Mode.Drawing;
             isMove = false;
         }
 
@@ -267,6 +289,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleCap;
+            //mode = Mode.Drawing;
             isMove = false;
         }
 
@@ -274,6 +297,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.DashLine;
             typeOfCap = ArrowCapType.TriangleCap;
+            //mode = Mode.Drawing;
             isMove = false;
         }
 
@@ -281,6 +305,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusFillCap;
+            //mode = Mode.Drawing;
             isMove = false;
         }
 
@@ -288,6 +313,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleFillCap;
+            //mode = Mode.Drawing;
             isMove = false;
         }
 
@@ -347,6 +373,7 @@ namespace UMLDiagram
         private void buttonSelect_Click(object sender, EventArgs e)
         {
             aArrow = null;
+            //mode = Mode.Moving;
             isMove = true;
         }
 

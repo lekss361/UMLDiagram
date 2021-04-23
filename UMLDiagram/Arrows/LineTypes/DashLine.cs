@@ -8,19 +8,21 @@ namespace UMLDiagram.Arrows.LineTypes
 {
     class DashLine : AbstractLine
     {
-        //public DashLine(Point endPoint, Point stPoint) // нужно ли?
+
+        //public override void DrawLine(Graphics graphics, Pen pen, Point end, Point start)
         //{
-        //    _endPoint = endPoint;
-        //    _startPoint = stPoint;
+        //    Pen dashPen = new Pen(pen.Color,pen.Width);
+        //    dashPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+        //    graphics.DrawLine(dashPen, end, start);
         //}
-        
-        public override void DrawLine(Graphics graphics, Pen pen, Point end, Point start)
+
+        // Ломанная линия
+        public override void DrawLine(Graphics graphics, Pen pen, List<Point> points)
         {
-            Pen dashPen = new Pen(pen.Color,pen.Width);
+            Pen dashPen = new Pen(pen.Color, pen.Width);
             dashPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            graphics.DrawLine(dashPen, end, start);
+            graphics.DrawLines(dashPen, points.ToArray());
         }
 
-       
     }
 }
