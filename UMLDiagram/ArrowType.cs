@@ -26,11 +26,4 @@ namespace UMLDiagram
         RhombusFillCap,
         TriangleFillCap
     }
-
-    public enum Mode
-    {
-        Drawing = 0,
-        Moving
-    }
-
 }

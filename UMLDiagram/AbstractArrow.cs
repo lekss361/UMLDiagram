@@ -14,21 +14,13 @@ namespace UMLDiagram
         public Point _startPoint { get; set; }
         public Point _endPoint { get; set; }
 
-        //public List<Point> GetStartAndEndPoints()
-        //{
-        //    List<Point> startAndEndLinePoints = new List<Point>();
-        //    startAndEndLinePoints.Add(_startPoint);
-        //    startAndEndLinePoints.Add(_endPoint);
-        //    return startAndEndLinePoints;
-        //}
-
         protected List<Point> GetPoints()
         {
             List<Point> points = new List<Point>();
             points.Add(_startPoint);
-            //int middleX = (_endPoint.X + _startPoint.X) / 2;
-            //points.Add(new Point(middleX, _startPoint.Y));
-            //points.Add(new Point(middleX, _endPoint.Y));
+            int middleX = (_endPoint.X + _startPoint.X) / 2;
+            points.Add(new Point(middleX, _startPoint.Y));
+            points.Add(new Point(middleX, _endPoint.Y));
             points.Add(_endPoint);
             return points;
         }
@@ -120,7 +112,6 @@ namespace UMLDiagram
             //    return false;
             //}
 
-            //List<Point> stEndPoints = GetStartAndEndPoints();
             List<Point> stEndPoints = GetPoints();
             bool pointFocused = false;
 
@@ -130,10 +121,6 @@ namespace UMLDiagram
                         && Math.Abs(stEndPoints[i].Y - point.Y) < 5)
                 {
                     pointFocused = true;
-                }
-                else
-                {
-                    pointFocused = false;
                 }
             }
 
