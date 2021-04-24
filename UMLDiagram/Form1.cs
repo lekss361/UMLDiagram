@@ -26,6 +26,7 @@ namespace UMLDiagram
 
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
+        FigureType typeOfFigure;
         Mode mode;
 
         Block block1;
@@ -38,7 +39,6 @@ namespace UMLDiagram
         //List<IFigure> listOfFigure = new List<IFigure>();
         List<AbstractArrow> listOfArrows = new List<AbstractArrow>();
 
-        //bool isMove = false;
         Point p;    
 
        
@@ -50,7 +50,6 @@ namespace UMLDiagram
 
         public void SetPropety(string nameF, string atributF,string methodsF,Font font)
         {
-            // block1.NameField = nameF;
             block1.NameField = nameF;
 
             block1.AtribureField = atributF;
@@ -86,79 +85,53 @@ namespace UMLDiagram
             //block1.SetPointForLines(e.Location);
             IsMouseDown = true;
 
-            switch (mode)
+            switch (typeOfFigure)
             {
-                case Mode.Moving:
-                    foreach (AbstractArrow a in listOfArrows)
+                case FigureType.Class:
+                    block1 = new Block();
+                    var form = new PropertyForBlock(this);
+                    form.Show();
+                    block1.SetPointForLines(e.Location);
+                    break;
+                case FigureType.Arrow:
+                    switch (mode)
                     {
-                        if (a.SelectPointLine(e.Location))
-                        {
-                            aArrow = a;
-                            break;
-                        }
-                    }
-
-                    if (aArrow != null)
-                    {
-                        listOfArrows.Remove(aArrow);
-
-                        _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                        _graphics = Graphics.FromImage(_mainBitmap);
-                        _graphics.Clear(Color.White);
-
+                    case Mode.Moving:
                         foreach (AbstractArrow a in listOfArrows)
                         {
-                            a.Draw(_graphics, MinePen);
+                            if (a.SelectPointLine(e.Location))
+                            {
+                                aArrow = a;
+                                break;
+                            }
                         }
 
-                        pictureBox1.Image = _mainBitmap;
+                        if (aArrow != null)
+                        {
+                            listOfArrows.Remove(aArrow);
 
-                        p = e.Location;
+                            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                            _graphics = Graphics.FromImage(_mainBitmap);
+                            _graphics.Clear(Color.White);
+
+                            foreach (AbstractArrow a in listOfArrows)
+                            {
+                                a.Draw(_graphics, MinePen);
+                            }
+
+                            pictureBox1.Image = _mainBitmap;
+
+                            p = e.Location;
+                        }
+                        break;
+                    case Mode.Drawing:
+                        builder = new ArrowsBuilder();
+                        aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+                        aArrow._startPoint = e.Location;
+                        break;
                     }
-                    break;
-                case Mode.Drawing:
-                    builder = new ArrowsBuilder();
-                    aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
-                    aArrow._startPoint = e.Location;
-                    break;
+                break;
             }
-
-            //if (isMove)
-            ////if (Mode.Moving)
-            //{
-            //    foreach (AbstractArrow a in listOfArrows)
-            //    {
-            //        if (a.SelectPointLine(e.Location))
-            //        {
-            //            aArrow = a;
-            //            break;
-            //        }
-            //    }
-
-            //    if (aArrow != null)
-            //    {
-            //        listOfArrows.Remove(aArrow);
-
-            //        _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            //        _graphics = Graphics.FromImage(_mainBitmap);
-            //        _graphics.Clear(Color.White);
-
-            //        foreach (AbstractArrow a in listOfArrows)
-            //        {
-            //            a.Draw(_graphics, MinePen);
-            //        }
-
-            //        pictureBox1.Image = _mainBitmap;
-
-            //        p = e.Location;
-            //    }
-            //}
-            //else
-            //{
-            //    builder = new ArrowsBuilder();
-            //    aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
-            //    aArrow._startPoint = e.Location;
-            //}
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -178,32 +151,31 @@ namespace UMLDiagram
                         aArrow._endPoint = e.Location;
                         break;
                 }
-                //if (isMove && (aArrow != null))
-                //{
-                //    aArrow.Move(e.X - p.X, e.Y - p.Y);
-                //    p = e.Location;
-                //}
-                //else
-                //{
-                //    aArrow._endPoint = e.Location;
-                //}
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
                 //block1.startPoint = e.Location;
-                aArrow.Draw(_graphics, MinePen);
-                
-                //Pen FocusPen = new Pen(Color.Red, 5);
-                //_graphics.DrawEllipse(FocusPen, e.Location.X - 5, e.Location.Y - 5, 10, 10);
-                //_graphics.DrawEllipse(FocusPen, aArrow._startPoint.X - 5, aArrow._startPoint.Y - 5, 10, 10);
+                //aArrow.Draw(_graphics, MinePen);
 
+                switch (typeOfFigure)
+                {
+                    case FigureType.Class:
+                        block1.startPoint = e.Location;
+                        block1.SetPointForLines(e.Location);
+                        block1.DrawBlock(_graphics, MinePen, e.Location);
+                        break;
+                    case FigureType.Arrow:
+                        aArrow.Draw(_graphics, MinePen);
+                        break;
+                }
 
-                //block1.SetPointForLines(e.Location);
-                //block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
-                //block1.DrawBlock(_graphics, MinePen, e.Location);
+                    //block1.SetPointForLines(e.Location);
+                    //block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
+                    //block1.DrawBlock(_graphics, MinePen, e.Location);
 
                 pictureBox1.Image = _tmpBitmap;
+
                 if (GC.GetTotalMemory(true) > 1073741824)
                 {
                     GC.Collect();
@@ -238,10 +210,14 @@ namespace UMLDiagram
             IsMouseDown = false;
             _mainBitmap = _tmpBitmap;
 
-            //block1.NameField = null;
-            //block1.AtribureField = null;
-            //block1.MethodField = null;
-
+            switch (typeOfFigure)
+            {
+                case FigureType.Class:
+                    block1.NameField = null;
+                    block1.AtribureField = null;
+                    block1.MethodField = null;
+                    break;
+            }
             listOfArrows.Add(aArrow);
         }
 
@@ -262,6 +238,7 @@ namespace UMLDiagram
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.ArrowCap;
             mode = Mode.Drawing;
+            typeOfFigure = FigureType.Arrow;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
@@ -269,6 +246,7 @@ namespace UMLDiagram
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusCap;
             mode = Mode.Drawing;
+            typeOfFigure = FigureType.Arrow;
         }
 
         private void InheritanceArrow_Click(object sender, EventArgs e)
@@ -276,6 +254,7 @@ namespace UMLDiagram
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleCap;
             mode = Mode.Drawing;
+            typeOfFigure = FigureType.Arrow;
         }
 
         private void implementationButton_Click(object sender, EventArgs e)
@@ -283,6 +262,7 @@ namespace UMLDiagram
             typeOfLine = ArrowLineType.DashLine;
             typeOfCap = ArrowCapType.TriangleCap;
             mode = Mode.Drawing;
+            typeOfFigure = FigureType.Arrow;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
@@ -290,6 +270,7 @@ namespace UMLDiagram
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusFillCap;
             mode = Mode.Drawing;
+            typeOfFigure = FigureType.Arrow;
         }
 
         private void addictionButton_Click(object sender, EventArgs e)
@@ -297,6 +278,7 @@ namespace UMLDiagram
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleFillCap;
             mode = Mode.Drawing;
+            typeOfFigure = FigureType.Arrow;
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -309,9 +291,12 @@ namespace UMLDiagram
 
         private void buttonClass_Click(object sender, EventArgs e)
         {
-            block1 = new Block();
-            var form = new PropertyForBlock(this);
-            form.Show();
+            //block1 = new Block();
+            //var form = new PropertyForBlock(this);
+            //form.Show();
+
+            typeOfFigure = FigureType.Class;
+            //mode = Mode.Drawing;
         }
             
 
@@ -387,5 +372,6 @@ namespace UMLDiagram
 
             pictureBox1.Image = _mainBitmap;
         }
+
     }
 }

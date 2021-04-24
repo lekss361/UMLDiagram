@@ -57,7 +57,7 @@
     <Compile Include="Arrows\LineTypes\AbstractLine.cs" />
     <Compile Include="Arrows\LineTypes\DashLine.cs" />
     <Compile Include="Arrows\LineTypes\SolidLine.cs" />
-    <Compile Include="ArrowType.cs" />
+    <Compile Include="ArrowAndBlockType.cs" />
     <Compile Include="BlockS\AbstractBlock.cs" />
     <Compile Include="BlockS\Block.cs" />
     <Compile Include="Factory\ArrowsBuilder.cs" />

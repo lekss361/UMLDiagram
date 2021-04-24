@@ -38,6 +38,7 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonRemoveTheLast = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.addictionButton = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -55,7 +56,6 @@
             this.colorLineButton = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.buttonRemoveTheLast = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -158,6 +158,16 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
+            // 
+            // buttonRemoveTheLast
+            // 
+            this.buttonRemoveTheLast.Location = new System.Drawing.Point(12, 427);
+            this.buttonRemoveTheLast.Name = "buttonRemoveTheLast";
+            this.buttonRemoveTheLast.Size = new System.Drawing.Size(109, 40);
+            this.buttonRemoveTheLast.TabIndex = 3;
+            this.buttonRemoveTheLast.Text = "Удалить последний";
+            this.buttonRemoveTheLast.UseVisualStyleBackColor = true;
+            this.buttonRemoveTheLast.Click += new System.EventHandler(this.buttonRemoveTheLast_Click);
             // 
             // button2
             // 
@@ -314,16 +324,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // buttonRemoveTheLast
-            // 
-            this.buttonRemoveTheLast.Location = new System.Drawing.Point(12, 427);
-            this.buttonRemoveTheLast.Name = "buttonRemoveTheLast";
-            this.buttonRemoveTheLast.Size = new System.Drawing.Size(109, 40);
-            this.buttonRemoveTheLast.TabIndex = 3;
-            this.buttonRemoveTheLast.Text = "Удалить последний";
-            this.buttonRemoveTheLast.UseVisualStyleBackColor = true;
-            this.buttonRemoveTheLast.Click += new System.EventHandler(this.buttonRemoveTheLast_Click);
             // 
             // Form1
             // 
