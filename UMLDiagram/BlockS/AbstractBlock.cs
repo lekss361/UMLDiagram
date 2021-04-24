@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace UMLDiagram.BlockS
 {
@@ -31,15 +32,14 @@ namespace UMLDiagram.BlockS
 
         public int NumOfAtributeLines { get; set; }
         public int NumOfMethodLines { get; set; }
+        //public  void Move(Graphics graphics, MouseEventArgs e, Pen pen)
+        //{
+          
+        //   startPoint = e.Location;
+        //   DrawBlock(graphics, pen, e.Location);
+            
 
-
-
-
-
-        
-
-
-
+        //}
         public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width,float heigth, int cAtrL,int cMetL);
         public abstract void DrawBlock(Graphics graphics, Pen pen, Point start);
     }

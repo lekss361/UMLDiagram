@@ -29,6 +29,8 @@ namespace UMLDiagram
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
 
+        string action = "";
+
         Block block1;
         public static float  width1{ get; set; }
         public static float height1 { get; set; }
@@ -80,32 +82,58 @@ namespace UMLDiagram
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            block1.SetPointForLines(e.Location);
             IsMouseDown = true;
             m_End = e.Location;
+            if (action.Equals("Class"))
+            {
+                block1.SetPointForLines(e.Location);
+            }
+            else if (action.Equals("Arrow"))
+            {
 
-            builder = new ArrowsBuilder();
-            aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
-            
-            aArrow._startPoint = e.Location;
+                builder = new ArrowsBuilder();
+                aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+
+                aArrow._startPoint = e.Location;
+            }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (IsMouseDown == true)
             {
-                block1.SetPointForLines(e.Location);
                 m_Cur = e.Location;
-               // aArrow._endPoint = e.Location;
+                // block1.SetPointForLines(e.Location);
 
+                //switch (action)
+                //{
+                //    case "Class":
+
+
+                //        block1.SetPointForLines(e.Location);
+                //        block1.DrawBlock(_graphics, MinePen, m_Cur);
+
+                //        break;
+                //    case "Arrow":
+
+
+                //        aArrow._endPoint = e.Location;
+                //        aArrow.Draw(_graphics, MinePen);
+
+                //        break;
+
+                //    default:
+                //        break;
+                //}
+
+                aArrow.Draw(_graphics, MinePen);
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                //block1.startPoint = e.Location;
-                //aArrow.Draw(_graphics, MinePen);
+               
 
-                //block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
-                block1.DrawBlock(_graphics, MinePen, e.Location);
+               
+               //block1.DrawBlock(_graphics, MinePen, e.Location);
                 pictureBox1.Image = _tmpBitmap;
                 if (GC.GetTotalMemory(true) > 1073741824)
                 {
@@ -120,9 +148,12 @@ namespace UMLDiagram
         {
             IsMouseDown = false;
             _mainBitmap = _tmpBitmap;
-            block1.NameField = null;
-            block1.AtribureField = null;
-            block1.MethodField = null;
+            if (action.Equals("Class"))
+            {
+                block1.NameField = null;
+                block1.AtribureField = null;
+                block1.MethodField = null;
+            }
             listOfArrows.Add(aArrow);
         }
 
@@ -142,6 +173,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.ArrowCap;
+            action = "Arrow";
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
@@ -154,24 +186,28 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleCap;
+            action = "Arrow";
         }
 
         private void implementationButton_Click(object sender, EventArgs e)
         {
             typeOfLine = ArrowLineType.DashLine;
             typeOfCap = ArrowCapType.TriangleCap;
+            action = "Arrow";
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusFillCap;
+            action = "Arrow";
         }
 
         private void addictionButton_Click(object sender, EventArgs e)
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleFillCap;
+            action = "Arrow";
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -184,6 +220,7 @@ namespace UMLDiagram
 
         private void buttonClass_Click(object sender, EventArgs e)
         {
+            action = "Class";
             block1 = new Block();
             var form = new PropertyForBlock(this);
             form.Show();

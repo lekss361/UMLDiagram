@@ -2,6 +2,7 @@
 using UMLDiagram.Arrows.CapTypes;
 using UMLDiagram.Arrows.LineTypes;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace UMLDiagram
 {
@@ -20,6 +21,13 @@ namespace UMLDiagram
         }
 
         public abstract void Draw(Graphics graphics, Pen pen);
+
+        //public void Move(Graphics graphics , MouseEventArgs e, Pen pen)
+        //{
+        //    _endPoint = e.Location;
+        //     Draw(graphics, pen);
+
+        //}
 
     }
 }
