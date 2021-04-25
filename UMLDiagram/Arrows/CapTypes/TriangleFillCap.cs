@@ -17,7 +17,7 @@ namespace UMLDiagram.Arrows.CapTypes
             Point[] pointF = new Point[] { points[0], points[1], points[2], points[0] };
 
 
-            graphics.FillPolygon(solidBrush, pointF); // можем ли мы тут написать points.ToArray() , какой лист он использует
+            graphics.FillPolygon(solidBrush, pointF); 
         }
     }
 }

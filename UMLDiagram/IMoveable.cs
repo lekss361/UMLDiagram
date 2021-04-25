@@ -10,8 +10,7 @@ namespace UMLDiagram
 {
     public interface IMoveable
     {
-        bool SelectPointLine(Point point);
-        //bool SelectPointBlock(Point point);
+        bool SelectFigure(Point point);
 
         void Move(int deltaX, int deltaY);
     }

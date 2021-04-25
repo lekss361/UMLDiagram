@@ -6,7 +6,7 @@ using System;
 
 namespace UMLDiagram
 {
-    public abstract class AbstractArrow : IMoveable
+    public abstract class AbstractArrow : IFigure
     {
         protected AbstractCap cap;
         protected AbstractLine line;
@@ -57,7 +57,7 @@ namespace UMLDiagram
 
         public abstract void Draw(Graphics graphics, Pen pen);
 
-        public bool SelectPointLine(Point point)
+        public bool SelectFigure(Point point)
         {
             //bool pointFocused = false;
             //List<Point> stEndPoints = GetStartAndEndPoints();

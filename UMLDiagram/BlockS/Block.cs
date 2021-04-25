@@ -68,9 +68,10 @@ namespace UMLDiagram.BlockS
         //    graphics.DrawString(met, drawFont, drawBrush, _startMet.X , _startMet.Y );
 
         //}
-        public override void DrawBlock(Graphics graphics, Pen pen, Point start)
+        //public override void DrawBlock(Graphics graphics, Pen pen, Point start)
+        public override void Draw(Graphics graphics, Pen pen)
         {
-
+            Point start = startPoint;
             //float totaLength = (NumOfAtributeLines + NumOfMethodLines) * HeigthFont + 60;
             float totaLength = ((NumOfAtributeLines + NumOfMethodLines) * HeigthFont) + 80;
             graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, totaLength); //основной 

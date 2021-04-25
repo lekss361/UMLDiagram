@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UMLDiagram.Arrows.CapTypes;
+using UMLDiagram.Arrows.LineTypes;
 using System.Drawing;
+using System.Collections.Generic;
+using System;
 
 namespace UMLDiagram.BlockS
 {
-    public abstract class AbstractBlock 
+    public abstract class AbstractBlock : IFigure
     {
        //protected List<AbstactModule> _modules;
         public Point startPoint { get; set; } // like mCur
@@ -28,14 +27,28 @@ namespace UMLDiagram.BlockS
         public int NumOfMethodLines { get; set; }
 
 
-
-
-
-        
-
-
-
         public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width,float heigth, int cAtrL,int cMetL);
-        public abstract void DrawBlock(Graphics graphics, Pen pen, Point start);
+        //public abstract void DrawBlock(Graphics graphics, Pen pen, Point start);
+        public abstract void Draw(Graphics graphics, Pen pen);
+
+        public bool SelectFigure(Point point)
+        {
+            //if ()
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+            return true;
+        }
+
+        public void Move(int deltaX, int deltaY)
+        {
+            //startPoint = new Point(startPoint.X + deltaX, startPoint.Y + deltaY);
+            //endPoint = new Point(endPoint.X + deltaX, endPoint.Y + deltaY);
+        }
+
     }
 }
