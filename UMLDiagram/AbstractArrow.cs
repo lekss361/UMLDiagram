@@ -74,32 +74,32 @@ namespace UMLDiagram
             //}
             //return pointFocused;
 
-            int xMax;
-            int xMin;
-            int yMax;
-            int yMin;
+            //int xMax;
+            //int xMin;
+            //int yMax;
+            //int yMin;
 
-            if (_startPoint.X > _endPoint.X)
-            {
-                xMax = _startPoint.X;
-                xMin = _endPoint.X;
-            }
-            else
-            {
-                xMin = _startPoint.X;
-                xMax = _endPoint.X;
-            }
+            //if (_startPoint.X > _endPoint.X)
+            //{
+            //    xMax = _startPoint.X;
+            //    xMin = _endPoint.X;
+            //}
+            //else
+            //{
+            //    xMin = _startPoint.X;
+            //    xMax = _endPoint.X;
+            //}
 
-            if (_startPoint.Y > _endPoint.Y)
-            {
-                yMax = _startPoint.Y;
-                yMin = _endPoint.Y;
-            }
-            else
-            {
-                yMin = _startPoint.Y;
-                yMax = _endPoint.Y;
-            }
+            //if (_startPoint.Y > _endPoint.Y)
+            //{
+            //    yMax = _startPoint.Y;
+            //    yMin = _endPoint.Y;
+            //}
+            //else
+            //{
+            //    yMin = _startPoint.Y;
+            //    yMax = _endPoint.Y;
+            //}
 
 
             //if (point.X <= xMax && point.X >= xMin

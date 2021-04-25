@@ -71,8 +71,8 @@ namespace UMLDiagram.BlockS
         public override void DrawBlock(Graphics graphics, Pen pen, Point start)
         {
 
-            float totaLength = (NumOfAtributeLines + NumOfMethodLines) * HeigthFont + 60;
-
+            //float totaLength = (NumOfAtributeLines + NumOfMethodLines) * HeigthFont + 60;
+            float totaLength = ((NumOfAtributeLines + NumOfMethodLines) * HeigthFont) + 80;
             graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, totaLength); //основной 
             graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, HeigthFont + 10); //heigth+10 - высота с именем  
 
@@ -80,7 +80,7 @@ namespace UMLDiagram.BlockS
             SolidBrush drawBrush = new SolidBrush(Color.Black);
 
             graphics.DrawString(NameField, drawFont, drawBrush, _startName.X, _startName.Y);
-             graphics.DrawString(AtribureField, drawFont, drawBrush, _startAtr.X, _startAtr.Y);
+            graphics.DrawString(AtribureField, drawFont, drawBrush, _startAtr.X, _startAtr.Y);
             graphics.DrawString(MethodField, drawFont, drawBrush, _startMet.X, _startMet.Y);
         }
 

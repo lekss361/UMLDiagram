@@ -27,7 +27,6 @@ namespace UMLDiagram
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
         FigureType typeOfFigure;
-        Mode mode;
 
         Block block1;
         public static float  width1{ get; set; }
@@ -36,12 +35,13 @@ namespace UMLDiagram
         public static int LinesAtr { get; set; }
         public static int LinesMet { get; set; }
 
-        //List<IFigure> listOfFigure = new List<IFigure>();
+        List<IFigure> listOfFigure = new List<IFigure>();
+        //List<AbstractBlock> listOfBlock = new List<AbstractBlock>();
         List<AbstractArrow> listOfArrows = new List<AbstractArrow>();
 
-        Point p;    
+        Point p;
+        bool isMove = false;
 
-       
 
         public Form1()
         {
@@ -88,15 +88,12 @@ namespace UMLDiagram
             switch (typeOfFigure)
             {
                 case FigureType.Class:
-                    block1 = new Block();
-                    var form = new PropertyForBlock(this);
-                    form.Show();
                     block1.SetPointForLines(e.Location);
                     break;
+
                 case FigureType.Arrow:
-                    switch (mode)
+                    if (isMove)
                     {
-                    case Mode.Moving:
                         foreach (AbstractArrow a in listOfArrows)
                         {
                             if (a.SelectPointLine(e.Location))
@@ -123,13 +120,13 @@ namespace UMLDiagram
 
                             p = e.Location;
                         }
-                        break;
-                    case Mode.Drawing:
+                    }
+                    else
+                    {
                         builder = new ArrowsBuilder();
                         aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
                         aArrow._startPoint = e.Location;
-                        break;
-                    }
+                    }                 
                 break;
             }
         }
@@ -137,19 +134,16 @@ namespace UMLDiagram
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (IsMouseDown == true)
-            {  
-                switch (mode)
+            {
+                if (isMove && aArrow != null)
                 {
-                    case Mode.Moving:
-                        if (aArrow != null)
-                        {
-                            aArrow.Move(e.X - p.X, e.Y - p.Y);
-                            p = e.Location;
-                        }
-                        break;
-                    case Mode.Drawing:
-                        aArrow._endPoint = e.Location;
-                        break;
+                    aArrow.Move(e.X - p.X, e.Y - p.Y);
+                    p = e.Location;
+                }
+                else
+                {
+                    aArrow._endPoint = e.Location;
+
                 }
 
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
@@ -217,8 +211,10 @@ namespace UMLDiagram
                     block1.AtribureField = null;
                     block1.MethodField = null;
                     break;
+                case FigureType.Arrow:
+                    listOfArrows.Add(aArrow);
+                    break;
             }
-            listOfArrows.Add(aArrow);
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
@@ -237,7 +233,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.ArrowCap;
-            mode = Mode.Drawing;
+            isMove = false;
             typeOfFigure = FigureType.Arrow;
         }
 
@@ -245,7 +241,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusCap;
-            mode = Mode.Drawing;
+            isMove = false;
             typeOfFigure = FigureType.Arrow;
         }
 
@@ -253,7 +249,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleCap;
-            mode = Mode.Drawing;
+            isMove = false;
             typeOfFigure = FigureType.Arrow;
         }
 
@@ -261,7 +257,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.DashLine;
             typeOfCap = ArrowCapType.TriangleCap;
-            mode = Mode.Drawing;
+            isMove = false;
             typeOfFigure = FigureType.Arrow;
         }
 
@@ -269,7 +265,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.RhombusFillCap;
-            mode = Mode.Drawing;
+            isMove = false;
             typeOfFigure = FigureType.Arrow;
         }
 
@@ -277,7 +273,7 @@ namespace UMLDiagram
         {
             typeOfLine = ArrowLineType.SolidLine;
             typeOfCap = ArrowCapType.TriangleFillCap;
-            mode = Mode.Drawing;
+            isMove = false;
             typeOfFigure = FigureType.Arrow;
         }
 
@@ -291,12 +287,12 @@ namespace UMLDiagram
 
         private void buttonClass_Click(object sender, EventArgs e)
         {
-            //block1 = new Block();
-            //var form = new PropertyForBlock(this);
-            //form.Show();
-
+            block1 = new Block();
+            var form = new PropertyForBlock(this);
+            form.Show();
+            
             typeOfFigure = FigureType.Class;
-            //mode = Mode.Drawing;
+            isMove = false;
         }
             
 
@@ -340,7 +336,7 @@ namespace UMLDiagram
         private void buttonSelect_Click(object sender, EventArgs e)
         {
             aArrow = null;
-            mode = Mode.Moving;
+            isMove = true;
         }
 
         private void buttonStack_Click(object sender, EventArgs e)

@@ -8,5 +8,6 @@ namespace UMLDiagram
 {
     interface IFigure
     {
+
     }
 }
