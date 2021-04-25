@@ -38,6 +38,7 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonRemoveTheLast = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.addictionButton = new System.Windows.Forms.Button();
@@ -135,6 +136,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.buttonRemove);
             this.groupBox1.Controls.Add(this.buttonRemoveTheLast);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.addictionButton);
@@ -158,6 +160,16 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
+            // 
+            // buttonRemove
+            // 
+            this.buttonRemove.Location = new System.Drawing.Point(12, 473);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(109, 23);
+            this.buttonRemove.TabIndex = 14;
+            this.buttonRemove.Text = "Удалить";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
             // buttonRemoveTheLast
             // 
@@ -191,7 +203,7 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(12, 473);
+            this.buttonClear.Location = new System.Drawing.Point(12, 522);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(109, 23);
             this.buttonClear.TabIndex = 3;
@@ -390,6 +402,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button buttonRemoveTheLast;
+        private System.Windows.Forms.Button buttonRemove;
     }
 }
 

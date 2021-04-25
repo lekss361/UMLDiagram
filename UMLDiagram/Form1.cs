@@ -36,8 +36,6 @@ namespace UMLDiagram
         public static int LinesMet { get; set; }
 
         List<IFigure> listOfFigure = new List<IFigure>();
-        //List<AbstractBlock> listOfBlock = new List<AbstractBlock>();
-        List<AbstractArrow> listOfArrows = new List<AbstractArrow>();
 
         Point p;
         bool isMove = false;
@@ -94,7 +92,8 @@ namespace UMLDiagram
                 case FigureType.Arrow:
                     if (isMove)
                     {
-                        //foreach (AbstractArrow a in listOfArrows)
+                        builder = new ArrowsBuilder();
+                        aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
                         foreach (AbstractArrow a in listOfFigure)
                         {
                             if (a.SelectFigure(e.Location))
@@ -106,17 +105,11 @@ namespace UMLDiagram
 
                         if (aArrow != null)
                         {
-                            //listOfArrows.Remove(aArrow);
                             listOfFigure.Remove(aArrow);
 
                             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                             _graphics = Graphics.FromImage(_mainBitmap);
                             _graphics.Clear(Color.White);
-
-                            //foreach (AbstractArrow a in listOfArrows)
-                            //{
-                            //    a.Draw(_graphics, MinePen);
-                            //}
 
                             foreach (IFigure a in listOfFigure)
                             {
@@ -155,8 +148,6 @@ namespace UMLDiagram
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap);
 
-                //block1.startPoint = e.Location;
-                //aArrow.Draw(_graphics, MinePen);
 
                 switch (typeOfFigure)
                 {
@@ -188,7 +179,6 @@ namespace UMLDiagram
                 builder = new ArrowsBuilder();
                 aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
 
-                //foreach (AbstractArrow a in listOfArrows)
                 foreach (IFigure a in listOfFigure)
                 {
                     if (a.SelectFigure(e.Location))
@@ -226,7 +216,6 @@ namespace UMLDiagram
 
                     listOfFigure.Add(aArrow);
 
-                    //listOfArrows.Add(aArrow);
                     break;
             }
         }
@@ -358,7 +347,7 @@ namespace UMLDiagram
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _graphics = Graphics.FromImage(_mainBitmap);
             _graphics.Clear(Color.White);
-          
+
             foreach (IFigure a in listOfFigure)
             {
                 a.Draw(_graphics, MinePen);
@@ -373,9 +362,9 @@ namespace UMLDiagram
             _graphics = Graphics.FromImage(_mainBitmap);
             _graphics.Clear(Color.White);
 
-            listOfArrows.RemoveAt(listOfArrows.Count - 1);
+            listOfFigure.RemoveAt(listOfFigure.Count - 1);
 
-            foreach (AbstractArrow a in listOfArrows)
+            foreach (IFigure a in listOfFigure)
             {
                 a.Draw(_graphics, MinePen);
             }
@@ -383,5 +372,9 @@ namespace UMLDiagram
             pictureBox1.Image = _mainBitmap;
         }
 
+        private void buttonRemove_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
