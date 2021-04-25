@@ -60,6 +60,7 @@
     <Compile Include="ArrowAndBlockType.cs" />
     <Compile Include="BlockS\AbstractBlock.cs" />
     <Compile Include="BlockS\Block.cs" />
+    <Compile Include="BlockS\InterfaceBlock.cs" />
     <Compile Include="Factory\ArrowsBuilder.cs" />
     <Compile Include="Factory\FactoryForCap.cs" />
     <Compile Include="Factory\FactoryForLine.cs" />

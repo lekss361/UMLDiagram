@@ -29,6 +29,7 @@ namespace UMLDiagram
         FigureType typeOfFigure;
 
         Block block1;
+        InterfaceBlock interfaceBlock;
         public static float  width1{ get; set; }
         public static float height1 { get; set; }
 
@@ -48,24 +49,53 @@ namespace UMLDiagram
 
         public void SetPropety(string nameF, string atributF,string methodsF,Font font)
         {
-            block1.NameField = nameF;
+            if (!(block1 is null))
+            {
+                block1.NameField = nameF;
 
-            block1.AtribureField = atributF;
-            block1.MethodField = methodsF;
-            block1.drawFont = font;
+                block1.AtribureField = atributF;
+                block1.MethodField = methodsF;
+                block1.drawFont = font;
+            }
+            else
+            {
+                interfaceBlock.NameField = nameF;
 
+                interfaceBlock.AtribureField = atributF;
+                interfaceBlock.MethodField = methodsF;
+                interfaceBlock.drawFont = font;
+            }
         }
 
         public void SetWidthAndHeist(float wid, float heig)
         {
-            block1.WidthRect = wid;
-            block1.HeigthFont = heig;
+            if (!(block1 is null))
+            {
+                block1.WidthRect = wid;
+                block1.HeigthFont = heig;
+            }
+            else
+            {
+                interfaceBlock.WidthRect = wid;
+                interfaceBlock.HeigthFont = heig;
+
+            }
+
+
         }
 
         public void SetCountLines(int atr, int met)
         {
-            block1.NumOfAtributeLines = atr;
-            block1.NumOfMethodLines = met;
+            if (!(block1 is null))
+            {
+                block1.NumOfAtributeLines = atr;
+                block1.NumOfMethodLines = met;
+            }
+            else
+            {
+                interfaceBlock.NumOfAtributeLines = atr;
+                interfaceBlock.NumOfMethodLines = met;
+            }
         }
 
     private void Form1_Load(object sender, EventArgs e)
@@ -87,6 +117,9 @@ namespace UMLDiagram
             {
                 case FigureType.Class:
                     block1.SetPointForLines(e.Location);
+                    break;
+                case FigureType.Interface:
+                    interfaceBlock.SetPointForLines(e.Location);
                     break;
 
                 case FigureType.Arrow:
@@ -157,6 +190,11 @@ namespace UMLDiagram
                         //block1.DrawBlock(_graphics, MinePen, e.Location);
                         block1.Draw(_graphics, MinePen);
                         break;
+                    case FigureType.Interface:
+                        interfaceBlock.startPoint = e.Location;
+                        interfaceBlock.SetPointForLines(e.Location);
+                        interfaceBlock.Draw(_graphics, MinePen);
+                        break;
                     case FigureType.Arrow:
                         aArrow.Draw(_graphics, MinePen);
                         break;
@@ -211,6 +249,12 @@ namespace UMLDiagram
 
                     listOfFigure.Add(block1);
 
+                    break;
+                case FigureType.Interface:
+                    interfaceBlock.NameField = null;
+                    interfaceBlock.AtribureField = null;
+                    interfaceBlock.MethodField = null;
+                    listOfFigure.Add(interfaceBlock);
                     break;
                 case FigureType.Arrow:
 
@@ -375,6 +419,17 @@ namespace UMLDiagram
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             // delete ???
+        }
+
+        private void buttonInterface_Click(object sender, EventArgs e)
+        {
+            interfaceBlock = new InterfaceBlock();
+            var form = new PropertyForBlock(this);
+            form.Show();
+
+            typeOfFigure = FigureType.Interface;
+            isMove = false;
+
         }
     }
 }

@@ -10,14 +10,12 @@ namespace UMLDiagram.BlockS
 {
     public class Block : AbstractBlock
     {
-      
-
         static Point _startName;
         static Point _startAtr;
         static Point _startMet;
 
       
-        public void SetPointForLines(Point st )
+        public override void SetPointForLines(Point st )
         {
             _startName.X = st.X + 10;
             _startName.Y = st.Y + 5;
@@ -55,9 +53,5 @@ namespace UMLDiagram.BlockS
             graphics.DrawString(MethodField, drawFont, drawBrush, _startMet.X, _startMet.Y);
         }
 
-        public override void DrawBlock(Graphics graphics, Pen pen, Point start, string name, string atr, string met, float width, float heigth, int cAtrL, int cMetL)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

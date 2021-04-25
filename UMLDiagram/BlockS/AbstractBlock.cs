@@ -27,8 +27,7 @@ namespace UMLDiagram.BlockS
         public int NumOfMethodLines { get; set; }
 
 
-        public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width,float heigth, int cAtrL,int cMetL);
-        //public abstract void DrawBlock(Graphics graphics, Pen pen, Point start);
+        public abstract void SetPointForLines(Point st);
         public abstract void Draw(Graphics graphics, Pen pen);
 
         public bool SelectFigure(Point point)

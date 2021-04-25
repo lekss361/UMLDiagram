@@ -249,6 +249,7 @@
             this.buttonInterface.TabIndex = 8;
             this.buttonInterface.Text = "Интерфейс";
             this.buttonInterface.UseVisualStyleBackColor = false;
+            this.buttonInterface.Click += new System.EventHandler(this.buttonInterface_Click);
             // 
             // buttonClass
             // 
