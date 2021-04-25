@@ -4,31 +4,60 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace UMLDiagram.BlockS
 {
     public class Block : AbstractBlock
     {
-        int weigth;
-        int heigth;
-        //static string _nameClass = "Class";
+      
+
+        static Point _startName;
+        static Point _startAtr;
+        static Point _startMet;
+
+      
+        public void SetPointForLines(Point st )
+        {
+            _startName.X = st.X + 10;
+            _startName.Y = st.Y + 5;
+
+            _startAtr.X = st.X + 10;
+            _startAtr.Y = st.Y + (int)HeigthFont + 20;
+
+            _startMet.Y = st.Y + (int)HeigthFont + 20 + (NumOfAtributeLines * (int)HeigthFont + 20);
+            _startMet.X = st.X + 10;
+        }
+        
+
         public Block()
         {
-            nameClass = "Class";
-        }
-        public override void DrawBlock(Graphics graphics, Pen pen,  Point start, string name, string atr,string met)
-        {
-           
-            graphics.DrawRectangle(pen, start.X, start.Y,150,200);
-            graphics.DrawRectangle(pen, start.X, start.Y, 150, 40);
             
-            Font drawFont = new Font("Arial", 16);
+        }
+        public Block(Point st)
+        {
+            SetPointForLines(st);
+        }
+        
+        public override void Draw(Graphics graphics, Pen pen)
+        {
+            Point start = startPoint;
+            
+            float totaLength = ((NumOfAtributeLines + NumOfMethodLines) * HeigthFont) + 80;
+            graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, totaLength); //основной 
+            graphics.DrawRectangle(pen, start.X, start.Y, WidthRect + 10, HeigthFont + 10); //heigth+10 - высота с именем  
+
+            
             SolidBrush drawBrush = new SolidBrush(Color.Black);
-            float x = start.X + 40;
-            float y = start.Y + 10;
-            graphics.DrawString(name, drawFont, drawBrush, start.X + 10, start.Y + 10);
-            graphics.DrawString(atr, drawFont, drawBrush, start.X + 10, start.Y + 60);
-            graphics.DrawString(atr, drawFont, drawBrush, start.X + 10, start.Y + 120);
+
+            graphics.DrawString(NameField, drawFont, drawBrush, _startName.X, _startName.Y);
+            graphics.DrawString(AtribureField, drawFont, drawBrush, _startAtr.X, _startAtr.Y);
+            graphics.DrawString(MethodField, drawFont, drawBrush, _startMet.X, _startMet.Y);
+        }
+
+        public override void DrawBlock(Graphics graphics, Pen pen, Point start, string name, string atr, string met, float width, float heigth, int cAtrL, int cMetL)
+        {
+            throw new NotImplementedException();
         }
     }
 }

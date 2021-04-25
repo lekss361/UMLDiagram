@@ -10,11 +10,6 @@ namespace UMLDiagram.Arrows.CapTypes
 {
     public abstract class AbstractCap
     {
-        public Point _startPoint { get; set; } // like mCur
-        public Point _endPoint { get; set; }
-
-        //abstract public void GetPoints();
-
 
         public List<Point> Draw(Graphics graphics, Pen pen, Point startPoint, Point endPoint)
         {

@@ -38,6 +38,8 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonRemove = new System.Windows.Forms.Button();
+            this.buttonRemoveTheLast = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.addictionButton = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -67,9 +69,9 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 24);
             this.pictureBox1.MaximumSize = new System.Drawing.Size(3500, 3500);
-            this.pictureBox1.MinimumSize = new System.Drawing.Size(2000, 2000);
+            this.pictureBox1.MinimumSize = new System.Drawing.Size(1500, 1500);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(2000, 2000);
+            this.pictureBox1.Size = new System.Drawing.Size(1500, 1500);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -108,7 +110,7 @@
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
@@ -121,7 +123,7 @@
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
@@ -134,6 +136,8 @@
             // groupBox1
             // 
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.buttonRemove);
+            this.groupBox1.Controls.Add(this.buttonRemoveTheLast);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.addictionButton);
             this.groupBox1.Controls.Add(this.buttonClear);
@@ -157,6 +161,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
             // 
+            // buttonRemove
+            // 
+            this.buttonRemove.Location = new System.Drawing.Point(12, 473);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(109, 23);
+            this.buttonRemove.TabIndex = 14;
+            this.buttonRemove.Text = "Удалить";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
+            // 
+            // buttonRemoveTheLast
+            // 
+            this.buttonRemoveTheLast.Location = new System.Drawing.Point(12, 427);
+            this.buttonRemoveTheLast.Name = "buttonRemoveTheLast";
+            this.buttonRemoveTheLast.Size = new System.Drawing.Size(109, 40);
+            this.buttonRemoveTheLast.TabIndex = 3;
+            this.buttonRemoveTheLast.Text = "Удалить последний";
+            this.buttonRemoveTheLast.UseVisualStyleBackColor = true;
+            this.buttonRemoveTheLast.Click += new System.EventHandler(this.buttonRemoveTheLast_Click);
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(50, 309);
@@ -179,7 +203,7 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(15, 431);
+            this.buttonClear.Location = new System.Drawing.Point(12, 522);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(109, 23);
             this.buttonClear.TabIndex = 3;
@@ -214,6 +238,7 @@
             this.buttonStack.TabIndex = 9;
             this.buttonStack.Text = "Стек";
             this.buttonStack.UseVisualStyleBackColor = false;
+            this.buttonStack.Click += new System.EventHandler(this.buttonStack_Click);
             // 
             // buttonInterface
             // 
@@ -245,6 +270,7 @@
             this.buttonSelect.TabIndex = 6;
             this.buttonSelect.Text = "Выбрать";
             this.buttonSelect.UseVisualStyleBackColor = false;
+            this.buttonSelect.Click += new System.EventHandler(this.buttonSelect_Click);
             // 
             // aggregationButton
             // 
@@ -375,6 +401,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button buttonRemoveTheLast;
+        private System.Windows.Forms.Button buttonRemove;
     }
 }
 

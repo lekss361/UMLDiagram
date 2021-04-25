@@ -8,12 +8,11 @@ using UMLDiagram.Arrows;
 
 namespace UMLDiagram.Arrows.LineTypes
 {
-   public abstract class AbstractLine
+    public abstract class AbstractLine
     {
-        //public Point _startPoint { get; set; } // like mCur
-        //public Point _endPoint { get; set; } 
+        //public abstract void DrawLine(Graphics graphics, Pen pen, Point end,Point start);
 
-
-        public abstract void DrawLine(Graphics graphics, Pen pen, Point end,Point start);
+        // Ломанная линия
+        public abstract void DrawLine(Graphics graphics, Pen pen, List<Point> points);
     }
 }

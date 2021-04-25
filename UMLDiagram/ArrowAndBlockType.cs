@@ -26,4 +26,12 @@ namespace UMLDiagram
         RhombusFillCap,
         TriangleFillCap
     }
+
+    public enum FigureType
+    {
+        Arrow = 0,
+        Class ,
+        Interface
+    }
+
 }

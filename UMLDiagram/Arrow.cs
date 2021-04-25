@@ -22,9 +22,11 @@ namespace UMLDiagram
         {
             Point end = _endPoint;
             Point start = _startPoint;
+            List<Point> points = GetPoints();
 
             cap.Draw(graphics, pen, end, start);
-            line.DrawLine(graphics, pen, end, start);
+            //line.DrawLine(graphics, pen, end, start);
+            line.DrawLine(graphics, pen, points);   // Ломанная линия
         }
     }
 }
