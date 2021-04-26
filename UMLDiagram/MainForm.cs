@@ -16,23 +16,23 @@ namespace UMLDiagram
         Bitmap _mainBitmap;
         Bitmap _tmpBitmap;
         Graphics _graphics;
-        
+
         Pen MinePen = new Pen(Color.Black, 3);
 
         private bool IsMouseDown = false;
-        
+
         ArrowsBuilder builder;
         AbstractArrow aArrow;
         AbstractBlock absBlock;
 
-        
+
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
         FigureType typeOfFigure;
 
         List<IFigure> listOfFigure = new List<IFigure>();
 
-        Point delta;
+        Point p;
         bool isMove = false;
         string focusPoint;
 
@@ -51,7 +51,7 @@ namespace UMLDiagram
             listOfFigure.Add(absBlock);
         }
 
-        
+
         public void SetWidthAndHeist(float wid, float heig)
         {
             absBlock.WidthRect = wid;
@@ -60,14 +60,14 @@ namespace UMLDiagram
 
         public void SetCountLines(int atr, int met)
         {
-           absBlock.NumOfAtributeLines = atr;
-           absBlock.NumOfMethodLines = met;
+            absBlock.NumOfAtributeLines = atr;
+            absBlock.NumOfMethodLines = met;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            
+
             _graphics = Graphics.FromImage(_mainBitmap);
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
@@ -111,7 +111,7 @@ namespace UMLDiagram
 
                             pictureBox1.Image = _mainBitmap;
 
-                            delta = e.Location;
+                            p = e.Location;
                         }
                     }
                     else
@@ -131,17 +131,17 @@ namespace UMLDiagram
         {
             if (IsMouseDown == true)
             {
-                if (isMove && aArrow != null) 
+                if (isMove && aArrow != null)
                 {
                     if (focusPoint == "start")
                     {
-                        aArrow.MoveStartPoint(e.X - delta.X, e.Y - delta.Y);
+                        aArrow.MoveStartPoint(e.X - p.X, e.Y - p.Y);
                     }
                     if (focusPoint == "end")
                     {
-                        aArrow.MoveEndPoint(e.X - delta.X, e.Y - delta.Y);
+                        aArrow.MoveEndPoint(e.X - p.X, e.Y - p.Y);
                     }
-                    delta = e.Location;
+                    p = e.Location;
                 }
                 else
                 {
@@ -154,7 +154,7 @@ namespace UMLDiagram
 
                 switch (typeOfFigure)
                 {
-                    
+
                     case FigureType.Arrow:
                         aArrow.Draw(_graphics, MinePen);
                         break;
@@ -201,12 +201,26 @@ namespace UMLDiagram
             IsMouseDown = false;
             _mainBitmap = _tmpBitmap;
 
-            listOfFigure.Add(aArrow);
+            switch (typeOfFigure)
+            {
+
+                case FigureType.Arrow:
+
+                    listOfFigure.Add(aArrow);
+
+                    break;
+                default:
+                    //absBlock.NameField = null;
+                    //absBlock.AtribureField = null;
+                    //absBlock.MethodField = null;
+
+                    break;
+            }
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
         {
-            colorDialog1.ShowDialog();          
+            colorDialog1.ShowDialog();
 
             MinePen.Color = colorDialog1.Color;
         }
@@ -277,7 +291,7 @@ namespace UMLDiagram
             absBlock = new Block();
             var form = new PropertyForBlock(this);
             form.Show();
-            
+
             typeOfFigure = FigureType.Class;
             isMove = false;
         }
@@ -311,13 +325,11 @@ namespace UMLDiagram
             isMove = true;
         }
 
-        private void buttonRemoveTheLast_Click(object sender, EventArgs e)
+        private void buttonStack_Click(object sender, EventArgs e)
         {
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _graphics = Graphics.FromImage(_mainBitmap);
             _graphics.Clear(Color.White);
-
-            listOfFigure.RemoveAt(listOfFigure.Count -1);
 
             foreach (IFigure a in listOfFigure)
             {
@@ -325,6 +337,27 @@ namespace UMLDiagram
             }
 
             pictureBox1.Image = _mainBitmap;
+        }
+
+        private void buttonRemoveTheLast_Click(object sender, EventArgs e)
+        {
+            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            _graphics = Graphics.FromImage(_mainBitmap);
+            _graphics.Clear(Color.White);
+
+            listOfFigure.RemoveAt(listOfFigure.Count - 1);
+
+            foreach (IFigure a in listOfFigure)
+            {
+                a.Draw(_graphics, MinePen);
+            }
+
+            pictureBox1.Image = _mainBitmap;
+        }
+
+        private void buttonRemove_Click(object sender, EventArgs e)
+        {
+            // delete ???
         }
 
         private void buttonInterface_Click(object sender, EventArgs e)
