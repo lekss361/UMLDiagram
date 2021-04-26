@@ -19,7 +19,7 @@ namespace UMLDiagram.BlockS
         public string AtribureField { get; set; }
         public string MethodField { get; set; }
         public Font drawFont { get; set; }
-
+         
         public float WidthRect { get; set; }
         public float HeigthFont { get; set; }
 

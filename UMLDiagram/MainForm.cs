@@ -48,9 +48,10 @@ namespace UMLDiagram
             absBlock.AtribureField = atributF;
             absBlock.MethodField = methodsF;
             absBlock.drawFont = font;
+            listOfFigure.Add(absBlock);
         }
 
-
+        
         public void SetWidthAndHeist(float wid, float heig)
         {
             absBlock.WidthRect = wid;
@@ -162,7 +163,6 @@ namespace UMLDiagram
                         absBlock.SetPointForLines(e.Location);
                         absBlock.Draw(_graphics, MinePen);
                         break;
-
                 }
 
                 pictureBox1.Image = _tmpBitmap;
@@ -210,10 +210,10 @@ namespace UMLDiagram
 
                     break;
                 default:
-                    absBlock.NameField = null;
-                    absBlock.AtribureField = null;
-                    absBlock.MethodField = null;
-                    listOfFigure.Add(absBlock);
+                    //absBlock.NameField = null;
+                    //absBlock.AtribureField = null;
+                    //absBlock.MethodField = null;
+                    
                     break;
             }
         }
@@ -344,7 +344,7 @@ namespace UMLDiagram
             _graphics = Graphics.FromImage(_mainBitmap);
             _graphics.Clear(Color.White);
 
-            listOfFigure.RemoveAt(listOfFigure.Count - 1);
+            listOfFigure.RemoveAt(listOfFigure.Count -1);
 
             foreach (IFigure a in listOfFigure)
             {

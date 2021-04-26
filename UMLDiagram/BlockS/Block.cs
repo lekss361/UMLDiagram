@@ -10,9 +10,9 @@ namespace UMLDiagram.BlockS
 {
     public class Block : AbstractBlock
     {
-        static Point _startName;
-        static Point _startAtr;
-        static Point _startMet;
+        Point _startName;
+        Point _startAtr;
+        Point _startMet;
 
       
         public override void SetPointForLines(Point st )
