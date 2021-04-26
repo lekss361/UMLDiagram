@@ -318,9 +318,10 @@ namespace UMLDiagram
             }
         }
 
-        private void buttonSelect_Click(object sender, EventArgs e)
+        private void buttonMove_Click(object sender, EventArgs e)
         {
             aArrow = null;
+            absBlock = null;
             isMove = true;
         }
 

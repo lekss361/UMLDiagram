@@ -44,7 +44,7 @@
             this.buttonStack = new System.Windows.Forms.Button();
             this.buttonInterface = new System.Windows.Forms.Button();
             this.buttonClass = new System.Windows.Forms.Button();
-            this.buttonSelect = new System.Windows.Forms.Button();
+            this.buttonMove = new System.Windows.Forms.Button();
             this.aggregationButton = new System.Windows.Forms.Button();
             this.associationButton = new System.Windows.Forms.Button();
             this.compositionButton = new System.Windows.Forms.Button();
@@ -120,7 +120,7 @@
             this.groupBox1.Controls.Add(this.buttonStack);
             this.groupBox1.Controls.Add(this.buttonInterface);
             this.groupBox1.Controls.Add(this.buttonClass);
-            this.groupBox1.Controls.Add(this.buttonSelect);
+            this.groupBox1.Controls.Add(this.buttonMove);
             this.groupBox1.Controls.Add(this.aggregationButton);
             this.groupBox1.Controls.Add(this.associationButton);
             this.groupBox1.Controls.Add(this.compositionButton);
@@ -226,16 +226,16 @@
             this.buttonClass.UseVisualStyleBackColor = false;
             this.buttonClass.Click += new System.EventHandler(this.buttonClass_Click);
             // 
-            // buttonSelect
+            // buttonMove
             // 
-            this.buttonSelect.BackColor = System.Drawing.SystemColors.Control;
-            this.buttonSelect.Location = new System.Drawing.Point(12, 19);
-            this.buttonSelect.Name = "buttonSelect";
-            this.buttonSelect.Size = new System.Drawing.Size(112, 23);
-            this.buttonSelect.TabIndex = 6;
-            this.buttonSelect.Text = "Переместить";
-            this.buttonSelect.UseVisualStyleBackColor = false;
-            this.buttonSelect.Click += new System.EventHandler(this.buttonSelect_Click);
+            this.buttonMove.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonMove.Location = new System.Drawing.Point(12, 19);
+            this.buttonMove.Name = "buttonMove";
+            this.buttonMove.Size = new System.Drawing.Size(112, 23);
+            this.buttonMove.TabIndex = 6;
+            this.buttonMove.Text = "Переместить";
+            this.buttonMove.UseVisualStyleBackColor = false;
+            this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click);
             // 
             // aggregationButton
             // 
@@ -347,7 +347,7 @@
 
         private System.Windows.Forms.Button inheritanceButton;
 
-        private System.Windows.Forms.Button buttonSelect;
+        private System.Windows.Forms.Button buttonMove;
         private System.Windows.Forms.Button buttonStack;
         private System.Windows.Forms.Button buttonInterface;
         private System.Windows.Forms.Button buttonClass;
