@@ -32,15 +32,18 @@ namespace UMLDiagram.BlockS
 
         public bool SelectFigure(Point point)
         {
-            //if ()
-            //{
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
-            return true;
+            int height = (int)((NumOfAtributeLines + NumOfMethodLines) * HeigthFont) + 80;
+            int width = (int)(WidthRect + 10);
+
+            if (point.X <= (startPoint.X + width) && point.X >= startPoint.X
+             && point.Y <= (startPoint.Y + height) && point.Y >= startPoint.Y)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void Move(int deltaX, int deltaY)
