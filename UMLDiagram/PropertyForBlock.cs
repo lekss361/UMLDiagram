@@ -14,7 +14,7 @@ namespace UMLDiagram
     {
         public PropertyForBlock(MainForm form)
         {
-            this.form1 = form;
+            this.mainForm = form;
             InitializeComponent();
         }
         public string _nameOfBlock { get; set; }
@@ -30,15 +30,15 @@ namespace UMLDiagram
         public static int countLinesAtr { get; set; }
         public static int countLinesMet { get; set; }
 
-        private MainForm form1;
+        private MainForm mainForm;
 
-        public static Font fon2 { get; set; }
+        public static Font fontOfText { get; set; }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
             _nameOfBlock = nameTextBox.Text;
            
-            fon2 = nameTextBox.Font;
+            fontOfText = nameTextBox.Font;
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
@@ -61,8 +61,8 @@ namespace UMLDiagram
 
         private void okey_Click(object sender, EventArgs e)
         {
-            form1.SetPropety(_nameOfBlock, _atributesOfBlock, _methodsOfBlock,fon2);
-            form1.SetCountLines(countLinesAtr, countLinesMet);
+            mainForm.SetPropety(_nameOfBlock, _atributesOfBlock, _methodsOfBlock,fontOfText);
+            mainForm.SetCountLines(countLinesAtr, countLinesMet);
             Close();
         }
         private static void GetParametersForBlock(string name, string atr, string met, Font strFont, PaintEventArgs e)
@@ -105,9 +105,9 @@ namespace UMLDiagram
        
         private void PropertyForBlock_Paint(object sender, PaintEventArgs e)
         {
-            widthParam = CalculateWidthBlock(_nameOfBlock, _atributesOfBlock, _methodsOfBlock, fon2, e);
+            widthParam = CalculateWidthBlock(_nameOfBlock, _atributesOfBlock, _methodsOfBlock, fontOfText, e);
             //heightFont = heightFont;
-            form1.SetWidthAndHeist(widthParam,heightFont);
+            mainForm.SetWidthAndHeist(widthParam,heightFont);
             
         }
 

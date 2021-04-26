@@ -11,13 +11,6 @@ namespace UMLDiagram.Arrows.LineTypes
 {
     class SolidLine : AbstractLine
     {
-        //public override void DrawLine(Graphics graphics, Pen pen, Point end, Point start)
-        //{
-        //    graphics.DrawLine(pen, end, start);
-        //}
-
-
-        // Ломанная линия
         public override void DrawLine(Graphics graphics, Pen pen, List<Point> points)
         {
             graphics.DrawLines(pen, points.ToArray());

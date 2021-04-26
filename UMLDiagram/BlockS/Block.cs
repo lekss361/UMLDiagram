@@ -15,6 +15,14 @@ namespace UMLDiagram.BlockS
         Point _startMet;
 
       
+        public Block()
+        {
+            
+        }
+        public Block(Point st)
+        {
+            SetPointForLines(st);
+        }
         public override void SetPointForLines(Point st )
         {
             _startName.X = st.X + 10;
@@ -26,17 +34,6 @@ namespace UMLDiagram.BlockS
             _startMet.Y = st.Y + (int)HeigthFont + 20 + (NumOfAtributeLines * (int)HeigthFont + 20);
             _startMet.X = st.X + 10;
         }
-        
-
-        public Block()
-        {
-            
-        }
-        public Block(Point st)
-        {
-            SetPointForLines(st);
-        }
-        
         public override void Draw(Graphics graphics, Pen pen)
         {
             Point start = startPoint;
@@ -52,6 +49,6 @@ namespace UMLDiagram.BlockS
             graphics.DrawString(AtribureField, drawFont, drawBrush, _startAtr.X, _startAtr.Y);
             graphics.DrawString(MethodField, drawFont, drawBrush, _startMet.X, _startMet.Y);
         }
-
+       
     }
 }

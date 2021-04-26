@@ -14,7 +14,8 @@ namespace UMLDiagram.Arrows.CapTypes
             graphics.DrawLine(pen, points[0], points[1]);
             graphics.DrawLine(pen, points[1], points[2]);
             graphics.DrawLine(pen, points[2], points[3]);
-            graphics.DrawLine(pen, points[3], points[0]);            
+            graphics.DrawLine(pen, points[3], points[0]);
+            
         }
     }
 }
