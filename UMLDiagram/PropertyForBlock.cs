@@ -17,9 +17,9 @@ namespace UMLDiagram
             this.form1 = form;
             InitializeComponent();
         }
-        public static string _nameOfBlock { get; set; }
-        public static string _atributesOfBlock { get; set; }
-        public static string _methodsOfBlock { get; set; }
+        public string _nameOfBlock { get; set; }
+        public  string _atributesOfBlock { get; set; }
+        public  string _methodsOfBlock { get; set; }
 
         static SizeF nameSize { get; set; }
         static SizeF atributeSize { get; set; }
