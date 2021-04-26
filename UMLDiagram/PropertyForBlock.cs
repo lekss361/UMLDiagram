@@ -12,7 +12,7 @@ namespace UMLDiagram
 {
     public partial class PropertyForBlock : Form
     {
-        public PropertyForBlock(Form1 form)
+        public PropertyForBlock(MainForm form)
         {
             this.form1 = form;
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace UMLDiagram
         public static int countLinesAtr { get; set; }
         public static int countLinesMet { get; set; }
 
-        private Form1 form1;
+        private MainForm form1;
 
         public static Font fon2 { get; set; }
 
@@ -94,23 +94,6 @@ namespace UMLDiagram
             }
             return with;
         }
-        //private static float GetHeight(SizeF name, SizeF atr, SizeF met)
-        //{
-        //    //float height;
-        //    //if ((name.Height >= atr.Height) && (name.Height >= met.Height)) // может быть поставить >=  ?
-        //    //{
-        //    //    height = name.Height;
-        //    //}
-        //    //else if ((atr.Height >= met.Height) && (atr.Height >= name.Height))
-        //    //{
-        //    //    height = atr.Height;
-        //    //}
-        //    //else
-        //    //{
-        //    //    height = met.Height;
-        //    //}
-        //    //return height;
-        //}
         
         private static float CalculateWidthBlock(string name, string atr, string met, Font strFont, PaintEventArgs e)
         {
@@ -119,12 +102,7 @@ namespace UMLDiagram
             with = GetWidth(nameSize, atributeSize, methodSize);
             return with;
         }
-        //private static float CalculateHeightBlock(string name, string atr, string met)
-        //{
-        //    float height;
-        //    height = GetHeight(nameSize, atributeSize, methodSize);
-        //    return height;
-        //}
+       
         private void PropertyForBlock_Paint(object sender, PaintEventArgs e)
         {
             widthParam = CalculateWidthBlock(_nameOfBlock, _atributesOfBlock, _methodsOfBlock, fon2, e);
@@ -135,8 +113,6 @@ namespace UMLDiagram
 
         private void chooseFont_Click(object sender, EventArgs e)
         {
-            //FontDialog fontDialog1 = new FontDialog();
-            
             if ( (fontDialog1.ShowDialog()== DialogResult.OK))
             {
                 nameTextBox.Font = fontDialog1.Font;
