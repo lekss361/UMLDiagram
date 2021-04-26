@@ -19,7 +19,7 @@ namespace UMLDiagram.BlockS
         public string AtribureField { get; set; }
         public string MethodField { get; set; }
         public Font drawFont { get; set; }
-
+         
         public float WidthRect { get; set; }
         public float HeigthFont { get; set; }
 
@@ -27,28 +27,38 @@ namespace UMLDiagram.BlockS
         public int NumOfMethodLines { get; set; }
 
 
-        public abstract void DrawBlock(Graphics graphics, Pen pen,Point start,string name,string atr, string met,float width,float heigth, int cAtrL,int cMetL);
-        //public abstract void DrawBlock(Graphics graphics, Pen pen, Point start);
+        public abstract void SetPointForLines(Point st);
         public abstract void Draw(Graphics graphics, Pen pen);
 
         public bool SelectFigure(Point point)
         {
-            //if ()
-            //{
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
-            return true;
+            int height = (int)((NumOfAtributeLines + NumOfMethodLines) * HeigthFont) + 80;
+            int width = (int)(WidthRect + 10);
+
+            if (point.X <= (startPoint.X + width) && point.X >= startPoint.X
+             && point.Y <= (startPoint.Y + height) && point.Y >= startPoint.Y)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public void Move(int deltaX, int deltaY)
+        //public void Move(int deltaX, int deltaY)
+        //{
+        //    startPoint = new Point(startPoint.X + deltaX, startPoint.Y + deltaY);
+        //}
+
+        public void MoveStartPoint(int deltaX, int deltaY)
         {
-            //startPoint = new Point(startPoint.X + deltaX, startPoint.Y + deltaY);
+            startPoint = new Point(startPoint.X + deltaX, startPoint.Y + deltaY);
+        }
+
+        public void MoveEndPoint(int deltaX, int deltaY)
+        {
             //endPoint = new Point(endPoint.X + deltaX, endPoint.Y + deltaY);
         }
-
     }
 }

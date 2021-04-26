@@ -12,6 +12,7 @@ namespace UMLDiagram
     {
         bool SelectFigure(Point point);
 
-        void Move(int deltaX, int deltaY);
+        void MoveStartPoint(int deltaX, int deltaY);
+        void MoveEndPoint(int deltaX, int deltaY);
     }
 }

@@ -14,7 +14,7 @@ namespace UMLDiagram.Factory
             AbstractCap cap = null;
 
             switch (type)
-            {
+            { 
                 case ArrowCapType.ArrowCap:
                     cap = new ArrowCap();
                     break;

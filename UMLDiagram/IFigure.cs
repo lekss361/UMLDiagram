@@ -8,7 +8,7 @@ using System;
 namespace UMLDiagram
 {
     public interface IFigure : IMoveable
-    {
+    {        
         void Draw(Graphics graphics, Pen pen);
     }
 }
