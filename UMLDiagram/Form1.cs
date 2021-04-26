@@ -28,7 +28,10 @@ namespace UMLDiagram
         ArrowCapType typeOfCap;
         FigureType typeOfFigure;
 
-        Block block1;
+        SettingFigure settingFigure;
+        IFigure SelectFigure;
+
+        Block block1=new Block();
         public static float  width1{ get; set; }
         public static float height1 { get; set; }
 
@@ -44,6 +47,7 @@ namespace UMLDiagram
         public Form1()
         {
             InitializeComponent();
+            settingFigure = new SettingFigure(trackBarSettingFigure,colorDialog1,SelectTypeArrow,LayoutPanelSelectSettingFigure,LayoutPanelSelectSettingArrow,LayoutPanelSelectSettingBlock);
         }
 
         public void SetPropety(string nameF, string atributF,string methodsF,Font font)
@@ -86,6 +90,7 @@ namespace UMLDiagram
             switch (typeOfFigure)
             {
                 case FigureType.Class:
+                    block1.PenFigure = MinePen;
                     block1.SetPointForLines(e.Location);
                     break;
 
@@ -94,10 +99,12 @@ namespace UMLDiagram
                     {
                         builder = new ArrowsBuilder();
                         aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+                        aArrow.PenFigure = new Pen(MinePen.Color, MinePen.Width);
                         foreach (AbstractArrow a in listOfFigure)
                         {
                             if (a.SelectFigure(e.Location))
                             {
+                                settingFigure.SetSettingFigure(a);
                                 aArrow = a;
                                 break;
                             }
@@ -113,7 +120,7 @@ namespace UMLDiagram
 
                             foreach (IFigure a in listOfFigure)
                             {
-                                a.Draw(_graphics, MinePen);
+                                a.Draw(_graphics,a.PenFigure);
                             }
 
                             pictureBox1.Image = _mainBitmap;
@@ -125,6 +132,7 @@ namespace UMLDiagram
                     {
                         builder = new ArrowsBuilder();
                         aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+                        aArrow.PenFigure = new Pen(MinePen.Color, MinePen.Width);
                         aArrow._startPoint = e.Location;
                     }                 
                 break;
@@ -155,16 +163,18 @@ namespace UMLDiagram
                         block1.startPoint = e.Location;
                         block1.SetPointForLines(e.Location);
                         //block1.DrawBlock(_graphics, MinePen, e.Location);
-                        block1.Draw(_graphics, MinePen);
+                        block1.Draw(_graphics, block1.PenFigure);
+                       
                         break;
                     case FigureType.Arrow:
-                        aArrow.Draw(_graphics, MinePen);
+                        aArrow.Draw(_graphics,aArrow.PenFigure);
                         break;
                 }
+                
 
-                    //block1.SetPointForLines(e.Location);
-                    //block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
-                    //block1.DrawBlock(_graphics, MinePen, e.Location);
+                //block1.SetPointForLines(e.Location);
+                //block1.DrawBlock(_graphics, MinePen, e.Location, nameClass, atributes , methods,width1 , height1, LinesAtr, LinesMet);
+                //block1.DrawBlock(_graphics, MinePen, e.Location);
 
                 pictureBox1.Image = _tmpBitmap;
 
@@ -172,12 +182,11 @@ namespace UMLDiagram
                 {
                     GC.Collect();
                 }
-            }
-
-            else
+            }else
             {
                 builder = new ArrowsBuilder();
                 aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+                aArrow.PenFigure = new Pen(MinePen.Color,MinePen.Width);
 
                 foreach (IFigure a in listOfFigure)
                 {
@@ -185,7 +194,7 @@ namespace UMLDiagram
                     {
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap);
-
+                        
                         Pen FocusPen = new Pen(Color.Red, 3);
                         _graphics.DrawEllipse(FocusPen, e.Location.X - 5, e.Location.Y - 5, 10, 10);
 
@@ -195,6 +204,7 @@ namespace UMLDiagram
                     }
                 }
             }
+            
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -290,12 +300,13 @@ namespace UMLDiagram
 
         private void buttonClass_Click(object sender, EventArgs e)
         {
-            block1 = new Block();
             var form = new PropertyForBlock(this);
             form.Show();
             
             typeOfFigure = FigureType.Class;
             isMove = false;
+
+
         }
             
 
@@ -375,6 +386,25 @@ namespace UMLDiagram
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             // delete ???
+        }
+
+        private void SettingFigure_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ColorSelectFigure_Click(object sender, EventArgs e)
+        {
+
+                colorDialog1.ShowDialog();
+
+                MinePen.Color = colorDialog1.Color;
+            
         }
     }
 }

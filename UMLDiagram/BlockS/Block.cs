@@ -41,6 +41,7 @@ namespace UMLDiagram.BlockS
         
         public override void Draw(Graphics graphics, Pen pen)
         {
+            PenFigure = pen;
             Point start = startPoint;
             
             float totaLength = ((NumOfAtributeLines + NumOfMethodLines) * HeigthFont) + 80;
@@ -53,6 +54,7 @@ namespace UMLDiagram.BlockS
             graphics.DrawString(NameField, drawFont, drawBrush, _startName.X, _startName.Y);
             graphics.DrawString(AtribureField, drawFont, drawBrush, _startAtr.X, _startAtr.Y);
             graphics.DrawString(MethodField, drawFont, drawBrush, _startMet.X, _startMet.Y);
+            RegionBlock = new Region(new Rectangle(startPoint.X, startPoint.Y, (int)WidthRect, (int)totaLength));
         }
 
         public override void DrawBlock(Graphics graphics, Pen pen, Point start, string name, string atr, string met, float width, float heigth, int cAtrL, int cMetL)

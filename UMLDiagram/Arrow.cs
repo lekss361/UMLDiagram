@@ -24,9 +24,9 @@ namespace UMLDiagram
             Point start = _startPoint;
             List<Point> points = GetPoints();
 
-            cap.Draw(graphics, pen, end, start);
+            cap.Draw(graphics, PenFigure, end, start);
             //line.DrawLine(graphics, pen, end, start);
-            line.DrawLine(graphics, pen, points);   // Ломанная линия
+            line.DrawLine(graphics, PenFigure, points);   // Ломанная линия
         }
     }
 }

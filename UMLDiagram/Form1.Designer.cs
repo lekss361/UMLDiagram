@@ -38,6 +38,7 @@
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonRemoveTheLast = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -57,10 +58,33 @@
             this.colorLineButton = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.SettingFigure = new System.Windows.Forms.GroupBox();
+            this.LayoutPanelSelectSettingBlock = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.LayoutPanelSelectSettingArrow = new System.Windows.Forms.TableLayoutPanel();
+            this.TypeArrowText = new System.Windows.Forms.Label();
+            this.SelectTypeArrow = new System.Windows.Forms.ComboBox();
+            this.LayoutPanelSelectSettingFigure = new System.Windows.Forms.TableLayoutPanel();
+            this.ColorSelectFigure = new System.Windows.Forms.Button();
+            this.ColorArrowText = new System.Windows.Forms.Label();
+            this.WeightArrowText = new System.Windows.Forms.Label();
+            this.trackBarSettingFigure = new System.Windows.Forms.TrackBar();
+            this.SelectNameField = new System.Windows.Forms.TextBox();
+            this.SelectAtribureFieldText = new System.Windows.Forms.TextBox();
+            this.SelectMethodField = new System.Windows.Forms.TextBox();
+            this.chooseFont = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarWidth)).BeginInit();
+            this.SettingFigure.SuspendLayout();
+            this.LayoutPanelSelectSettingBlock.SuspendLayout();
+            this.LayoutPanelSelectSettingArrow.SuspendLayout();
+            this.LayoutPanelSelectSettingFigure.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSettingFigure)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -72,7 +96,7 @@
             this.pictureBox1.MinimumSize = new System.Drawing.Size(1500, 1500);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1500, 1500);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -136,6 +160,7 @@
             // groupBox1
             // 
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.buttonRemove);
             this.groupBox1.Controls.Add(this.buttonRemoveTheLast);
             this.groupBox1.Controls.Add(this.button2);
@@ -160,6 +185,13 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(36, 684);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 3;
             // 
             // buttonRemove
             // 
@@ -219,9 +251,11 @@
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "Толщина";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // trackBarWidth
             // 
+            this.trackBarWidth.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.trackBarWidth.LargeChange = 1;
             this.trackBarWidth.Location = new System.Drawing.Point(12, 389);
             this.trackBarWidth.Name = "trackBarWidth";
@@ -337,11 +371,216 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // SettingFigure
+            // 
+            this.SettingFigure.AutoSize = true;
+            this.SettingFigure.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SettingFigure.Controls.Add(this.LayoutPanelSelectSettingBlock);
+            this.SettingFigure.Controls.Add(this.LayoutPanelSelectSettingArrow);
+            this.SettingFigure.Controls.Add(this.LayoutPanelSelectSettingFigure);
+            this.SettingFigure.Location = new System.Drawing.Point(1115, 24);
+            this.SettingFigure.MinimumSize = new System.Drawing.Size(255, 0);
+            this.SettingFigure.Name = "SettingFigure";
+            this.SettingFigure.Size = new System.Drawing.Size(255, 332);
+            this.SettingFigure.TabIndex = 3;
+            this.SettingFigure.TabStop = false;
+            this.SettingFigure.Text = "Настройки фигуры";
+            this.SettingFigure.Enter += new System.EventHandler(this.SettingFigure_Enter);
+            // 
+            // LayoutPanelSelectSettingBlock
+            // 
+            this.LayoutPanelSelectSettingBlock.ColumnCount = 2;
+            this.LayoutPanelSelectSettingBlock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.LayoutPanelSelectSettingBlock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.SelectMethodField, 1, 2);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.SelectAtribureFieldText, 1, 1);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.label2, 0, 0);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.label4, 0, 1);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.label5, 0, 2);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.label6, 0, 3);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.SelectNameField, 1, 0);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.chooseFont, 1, 3);
+            this.LayoutPanelSelectSettingBlock.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LayoutPanelSelectSettingBlock.Location = new System.Drawing.Point(3, 141);
+            this.LayoutPanelSelectSettingBlock.Name = "LayoutPanelSelectSettingBlock";
+            this.LayoutPanelSelectSettingBlock.RowCount = 4;
+            this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutPanelSelectSettingBlock.Size = new System.Drawing.Size(249, 188);
+            this.LayoutPanelSelectSettingBlock.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "NameField";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 47);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 13);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "AtribureField";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "MethodField";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 141);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(28, 13);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Font";
+            // 
+            // LayoutPanelSelectSettingArrow
+            // 
+            this.LayoutPanelSelectSettingArrow.ColumnCount = 2;
+            this.LayoutPanelSelectSettingArrow.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingArrow.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingArrow.Controls.Add(this.TypeArrowText, 0, 0);
+            this.LayoutPanelSelectSettingArrow.Controls.Add(this.SelectTypeArrow, 1, 0);
+            this.LayoutPanelSelectSettingArrow.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LayoutPanelSelectSettingArrow.Enabled = false;
+            this.LayoutPanelSelectSettingArrow.Location = new System.Drawing.Point(3, 96);
+            this.LayoutPanelSelectSettingArrow.Name = "LayoutPanelSelectSettingArrow";
+            this.LayoutPanelSelectSettingArrow.RowCount = 1;
+            this.LayoutPanelSelectSettingArrow.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingArrow.Size = new System.Drawing.Size(249, 45);
+            this.LayoutPanelSelectSettingArrow.TabIndex = 4;
+            this.LayoutPanelSelectSettingArrow.Visible = false;
+            // 
+            // TypeArrowText
+            // 
+            this.TypeArrowText.AutoSize = true;
+            this.TypeArrowText.Location = new System.Drawing.Point(3, 0);
+            this.TypeArrowText.Name = "TypeArrowText";
+            this.TypeArrowText.Size = new System.Drawing.Size(58, 13);
+            this.TypeArrowText.TabIndex = 6;
+            this.TypeArrowText.Text = "TypeArrow";
+            // 
+            // SelectTypeArrow
+            // 
+            this.SelectTypeArrow.FormattingEnabled = true;
+            this.SelectTypeArrow.Location = new System.Drawing.Point(127, 10);
+            this.SelectTypeArrow.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.SelectTypeArrow.Name = "SelectTypeArrow";
+            this.SelectTypeArrow.Size = new System.Drawing.Size(117, 21);
+            this.SelectTypeArrow.TabIndex = 16;
+            // 
+            // LayoutPanelSelectSettingFigure
+            // 
+            this.LayoutPanelSelectSettingFigure.ColumnCount = 2;
+            this.LayoutPanelSelectSettingFigure.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingFigure.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingFigure.Controls.Add(this.ColorSelectFigure, 1, 1);
+            this.LayoutPanelSelectSettingFigure.Controls.Add(this.ColorArrowText, 0, 1);
+            this.LayoutPanelSelectSettingFigure.Controls.Add(this.WeightArrowText, 0, 0);
+            this.LayoutPanelSelectSettingFigure.Controls.Add(this.trackBarSettingFigure, 1, 0);
+            this.LayoutPanelSelectSettingFigure.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LayoutPanelSelectSettingFigure.Location = new System.Drawing.Point(3, 16);
+            this.LayoutPanelSelectSettingFigure.Name = "LayoutPanelSelectSettingFigure";
+            this.LayoutPanelSelectSettingFigure.RowCount = 2;
+            this.LayoutPanelSelectSettingFigure.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.LayoutPanelSelectSettingFigure.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.LayoutPanelSelectSettingFigure.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutPanelSelectSettingFigure.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutPanelSelectSettingFigure.Size = new System.Drawing.Size(249, 80);
+            this.LayoutPanelSelectSettingFigure.TabIndex = 4;
+            // 
+            // ColorSelectFigure
+            // 
+            this.ColorSelectFigure.Location = new System.Drawing.Point(127, 50);
+            this.ColorSelectFigure.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.ColorSelectFigure.Name = "ColorSelectFigure";
+            this.ColorSelectFigure.Size = new System.Drawing.Size(117, 23);
+            this.ColorSelectFigure.TabIndex = 15;
+            this.ColorSelectFigure.Text = "Цвет";
+            this.ColorSelectFigure.UseMnemonic = false;
+            this.ColorSelectFigure.UseVisualStyleBackColor = true;
+            this.ColorSelectFigure.Click += new System.EventHandler(this.ColorSelectFigure_Click);
+            // 
+            // ColorArrowText
+            // 
+            this.ColorArrowText.AutoSize = true;
+            this.ColorArrowText.Location = new System.Drawing.Point(3, 40);
+            this.ColorArrowText.Name = "ColorArrowText";
+            this.ColorArrowText.Size = new System.Drawing.Size(31, 13);
+            this.ColorArrowText.TabIndex = 5;
+            this.ColorArrowText.Text = "Color";
+            // 
+            // WeightArrowText
+            // 
+            this.WeightArrowText.AutoSize = true;
+            this.WeightArrowText.Location = new System.Drawing.Point(3, 0);
+            this.WeightArrowText.Name = "WeightArrowText";
+            this.WeightArrowText.Size = new System.Drawing.Size(41, 13);
+            this.WeightArrowText.TabIndex = 4;
+            this.WeightArrowText.Text = "Weight";
+            // 
+            // trackBarSettingFigure
+            // 
+            this.trackBarSettingFigure.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.trackBarSettingFigure.LargeChange = 1;
+            this.trackBarSettingFigure.Location = new System.Drawing.Point(128, 3);
+            this.trackBarSettingFigure.Name = "trackBarSettingFigure";
+            this.trackBarSettingFigure.Size = new System.Drawing.Size(117, 34);
+            this.trackBarSettingFigure.TabIndex = 15;
+            // 
+            // SelectNameField
+            // 
+            this.SelectNameField.Location = new System.Drawing.Point(127, 10);
+            this.SelectNameField.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.SelectNameField.Name = "SelectNameField";
+            this.SelectNameField.Size = new System.Drawing.Size(117, 20);
+            this.SelectNameField.TabIndex = 21;
+            // 
+            // SelectAtribureFieldText
+            // 
+            this.SelectAtribureFieldText.Location = new System.Drawing.Point(127, 57);
+            this.SelectAtribureFieldText.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.SelectAtribureFieldText.Name = "SelectAtribureFieldText";
+            this.SelectAtribureFieldText.Size = new System.Drawing.Size(117, 20);
+            this.SelectAtribureFieldText.TabIndex = 22;
+            // 
+            // SelectMethodField
+            // 
+            this.SelectMethodField.Location = new System.Drawing.Point(127, 104);
+            this.SelectMethodField.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.SelectMethodField.Name = "SelectMethodField";
+            this.SelectMethodField.Size = new System.Drawing.Size(117, 20);
+            this.SelectMethodField.TabIndex = 23;
+            // 
+            // chooseFont
+            // 
+            this.chooseFont.Location = new System.Drawing.Point(127, 151);
+            this.chooseFont.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.chooseFont.Name = "chooseFont";
+            this.chooseFont.Size = new System.Drawing.Size(117, 25);
+            this.chooseFont.TabIndex = 24;
+            this.chooseFont.Text = "Шрифт";
+            this.chooseFont.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.SettingFigure);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
@@ -355,6 +594,14 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarWidth)).EndInit();
+            this.SettingFigure.ResumeLayout(false);
+            this.LayoutPanelSelectSettingBlock.ResumeLayout(false);
+            this.LayoutPanelSelectSettingBlock.PerformLayout();
+            this.LayoutPanelSelectSettingArrow.ResumeLayout(false);
+            this.LayoutPanelSelectSettingArrow.PerformLayout();
+            this.LayoutPanelSelectSettingFigure.ResumeLayout(false);
+            this.LayoutPanelSelectSettingFigure.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSettingFigure)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,6 +650,25 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button buttonRemoveTheLast;
         private System.Windows.Forms.Button buttonRemove;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox SettingFigure;
+        private System.Windows.Forms.TableLayoutPanel LayoutPanelSelectSettingFigure;
+        private System.Windows.Forms.Label WeightArrowText;
+        private System.Windows.Forms.Label TypeArrowText;
+        private System.Windows.Forms.Label ColorArrowText;
+        private System.Windows.Forms.TrackBar trackBarSettingFigure;
+        private System.Windows.Forms.Button ColorSelectFigure;
+        private System.Windows.Forms.ComboBox SelectTypeArrow;
+        private System.Windows.Forms.TableLayoutPanel LayoutPanelSelectSettingArrow;
+        private System.Windows.Forms.TableLayoutPanel LayoutPanelSelectSettingBlock;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox SelectMethodField;
+        private System.Windows.Forms.TextBox SelectAtribureFieldText;
+        private System.Windows.Forms.TextBox SelectNameField;
+        private System.Windows.Forms.Button chooseFont;
     }
 }
 
