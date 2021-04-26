@@ -86,21 +86,19 @@ namespace UMLDiagram
             return focus;
         }
 
-        public void Move(int deltaX, int deltaY)
-        {
-            //_startPoint = new Point(_startPoint.X + deltaX, _startPoint.Y + deltaY);
-            //_endPoint = new Point(_endPoint.X + deltaX, _endPoint.Y + deltaY);
-        }
+        //public void Move(int deltaX, int deltaY)
+        //{
+        //    _startPoint = new Point(_startPoint.X + deltaX, _startPoint.Y + deltaY);
+        //    _endPoint = new Point(_endPoint.X + deltaX, _endPoint.Y + deltaY);
+        //}
 
         public void MoveStartPoint(int deltaX, int deltaY)
         {
             _startPoint = new Point(_startPoint.X + deltaX, _startPoint.Y + deltaY);
-            _endPoint = new Point(_endPoint.X, _endPoint.Y);
         }
 
         public void MoveEndPoint(int deltaX, int deltaY)
         {
-            _startPoint = new Point(_startPoint.X, _startPoint.Y);
             _endPoint = new Point(_endPoint.X + deltaX, _endPoint.Y + deltaY);
         }
 
