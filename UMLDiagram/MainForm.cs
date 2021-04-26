@@ -288,21 +288,12 @@ namespace UMLDiagram
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.Filter = "Class Diagram Files|*.umldiagram|JPeg Image|*.jpg";
+            saveFileDialog1.Filter = "JPeg Image|*.jpg";
             saveFileDialog1.ShowDialog();
 
             if (saveFileDialog1.FileName != "")
             {
-                switch (saveFileDialog1.FilterIndex)
-                {
-                    case 1:
-                        _mainBitmap.Save(saveFileDialog1.FileName);
-                        break;
-
-                    case 2:
-                        _mainBitmap.Save(saveFileDialog1.FileName, ImageFormat.Jpeg);
-                        break;
-                }
+                _mainBitmap.Save(saveFileDialog1.FileName, ImageFormat.Jpeg);
             }
         }
 
