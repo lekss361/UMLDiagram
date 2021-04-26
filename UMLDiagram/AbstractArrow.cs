@@ -19,11 +19,6 @@ namespace UMLDiagram
             List<Point> points = new List<Point>();
             points.Add(_startPoint);
 
-            // ломанная линия
-            //int middleX = (_endPoint.X + _startPoint.X) / 2;
-            //points.Add(new Point(middleX, _startPoint.Y));
-            //points.Add(new Point(middleX, _endPoint.Y));
-
             points.Add(_endPoint);
             return points;
         }
@@ -38,20 +33,6 @@ namespace UMLDiagram
 
         public bool SelectFigure(Point point)
         {
-            //List<Point> stEndPoints = GetPoints();
-            //bool pointFocused = false;
-
-            //for (int i = 0; i < stEndPoints.Count; i++)
-            //{
-            //    if (Math.Abs(stEndPoints[i].X - point.X) < 5
-            //            && Math.Abs(stEndPoints[i].Y - point.Y) < 5)
-            //    {
-            //        pointFocused = true;
-            //    }
-            //}
-
-            //return pointFocused;
-
             string str = GetFocusPoint(point);
 
             if (str == "start" || str == "end")
@@ -85,12 +66,6 @@ namespace UMLDiagram
             }
             return focus;
         }
-
-        //public void Move(int deltaX, int deltaY)
-        //{
-        //    _startPoint = new Point(_startPoint.X + deltaX, _startPoint.Y + deltaY);
-        //    _endPoint = new Point(_endPoint.X + deltaX, _endPoint.Y + deltaY);
-        //}
 
         public void MoveStartPoint(int deltaX, int deltaY)
         {

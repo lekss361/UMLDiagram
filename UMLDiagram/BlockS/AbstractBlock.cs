@@ -8,8 +8,8 @@ namespace UMLDiagram.BlockS
 {
     public abstract class AbstractBlock : IFigure
     {
-       //protected List<AbstactModule> _modules;
-        public Point startPoint { get; set; } // like mCur
+       
+        public Point startPoint { get; set; } 
         public Point endPoint { get; set; }
 
         public Rectangle mainRect{ get; set; }
@@ -46,11 +46,6 @@ namespace UMLDiagram.BlockS
             }
         }
 
-        //public void Move(int deltaX, int deltaY)
-        //{
-        //    startPoint = new Point(startPoint.X + deltaX, startPoint.Y + deltaY);
-        //}
-
         public void MoveStartPoint(int deltaX, int deltaY)
         {
             startPoint = new Point(startPoint.X + deltaX, startPoint.Y + deltaY);
@@ -58,7 +53,7 @@ namespace UMLDiagram.BlockS
 
         public void MoveEndPoint(int deltaX, int deltaY)
         {
-            //endPoint = new Point(endPoint.X + deltaX, endPoint.Y + deltaY);
+           
         }
     }
 }

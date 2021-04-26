@@ -10,9 +10,6 @@ namespace UMLDiagram.Arrows.LineTypes
 {
     public abstract class AbstractLine
     {
-        //public abstract void DrawLine(Graphics graphics, Pen pen, Point end,Point start);
-
-        // Ломанная линия
         public abstract void DrawLine(Graphics graphics, Pen pen, List<Point> points);
     }
 }

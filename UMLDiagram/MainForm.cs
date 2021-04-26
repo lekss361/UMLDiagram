@@ -32,7 +32,7 @@ namespace UMLDiagram
 
         List<IFigure> listOfFigure = new List<IFigure>();
 
-        Point p;
+        Point delta;
         bool isMove = false;
         string focusPoint;
 
@@ -64,7 +64,7 @@ namespace UMLDiagram
            absBlock.NumOfMethodLines = met;
         }
 
-    private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             
@@ -111,7 +111,7 @@ namespace UMLDiagram
 
                             pictureBox1.Image = _mainBitmap;
 
-                            p = e.Location;
+                            delta = e.Location;
                         }
                     }
                     else
@@ -135,13 +135,13 @@ namespace UMLDiagram
                 {
                     if (focusPoint == "start")
                     {
-                        aArrow.MoveStartPoint(e.X - p.X, e.Y - p.Y);
+                        aArrow.MoveStartPoint(e.X - delta.X, e.Y - delta.Y);
                     }
                     if (focusPoint == "end")
                     {
-                        aArrow.MoveEndPoint(e.X - p.X, e.Y - p.Y);
+                        aArrow.MoveEndPoint(e.X - delta.X, e.Y - delta.Y);
                     }
-                    p = e.Location;
+                    delta = e.Location;
                 }
                 else
                 {
@@ -201,21 +201,7 @@ namespace UMLDiagram
             IsMouseDown = false;
             _mainBitmap = _tmpBitmap;
 
-            switch (typeOfFigure)
-            {
-               
-                case FigureType.Arrow:
-
-                    listOfFigure.Add(aArrow);
-
-                    break;
-                default:
-                    //absBlock.NameField = null;
-                    //absBlock.AtribureField = null;
-                    //absBlock.MethodField = null;
-                    
-                    break;
-            }
+            listOfFigure.Add(aArrow);
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
@@ -325,20 +311,6 @@ namespace UMLDiagram
             isMove = true;
         }
 
-        private void buttonStack_Click(object sender, EventArgs e)
-        {
-            _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            _graphics = Graphics.FromImage(_mainBitmap);
-            _graphics.Clear(Color.White);
-
-            foreach (IFigure a in listOfFigure)
-            {
-                a.Draw(_graphics, MinePen);
-            }
-
-            pictureBox1.Image = _mainBitmap;
-        }
-
         private void buttonRemoveTheLast_Click(object sender, EventArgs e)
         {
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -353,11 +325,6 @@ namespace UMLDiagram
             }
 
             pictureBox1.Image = _mainBitmap;
-        }
-
-        private void buttonRemove_Click(object sender, EventArgs e)
-        {
-            // delete ???
         }
 
         private void buttonInterface_Click(object sender, EventArgs e)

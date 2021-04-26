@@ -35,13 +35,11 @@
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonRemoveTheLast = new System.Windows.Forms.Button();
             this.addictionButton = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.trackBarWidth = new System.Windows.Forms.TrackBar();
-            this.buttonStack = new System.Windows.Forms.Button();
             this.buttonInterface = new System.Windows.Forms.Button();
             this.buttonClass = new System.Windows.Forms.Button();
             this.buttonMove = new System.Windows.Forms.Button();
@@ -111,13 +109,11 @@
             // groupBox1
             // 
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBox1.Controls.Add(this.buttonRemove);
             this.groupBox1.Controls.Add(this.buttonRemoveTheLast);
             this.groupBox1.Controls.Add(this.addictionButton);
             this.groupBox1.Controls.Add(this.buttonClear);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.trackBarWidth);
-            this.groupBox1.Controls.Add(this.buttonStack);
             this.groupBox1.Controls.Add(this.buttonInterface);
             this.groupBox1.Controls.Add(this.buttonClass);
             this.groupBox1.Controls.Add(this.buttonMove);
@@ -134,16 +130,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
-            // 
-            // buttonRemove
-            // 
-            this.buttonRemove.Location = new System.Drawing.Point(12, 473);
-            this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(109, 23);
-            this.buttonRemove.TabIndex = 14;
-            this.buttonRemove.Text = "Удалить";
-            this.buttonRemove.UseVisualStyleBackColor = true;
-            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
             // buttonRemoveTheLast
             // 
@@ -192,17 +178,6 @@
             this.trackBarWidth.Size = new System.Drawing.Size(112, 45);
             this.trackBarWidth.TabIndex = 10;
             this.trackBarWidth.Scroll += new System.EventHandler(this.SwitchWeightPaintig);
-            // 
-            // buttonStack
-            // 
-            this.buttonStack.BackColor = System.Drawing.SystemColors.Control;
-            this.buttonStack.Location = new System.Drawing.Point(12, 106);
-            this.buttonStack.Name = "buttonStack";
-            this.buttonStack.Size = new System.Drawing.Size(112, 23);
-            this.buttonStack.TabIndex = 9;
-            this.buttonStack.Text = "Стек";
-            this.buttonStack.UseVisualStyleBackColor = false;
-            this.buttonStack.Click += new System.EventHandler(this.buttonStack_Click);
             // 
             // buttonInterface
             // 
@@ -348,7 +323,6 @@
         private System.Windows.Forms.Button inheritanceButton;
 
         private System.Windows.Forms.Button buttonMove;
-        private System.Windows.Forms.Button buttonStack;
         private System.Windows.Forms.Button buttonInterface;
         private System.Windows.Forms.Button buttonClass;
 
@@ -363,7 +337,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button buttonRemoveTheLast;
-        private System.Windows.Forms.Button buttonRemove;
     }
 }
 
