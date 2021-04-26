@@ -25,6 +25,7 @@ namespace UMLDiagram
         AbstractArrow aArrow;
         AbstractBlock absBlock;
 
+        
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
         FigureType typeOfFigure;
@@ -33,7 +34,7 @@ namespace UMLDiagram
 
         Point p;
         bool isMove = false;
-
+        string focusPoint;
 
         public MainForm()
         {
@@ -84,9 +85,11 @@ namespace UMLDiagram
                         builder = new ArrowsBuilder();
                         aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
                         foreach (AbstractArrow a in listOfFigure)
+                        //foreach (IFigure a in listOfFigure)
                         {
                             if (a.SelectFigure(e.Location))
                             {
+                                focusPoint = a.GetFocusPoint(e.Location);
                                 aArrow = a;
                                 break;
                             }
@@ -127,9 +130,16 @@ namespace UMLDiagram
         {
             if (IsMouseDown == true)
             {
-                if (isMove && aArrow != null)
+                if (isMove && aArrow != null) 
                 {
-                    aArrow.Move(e.X - p.X, e.Y - p.Y);
+                    if (focusPoint == "start")
+                    {
+                        aArrow.MoveStartPoint(e.X - p.X, e.Y - p.Y);
+                    }
+                    if (focusPoint == "end")
+                    {
+                        aArrow.MoveEndPoint(e.X - p.X, e.Y - p.Y);
+                    }
                     p = e.Location;
                 }
                 else
@@ -357,7 +367,6 @@ namespace UMLDiagram
 
             typeOfFigure = FigureType.Interface;
             isMove = false;
-
         }
     }
 }

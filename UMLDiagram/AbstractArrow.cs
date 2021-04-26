@@ -38,25 +38,71 @@ namespace UMLDiagram
 
         public bool SelectFigure(Point point)
         {
-            List<Point> stEndPoints = GetPoints();
-            bool pointFocused = false;
+            //List<Point> stEndPoints = GetPoints();
+            //bool pointFocused = false;
 
+            //for (int i = 0; i < stEndPoints.Count; i++)
+            //{
+            //    if (Math.Abs(stEndPoints[i].X - point.X) < 5
+            //            && Math.Abs(stEndPoints[i].Y - point.Y) < 5)
+            //    {
+            //        pointFocused = true;
+            //    }
+            //}
+
+            //return pointFocused;
+
+            string str = GetFocusPoint(point);
+
+            if (str == "start" || str == "end")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public string GetFocusPoint(Point point)
+        {
+            List<Point> stEndPoints = GetPoints();
+            string focus = "";
             for (int i = 0; i < stEndPoints.Count; i++)
             {
                 if (Math.Abs(stEndPoints[i].X - point.X) < 5
                         && Math.Abs(stEndPoints[i].Y - point.Y) < 5)
                 {
-                    pointFocused = true;
+                    if (i % 2 == 0)
+                    {
+                        focus = "start";
+                    }
+                    else
+                    {
+                        focus = "end";
+                    }                    
                 }
             }
-
-            return pointFocused;
+            return focus;
         }
 
         public void Move(int deltaX, int deltaY)
         {
+            //_startPoint = new Point(_startPoint.X + deltaX, _startPoint.Y + deltaY);
+            //_endPoint = new Point(_endPoint.X + deltaX, _endPoint.Y + deltaY);
+        }
+
+        public void MoveStartPoint(int deltaX, int deltaY)
+        {
             _startPoint = new Point(_startPoint.X + deltaX, _startPoint.Y + deltaY);
+            _endPoint = new Point(_endPoint.X, _endPoint.Y);
+        }
+
+        public void MoveEndPoint(int deltaX, int deltaY)
+        {
+            _startPoint = new Point(_startPoint.X, _startPoint.Y);
             _endPoint = new Point(_endPoint.X + deltaX, _endPoint.Y + deltaY);
         }
+
     }
 }

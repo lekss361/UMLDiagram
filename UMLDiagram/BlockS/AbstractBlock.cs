@@ -48,7 +48,7 @@ namespace UMLDiagram.BlockS
 
         public void Move(int deltaX, int deltaY)
         {
-            //startPoint = new Point(startPoint.X + deltaX, startPoint.Y + deltaY);
+            startPoint = new Point(startPoint.X + deltaX, startPoint.Y + deltaY);
             //endPoint = new Point(endPoint.X + deltaX, endPoint.Y + deltaY);
         }
 
