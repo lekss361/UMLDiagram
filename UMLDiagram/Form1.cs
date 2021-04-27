@@ -27,6 +27,7 @@ namespace UMLDiagram
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
         FigureType typeOfFigure;
+        ArrowType typeOfArrow;
 
         SettingFigure settingFigure;
         IFigure SelectFigure;
@@ -47,7 +48,8 @@ namespace UMLDiagram
         public Form1()
         {
             InitializeComponent();
-            settingFigure = new SettingFigure(trackBarSettingFigure,colorDialog1,SelectTypeArrow,LayoutPanelSelectSettingFigure,LayoutPanelSelectSettingArrow,LayoutPanelSelectSettingBlock);
+            settingFigure = new SettingFigure(trackBarSettingFigure, colorDialog1, SelectTypeArrow, LayoutPanelSelectSettingFigure, LayoutPanelSelectSettingArrow,
+                LayoutPanelSelectSettingBlock, SelectNameField, SelectAtribureFieldText, SelectMethodField);
         }
 
         public void SetPropety(string nameF, string atributF,string methodsF,Font font)
@@ -164,10 +166,12 @@ namespace UMLDiagram
                         block1.SetPointForLines(e.Location);
                         //block1.DrawBlock(_graphics, MinePen, e.Location);
                         block1.Draw(_graphics, block1.PenFigure);
+                        block1.FigureType = typeOfFigure;
                        
                         break;
                     case FigureType.Arrow:
                         aArrow.Draw(_graphics,aArrow.PenFigure);
+                        aArrow.arrowType = typeOfArrow;
                         break;
                 }
                 
@@ -187,6 +191,7 @@ namespace UMLDiagram
                 builder = new ArrowsBuilder();
                 aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
                 aArrow.PenFigure = new Pen(MinePen.Color,MinePen.Width);
+               // SelectFigure = new Arrow(aArrow);
 
                 foreach (IFigure a in listOfFigure)
                 {
@@ -223,11 +228,12 @@ namespace UMLDiagram
 
                     break;
                 case FigureType.Arrow:
-
+                    //aArrow = (AbstractArrow)SelectFigure;
                     listOfFigure.Add(aArrow);
 
                     break;
             }
+            
         }
 
         private void SwitchColorPaintig(object sender, EventArgs e)
@@ -248,6 +254,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.ArrowCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.associationArrow;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
@@ -256,6 +263,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.RhombusCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.aggregationArrow;
         }
 
         private void InheritanceArrow_Click(object sender, EventArgs e)
@@ -264,6 +272,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.TriangleCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.inheritanceArrow;
         }
 
         private void implementationButton_Click(object sender, EventArgs e)
@@ -272,7 +281,9 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.TriangleCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.implementationArrow;
         }
+
 
         private void compositionButton_Click(object sender, EventArgs e)
         {
@@ -280,6 +291,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.RhombusFillCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.composition;
         }
 
         private void addictionButton_Click(object sender, EventArgs e)
@@ -288,6 +300,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.TriangleFillCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.addictionArrow;
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -405,6 +418,13 @@ namespace UMLDiagram
 
                 MinePen.Color = colorDialog1.Color;
             
+        }
+
+        
+
+        private void SelectTypeArrow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

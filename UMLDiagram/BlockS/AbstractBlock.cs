@@ -27,6 +27,7 @@ namespace UMLDiagram.BlockS
         public int NumOfMethodLines { get; set; }
 
         public Pen PenFigure { get; set; }
+        public FigureType FigureType { get; set; }
 
         public Region RegionBlock { get; set; }
 

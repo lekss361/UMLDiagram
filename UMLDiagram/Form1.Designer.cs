@@ -60,10 +60,14 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SettingFigure = new System.Windows.Forms.GroupBox();
             this.LayoutPanelSelectSettingBlock = new System.Windows.Forms.TableLayoutPanel();
+            this.SelectMethodField = new System.Windows.Forms.TextBox();
+            this.SelectAtribureFieldText = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.SelectNameField = new System.Windows.Forms.TextBox();
+            this.chooseFont = new System.Windows.Forms.Button();
             this.LayoutPanelSelectSettingArrow = new System.Windows.Forms.TableLayoutPanel();
             this.TypeArrowText = new System.Windows.Forms.Label();
             this.SelectTypeArrow = new System.Windows.Forms.ComboBox();
@@ -72,10 +76,6 @@
             this.ColorArrowText = new System.Windows.Forms.Label();
             this.WeightArrowText = new System.Windows.Forms.Label();
             this.trackBarSettingFigure = new System.Windows.Forms.TrackBar();
-            this.SelectNameField = new System.Windows.Forms.TextBox();
-            this.SelectAtribureFieldText = new System.Windows.Forms.TextBox();
-            this.SelectMethodField = new System.Windows.Forms.TextBox();
-            this.chooseFont = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -381,7 +381,7 @@
             this.SettingFigure.Location = new System.Drawing.Point(1115, 24);
             this.SettingFigure.MinimumSize = new System.Drawing.Size(255, 0);
             this.SettingFigure.Name = "SettingFigure";
-            this.SettingFigure.Size = new System.Drawing.Size(255, 332);
+            this.SettingFigure.Size = new System.Drawing.Size(255, 318);
             this.SettingFigure.TabIndex = 3;
             this.SettingFigure.TabStop = false;
             this.SettingFigure.Text = "Настройки фигуры";
@@ -401,6 +401,7 @@
             this.LayoutPanelSelectSettingBlock.Controls.Add(this.SelectNameField, 1, 0);
             this.LayoutPanelSelectSettingBlock.Controls.Add(this.chooseFont, 1, 3);
             this.LayoutPanelSelectSettingBlock.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LayoutPanelSelectSettingBlock.Enabled = false;
             this.LayoutPanelSelectSettingBlock.Location = new System.Drawing.Point(3, 141);
             this.LayoutPanelSelectSettingBlock.Name = "LayoutPanelSelectSettingBlock";
             this.LayoutPanelSelectSettingBlock.RowCount = 4;
@@ -408,8 +409,25 @@
             this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.LayoutPanelSelectSettingBlock.Size = new System.Drawing.Size(249, 188);
+            this.LayoutPanelSelectSettingBlock.Size = new System.Drawing.Size(249, 174);
             this.LayoutPanelSelectSettingBlock.TabIndex = 5;
+            this.LayoutPanelSelectSettingBlock.Visible = false;
+            // 
+            // SelectMethodField
+            // 
+            this.SelectMethodField.Location = new System.Drawing.Point(127, 96);
+            this.SelectMethodField.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.SelectMethodField.Name = "SelectMethodField";
+            this.SelectMethodField.Size = new System.Drawing.Size(117, 20);
+            this.SelectMethodField.TabIndex = 23;
+            // 
+            // SelectAtribureFieldText
+            // 
+            this.SelectAtribureFieldText.Location = new System.Drawing.Point(127, 53);
+            this.SelectAtribureFieldText.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.SelectAtribureFieldText.Name = "SelectAtribureFieldText";
+            this.SelectAtribureFieldText.Size = new System.Drawing.Size(117, 20);
+            this.SelectAtribureFieldText.TabIndex = 22;
             // 
             // label2
             // 
@@ -423,7 +441,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 47);
+            this.label4.Location = new System.Drawing.Point(3, 43);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 13);
             this.label4.TabIndex = 18;
@@ -432,7 +450,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 94);
+            this.label5.Location = new System.Drawing.Point(3, 86);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 19;
@@ -441,11 +459,29 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 141);
+            this.label6.Location = new System.Drawing.Point(3, 129);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(28, 13);
             this.label6.TabIndex = 20;
             this.label6.Text = "Font";
+            // 
+            // SelectNameField
+            // 
+            this.SelectNameField.Location = new System.Drawing.Point(127, 10);
+            this.SelectNameField.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.SelectNameField.Name = "SelectNameField";
+            this.SelectNameField.Size = new System.Drawing.Size(117, 20);
+            this.SelectNameField.TabIndex = 21;
+            // 
+            // chooseFont
+            // 
+            this.chooseFont.Location = new System.Drawing.Point(127, 139);
+            this.chooseFont.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.chooseFont.Name = "chooseFont";
+            this.chooseFont.Size = new System.Drawing.Size(117, 25);
+            this.chooseFont.TabIndex = 24;
+            this.chooseFont.Text = "Шрифт";
+            this.chooseFont.UseVisualStyleBackColor = true;
             // 
             // LayoutPanelSelectSettingArrow
             // 
@@ -455,14 +491,12 @@
             this.LayoutPanelSelectSettingArrow.Controls.Add(this.TypeArrowText, 0, 0);
             this.LayoutPanelSelectSettingArrow.Controls.Add(this.SelectTypeArrow, 1, 0);
             this.LayoutPanelSelectSettingArrow.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LayoutPanelSelectSettingArrow.Enabled = false;
             this.LayoutPanelSelectSettingArrow.Location = new System.Drawing.Point(3, 96);
             this.LayoutPanelSelectSettingArrow.Name = "LayoutPanelSelectSettingArrow";
             this.LayoutPanelSelectSettingArrow.RowCount = 1;
             this.LayoutPanelSelectSettingArrow.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutPanelSelectSettingArrow.Size = new System.Drawing.Size(249, 45);
             this.LayoutPanelSelectSettingArrow.TabIndex = 4;
-            this.LayoutPanelSelectSettingArrow.Visible = false;
             // 
             // TypeArrowText
             // 
@@ -476,11 +510,19 @@
             // SelectTypeArrow
             // 
             this.SelectTypeArrow.FormattingEnabled = true;
+            this.SelectTypeArrow.Items.AddRange(new object[] {
+            "inheritanceArrow",
+            "associationArrow",
+            "addictionArrow",
+            "aggregationArrow",
+            "implementationArrow",
+            "composition"});
             this.SelectTypeArrow.Location = new System.Drawing.Point(127, 10);
             this.SelectTypeArrow.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.SelectTypeArrow.Name = "SelectTypeArrow";
             this.SelectTypeArrow.Size = new System.Drawing.Size(117, 21);
             this.SelectTypeArrow.TabIndex = 16;
+            this.SelectTypeArrow.SelectedIndexChanged += new System.EventHandler(this.SelectTypeArrow_SelectedIndexChanged);
             // 
             // LayoutPanelSelectSettingFigure
             // 
@@ -540,40 +582,6 @@
             this.trackBarSettingFigure.Name = "trackBarSettingFigure";
             this.trackBarSettingFigure.Size = new System.Drawing.Size(117, 34);
             this.trackBarSettingFigure.TabIndex = 15;
-            // 
-            // SelectNameField
-            // 
-            this.SelectNameField.Location = new System.Drawing.Point(127, 10);
-            this.SelectNameField.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.SelectNameField.Name = "SelectNameField";
-            this.SelectNameField.Size = new System.Drawing.Size(117, 20);
-            this.SelectNameField.TabIndex = 21;
-            // 
-            // SelectAtribureFieldText
-            // 
-            this.SelectAtribureFieldText.Location = new System.Drawing.Point(127, 57);
-            this.SelectAtribureFieldText.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.SelectAtribureFieldText.Name = "SelectAtribureFieldText";
-            this.SelectAtribureFieldText.Size = new System.Drawing.Size(117, 20);
-            this.SelectAtribureFieldText.TabIndex = 22;
-            // 
-            // SelectMethodField
-            // 
-            this.SelectMethodField.Location = new System.Drawing.Point(127, 104);
-            this.SelectMethodField.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.SelectMethodField.Name = "SelectMethodField";
-            this.SelectMethodField.Size = new System.Drawing.Size(117, 20);
-            this.SelectMethodField.TabIndex = 23;
-            // 
-            // chooseFont
-            // 
-            this.chooseFont.Location = new System.Drawing.Point(127, 151);
-            this.chooseFont.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.chooseFont.Name = "chooseFont";
-            this.chooseFont.Size = new System.Drawing.Size(117, 25);
-            this.chooseFont.TabIndex = 24;
-            this.chooseFont.Text = "Шрифт";
-            this.chooseFont.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
