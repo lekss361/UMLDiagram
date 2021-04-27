@@ -52,10 +52,31 @@
             this.colorLineButton = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.LayoutPanelSelectSetting = new System.Windows.Forms.GroupBox();
+            this.LayoutPanelSelectSettingBlock = new System.Windows.Forms.TableLayoutPanel();
+            this.SelectMethodField = new System.Windows.Forms.TextBox();
+            this.SelectAtribureFieldText = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.SelectNameField = new System.Windows.Forms.TextBox();
+            this.LayoutPanelSelectSettingArrow = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SelectTypeArrow = new System.Windows.Forms.ComboBox();
+            this.LayoutPanelSelectSettingFigure = new System.Windows.Forms.TableLayoutPanel();
+            this.trackBarSettingFigure = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarWidth)).BeginInit();
+            this.LayoutPanelSelectSetting.SuspendLayout();
+            this.LayoutPanelSelectSettingBlock.SuspendLayout();
+            this.LayoutPanelSelectSettingArrow.SuspendLayout();
+            this.LayoutPanelSelectSettingFigure.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSettingFigure)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -96,14 +117,14 @@
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
@@ -278,11 +299,192 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // LayoutPanelSelectSetting
+            // 
+            this.LayoutPanelSelectSetting.AutoSize = true;
+            this.LayoutPanelSelectSetting.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LayoutPanelSelectSetting.Controls.Add(this.LayoutPanelSelectSettingBlock);
+            this.LayoutPanelSelectSetting.Controls.Add(this.LayoutPanelSelectSettingArrow);
+            this.LayoutPanelSelectSetting.Controls.Add(this.LayoutPanelSelectSettingFigure);
+            this.LayoutPanelSelectSetting.Location = new System.Drawing.Point(1158, 27);
+            this.LayoutPanelSelectSetting.MinimumSize = new System.Drawing.Size(200, 100);
+            this.LayoutPanelSelectSetting.Name = "LayoutPanelSelectSetting";
+            this.LayoutPanelSelectSetting.Size = new System.Drawing.Size(212, 319);
+            this.LayoutPanelSelectSetting.TabIndex = 3;
+            this.LayoutPanelSelectSetting.TabStop = false;
+            this.LayoutPanelSelectSetting.Text = "Параметры фигуры";
+            // 
+            // LayoutPanelSelectSettingBlock
+            // 
+            this.LayoutPanelSelectSettingBlock.ColumnCount = 2;
+            this.LayoutPanelSelectSettingBlock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingBlock.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.SelectMethodField, 1, 2);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.SelectAtribureFieldText, 1, 1);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.label7, 0, 2);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.label5, 0, 0);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.label6, 0, 1);
+            this.LayoutPanelSelectSettingBlock.Controls.Add(this.SelectNameField, 1, 0);
+            this.LayoutPanelSelectSettingBlock.Location = new System.Drawing.Point(6, 200);
+            this.LayoutPanelSelectSettingBlock.Name = "LayoutPanelSelectSettingBlock";
+            this.LayoutPanelSelectSettingBlock.RowCount = 3;
+            this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.LayoutPanelSelectSettingBlock.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.LayoutPanelSelectSettingBlock.Size = new System.Drawing.Size(200, 100);
+            this.LayoutPanelSelectSettingBlock.TabIndex = 2;
+            // 
+            // SelectMethodField
+            // 
+            this.SelectMethodField.Location = new System.Drawing.Point(103, 71);
+            this.SelectMethodField.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.SelectMethodField.Name = "SelectMethodField";
+            this.SelectMethodField.Size = new System.Drawing.Size(94, 20);
+            this.SelectMethodField.TabIndex = 21;
+            // 
+            // SelectAtribureFieldText
+            // 
+            this.SelectAtribureFieldText.Location = new System.Drawing.Point(103, 38);
+            this.SelectAtribureFieldText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.SelectAtribureFieldText.Name = "SelectAtribureFieldText";
+            this.SelectAtribureFieldText.Size = new System.Drawing.Size(94, 20);
+            this.SelectAtribureFieldText.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 66);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Текст Методов";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Название Блока";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 33);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 26);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Текст Признаков";
+            // 
+            // SelectNameField
+            // 
+            this.SelectNameField.Location = new System.Drawing.Point(103, 5);
+            this.SelectNameField.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.SelectNameField.Name = "SelectNameField";
+            this.SelectNameField.Size = new System.Drawing.Size(94, 20);
+            this.SelectNameField.TabIndex = 19;
+            // 
+            // LayoutPanelSelectSettingArrow
+            // 
+            this.LayoutPanelSelectSettingArrow.ColumnCount = 2;
+            this.LayoutPanelSelectSettingArrow.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingArrow.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingArrow.Controls.Add(this.label4, 0, 0);
+            this.LayoutPanelSelectSettingArrow.Controls.Add(this.SelectTypeArrow, 1, 0);
+            this.LayoutPanelSelectSettingArrow.Location = new System.Drawing.Point(6, 125);
+            this.LayoutPanelSelectSettingArrow.Name = "LayoutPanelSelectSettingArrow";
+            this.LayoutPanelSelectSettingArrow.RowCount = 1;
+            this.LayoutPanelSelectSettingArrow.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutPanelSelectSettingArrow.Size = new System.Drawing.Size(200, 59);
+            this.LayoutPanelSelectSettingArrow.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Тип стрелки";
+            // 
+            // SelectTypeArrow
+            // 
+            this.SelectTypeArrow.FormattingEnabled = true;
+            this.SelectTypeArrow.Items.AddRange(new object[] {
+            "inheritanceArrow",
+            "associationArrow",
+            "addictionArrow",
+            "aggregationArrow",
+            "implementationArrow",
+            "composition"});
+            this.SelectTypeArrow.Location = new System.Drawing.Point(103, 15);
+            this.SelectTypeArrow.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.SelectTypeArrow.Name = "SelectTypeArrow";
+            this.SelectTypeArrow.Size = new System.Drawing.Size(94, 21);
+            this.SelectTypeArrow.TabIndex = 15;
+            // 
+            // LayoutPanelSelectSettingFigure
+            // 
+            this.LayoutPanelSelectSettingFigure.ColumnCount = 2;
+            this.LayoutPanelSelectSettingFigure.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingFigure.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingFigure.Controls.Add(this.trackBarSettingFigure, 1, 0);
+            this.LayoutPanelSelectSettingFigure.Controls.Add(this.label2, 0, 0);
+            this.LayoutPanelSelectSettingFigure.Controls.Add(this.label3, 0, 1);
+            this.LayoutPanelSelectSettingFigure.Controls.Add(this.button1, 1, 1);
+            this.LayoutPanelSelectSettingFigure.Location = new System.Drawing.Point(6, 19);
+            this.LayoutPanelSelectSettingFigure.Name = "LayoutPanelSelectSettingFigure";
+            this.LayoutPanelSelectSettingFigure.RowCount = 2;
+            this.LayoutPanelSelectSettingFigure.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingFigure.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPanelSelectSettingFigure.Size = new System.Drawing.Size(200, 100);
+            this.LayoutPanelSelectSettingFigure.TabIndex = 0;
+            // 
+            // trackBarSettingFigure
+            // 
+            this.trackBarSettingFigure.LargeChange = 1;
+            this.trackBarSettingFigure.Location = new System.Drawing.Point(103, 3);
+            this.trackBarSettingFigure.Name = "trackBarSettingFigure";
+            this.trackBarSettingFigure.Size = new System.Drawing.Size(94, 44);
+            this.trackBarSettingFigure.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Толщина";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Цвет";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(103, 65);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Цвет";
+            this.button1.UseMnemonic = false;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.SwitchColorPaintig);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.LayoutPanelSelectSetting);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
@@ -297,6 +499,14 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarWidth)).EndInit();
+            this.LayoutPanelSelectSetting.ResumeLayout(false);
+            this.LayoutPanelSelectSettingBlock.ResumeLayout(false);
+            this.LayoutPanelSelectSettingBlock.PerformLayout();
+            this.LayoutPanelSelectSettingArrow.ResumeLayout(false);
+            this.LayoutPanelSelectSettingArrow.PerformLayout();
+            this.LayoutPanelSelectSettingFigure.ResumeLayout(false);
+            this.LayoutPanelSelectSettingFigure.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSettingFigure)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,6 +549,22 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button buttonRemoveTheLast;
+        private System.Windows.Forms.GroupBox LayoutPanelSelectSetting;
+        private System.Windows.Forms.TableLayoutPanel LayoutPanelSelectSettingFigure;
+        private System.Windows.Forms.TableLayoutPanel LayoutPanelSelectSettingArrow;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox SelectTypeArrow;
+        private System.Windows.Forms.TrackBar trackBarSettingFigure;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TableLayoutPanel LayoutPanelSelectSettingBlock;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox SelectMethodField;
+        private System.Windows.Forms.TextBox SelectAtribureFieldText;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox SelectNameField;
     }
 }
 

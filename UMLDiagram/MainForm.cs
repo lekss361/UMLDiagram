@@ -24,11 +24,13 @@ namespace UMLDiagram
         ArrowsBuilder builder;
         AbstractArrow aArrow;
         AbstractBlock absBlock;
+        SettingFigure settingFigure;
 
 
         ArrowLineType typeOfLine;
         ArrowCapType typeOfCap;
         FigureType typeOfFigure;
+        ArrowType typeOfArrow;
 
         List<IFigure> listOfFigure = new List<IFigure>();
 
@@ -39,6 +41,9 @@ namespace UMLDiagram
         public MainForm()
         {
             InitializeComponent();
+            settingFigure = new SettingFigure(trackBarSettingFigure, colorDialog1, SelectTypeArrow, LayoutPanelSelectSettingFigure, LayoutPanelSelectSettingArrow,
+                 LayoutPanelSelectSettingBlock, SelectNameField, SelectAtribureFieldText, SelectMethodField);
+
         }
 
         public void SetPropety(string nameF, string atributF, string methodsF, Font font)
@@ -85,6 +90,8 @@ namespace UMLDiagram
                     {
                         builder = new ArrowsBuilder();
                         aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+                        aArrow.PenFigure = new Pen(MinePen.Color, MinePen.Width);
+                        aArrow.arrowType = typeOfArrow;
                         foreach (AbstractArrow a in listOfFigure)
                         //foreach (IFigure a in listOfFigure)
                         {
@@ -92,6 +99,7 @@ namespace UMLDiagram
                             {
                                 focusPoint = a.GetFocusPoint(e.Location);
                                 aArrow = a;
+                                settingFigure.SetSettingFigure(a);
                                 break;
                             }
                         }
@@ -106,7 +114,7 @@ namespace UMLDiagram
 
                             foreach (IFigure a in listOfFigure)
                             {
-                                a.Draw(_graphics, MinePen);
+                                a.Draw(_graphics, a.PenFigure);
                             }
 
                             pictureBox1.Image = _mainBitmap;
@@ -118,6 +126,8 @@ namespace UMLDiagram
                     {
                         builder = new ArrowsBuilder();
                         aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
+                        aArrow.PenFigure = new Pen(MinePen.Color, MinePen.Width);
+                        aArrow.arrowType = typeOfArrow;
                         aArrow._startPoint = e.Location;
                     }
                     break;
@@ -156,12 +166,14 @@ namespace UMLDiagram
                 {
 
                     case FigureType.Arrow:
-                        aArrow.Draw(_graphics, MinePen);
+                        aArrow.Draw(_graphics, aArrow.PenFigure);
                         break;
                     default:
                         absBlock.startPoint = e.Location;
+                        absBlock.PenFigure = new Pen(MinePen.Color, MinePen.Width);
                         absBlock.SetPointForLines(e.Location);
-                        absBlock.Draw(_graphics, MinePen);
+                        absBlock.Draw(_graphics, absBlock.PenFigure);
+                        absBlock.FigureType = typeOfFigure;
                         break;
                 }
 
@@ -236,6 +248,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.ArrowCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.associationArrow;
         }
 
         private void aggregationButton_Click(object sender, EventArgs e)
@@ -244,6 +257,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.RhombusCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.aggregationArrow;
         }
 
         private void InheritanceArrow_Click(object sender, EventArgs e)
@@ -252,6 +266,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.TriangleCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.inheritanceArrow;
         }
 
         private void implementationButton_Click(object sender, EventArgs e)
@@ -260,6 +275,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.TriangleCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.implementationArrow;
         }
 
         private void compositionButton_Click(object sender, EventArgs e)
@@ -268,6 +284,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.RhombusFillCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.composition;
         }
 
         private void addictionButton_Click(object sender, EventArgs e)
@@ -276,6 +293,7 @@ namespace UMLDiagram
             typeOfCap = ArrowCapType.TriangleFillCap;
             isMove = false;
             typeOfFigure = FigureType.Arrow;
+            typeOfArrow = ArrowType.addictionArrow;
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

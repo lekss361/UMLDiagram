@@ -30,18 +30,32 @@ namespace UMLDiagram.Arrows.CapTypes
 
 
             double angle = Math.Atan2(_startPoint.Y - _endPoint.Y, _startPoint.X - _endPoint.X) + Math.PI; // угол поворота линии
+            double tmpAngle = 0;
+            //if (angle > 0.77898 && angle < 2.35545)
+            //{
+            //    tmpAngle = 1.5765;
+            //}
+            //else if (angle > 2.35545 && angle < 3.91335)
+            //{
+            //    tmpAngle = 3.1344;
+            //}
+            //else if (angle > 3.91335 && angle < 5.52625)
+            //{
+            //    tmpAngle = 4.7473;
+            //}
+            tmpAngle = angle;
 
-            x1 = _startPoint.X + arrow_lenght * Math.Cos(angle - arrow_degrees);
-            y1 = _startPoint.Y + arrow_lenght * Math.Sin(angle - arrow_degrees);
+            x1 = _startPoint.X + arrow_lenght * Math.Cos(tmpAngle - arrow_degrees);
+            y1 = _startPoint.Y + arrow_lenght * Math.Sin(tmpAngle - arrow_degrees);
 
-            x2 = _startPoint.X + arrow_lenght * Math.Cos(angle + arrow_degrees);
-            y2 = _startPoint.Y + arrow_lenght * Math.Sin(angle + arrow_degrees);
+            x2 = _startPoint.X + arrow_lenght * Math.Cos(tmpAngle + arrow_degrees);
+            y2 = _startPoint.Y + arrow_lenght * Math.Sin(tmpAngle + arrow_degrees);
 
-            x3 = _startPoint.X - 30 * Math.Cos(angle);
-            y3 = _startPoint.Y - 30 * Math.Sin(angle);
+            x3 = _startPoint.X - 30 * Math.Cos(tmpAngle);
+            y3 = _startPoint.Y - 30 * Math.Sin(tmpAngle);
 
-            x4 = _startPoint.X + 30 * Math.Cos(angle);
-            y4 = _startPoint.Y + 30 * Math.Sin(angle);
+            x4 = _startPoint.X + 30 * Math.Cos(tmpAngle);
+            y4 = _startPoint.Y + 30 * Math.Sin(tmpAngle);
 
             points.Add(new Point(Convert.ToInt32(x1), Convert.ToInt32(y1)));
             points.Add(new Point(Convert.ToInt32(x3), Convert.ToInt32(y3)));

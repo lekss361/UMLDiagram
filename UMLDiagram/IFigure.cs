@@ -9,6 +9,7 @@ namespace UMLDiagram
 {
     public interface IFigure : IMoveable
     {        
+        Pen PenFigure { get; set; }
         void Draw(Graphics graphics, Pen pen);
     }
 }

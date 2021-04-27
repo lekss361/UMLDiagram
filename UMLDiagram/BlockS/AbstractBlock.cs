@@ -26,6 +26,9 @@ namespace UMLDiagram.BlockS
         public int NumOfAtributeLines { get; set; }
         public int NumOfMethodLines { get; set; }
 
+        public Pen PenFigure { get; set; }
+        public FigureType FigureType { get; set; }
+
 
         public abstract void SetPointForLines(Point st);
         public abstract void Draw(Graphics graphics, Pen pen);

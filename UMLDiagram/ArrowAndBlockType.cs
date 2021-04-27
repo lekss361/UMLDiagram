@@ -28,4 +28,13 @@ namespace UMLDiagram
         Interface
     }
 
+    public enum ArrowType
+    {
+        inheritanceArrow = 0,
+        associationArrow,
+        addictionArrow,
+        aggregationArrow,
+        implementationArrow,
+        composition
+    }
 }

@@ -13,6 +13,8 @@ namespace UMLDiagram
 
         public Point _startPoint { get; set; }
         public Point _endPoint { get; set; }
+        public Pen PenFigure { get; set; }
+        public ArrowType arrowType { get; set; }
 
         protected List<Point> GetPoints()
         {
