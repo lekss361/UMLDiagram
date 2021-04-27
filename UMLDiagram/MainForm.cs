@@ -92,13 +92,14 @@ namespace UMLDiagram
                         aArrow = builder.CreateArrow(typeOfCap, typeOfLine);
                         aArrow.PenFigure = new Pen(MinePen.Color, MinePen.Width);
                         aArrow.arrowType = typeOfArrow;
-                        foreach (AbstractArrow a in listOfFigure)
+                        foreach (IFigure a in listOfFigure)
                         //foreach (IFigure a in listOfFigure)
                         {
                             if (a.SelectFigure(e.Location))
                             {
-                                focusPoint = a.GetFocusPoint(e.Location);
-                                aArrow = a;
+                                AbstractArrow abstractArrow = (AbstractArrow)a;
+                                focusPoint = abstractArrow.GetFocusPoint(e.Location);
+                                aArrow = abstractArrow;
                                 settingFigure.SetSettingFigure(a);
                                 break;
                             }
@@ -132,7 +133,7 @@ namespace UMLDiagram
                     }
                     break;
                 default:
-                    absBlock.SetPointForLines(e.Location); // вопрос и сомнения 
+                    //absBlock.SetPointForLines(e.Location); // вопрос и сомнения 
                     break;
             }
         }
