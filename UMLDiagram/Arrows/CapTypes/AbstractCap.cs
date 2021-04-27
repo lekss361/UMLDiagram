@@ -19,7 +19,7 @@ namespace UMLDiagram.Arrows.CapTypes
         }
 
         protected abstract void DrawCap(Graphics graphics, Pen pen, List<Point> points, Point startPoint, Point endPoint);
-        private List<Point> CalculatePoints(Point _startPoint , Point _endPoint)
+        public List<Point> CalculatePoints(Point _startPoint , Point _endPoint)
         {
             List<Point> points = new List<Point>();
 

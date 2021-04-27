@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UMLDiagram.Arrows.CapTypes
 {
-    class ArrowCap : AbstractCap
+    public class ArrowCap : AbstractCap
     {
 
         protected override void DrawCap(Graphics graphics, Pen pen, List<Point> points, Point startPoint, Point endPoint)
